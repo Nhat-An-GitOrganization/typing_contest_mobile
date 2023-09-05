@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:typing_contest_mobile/component/category_list.dart';
-import 'package:typing_contest_mobile/component/contest_card.dart';
-import 'package:typing_contest_mobile/component/contest_caroulsel.dart';
+import 'package:typing_contest_mobile/component/contest/category_list.dart';
+import 'package:typing_contest_mobile/component/contest/contest_card.dart';
+import 'package:typing_contest_mobile/component/contest/contest_caroulsel.dart';
 import 'package:typing_contest_mobile/component/profile_menu.dart';
 import 'package:typing_contest_mobile/component/search_box.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
@@ -93,22 +93,21 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              // View Profile
-              if (!showProfile) Container(),
-              if (showProfile) ProFileMethod(user, context),
-              // View history
-              if (!showHistory) Container(),
-              if (showHistory) const Text('History'),
-              // View HomePage
-              if (!showHomePage) Container(),
-              if (showHomePage) buildAppbar(),
-              if (showHomePage) const SearchBox(),
-              if (showHomePage) const CategoryList(),
-              if (showHomePage) HomeMethod(),
-            ],
+        body: RefreshIndicator(
+          onRefresh: () async {},
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                if (showProfile) ProFileMethod(user, context),
+                if (showHistory) const Text('History'),
+                if (showHomePage) ...[
+                  buildAppbar(),
+                  const SearchBox(),
+                  const CategoryList(),
+                  HomeMethod(),
+                ],
+              ],
+            ),
           ),
         ),
       ),
@@ -152,6 +151,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
   // ignore: non_constant_identifier_names
   Widget ProFileMethod(User user, BuildContext context) {
     return SafeArea(
