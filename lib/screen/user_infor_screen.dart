@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/screen/home_screen.dart';
 
 class UserInfor extends StatefulWidget {
-  const UserInfor({super.key});
+  const UserInfor({Key? key});
 
   @override
   State<UserInfor> createState() => _UserInforState();
@@ -11,8 +11,11 @@ class UserInfor extends StatefulWidget {
 
 class _UserInforState extends State<UserInfor> {
   final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -23,7 +26,9 @@ class _UserInforState extends State<UserInfor> {
             color: Colors.blue,
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => const HomePage()));
+                context,
+                MaterialPageRoute(builder: (_) => const HomePage()),
+              );
             },
           ),
           actions: [
@@ -45,9 +50,7 @@ class _UserInforState extends State<UserInfor> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               Center(
                 child: Stack(
                   children: [
@@ -97,11 +100,9 @@ class _UserInforState extends State<UserInfor> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 45,
-              ),
-              texfieldMethod('Full Name', user.displayName!),
-              texfieldMethod('E-mail', user.email!),
+              const SizedBox(height: 45),
+              texfieldMethod('Full Name', user.displayName!, isDarkMode),
+              texfieldMethod('E-mail', user.email!, isDarkMode),
             ],
           ),
         ),
@@ -109,7 +110,7 @@ class _UserInforState extends State<UserInfor> {
     );
   }
 
-  Widget texfieldMethod(String labeltext, String placeholder) {
+  Widget texfieldMethod(String labeltext, String placeholder, bool isDarkMode) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35),
       child: TextField(
@@ -123,10 +124,10 @@ class _UserInforState extends State<UserInfor> {
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
       ),

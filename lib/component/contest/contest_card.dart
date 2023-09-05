@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
+import 'package:typing_contest_mobile/screen/contest_dts_screen.dart';
 
 class ContestCard extends StatelessWidget {
   const ContestCard({
-    super.key,
+    Key? key,
     required this.itemIndex,
     required this.ct,
-  });
+  }) : super(key: key);
+
   final int itemIndex;
   final Contest ct;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 20 / 2,
       ),
-      // color: Colors.blueAccent,
       height: 160,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          //background
+          // Background
           Container(
             height: 140,
             decoration: BoxDecoration(
@@ -34,8 +38,7 @@ class ContestCard extends StatelessWidget {
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
                   blurRadius: 20,
-                  offset: const Offset(
-                      0, 3), // Điều chỉnh vị trí shadow trên trục y
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -47,7 +50,7 @@ class ContestCard extends StatelessWidget {
               ),
             ),
           ),
-          //Contest
+          // Contest
           Positioned(
             top: 0,
             right: 0,
@@ -62,7 +65,7 @@ class ContestCard extends StatelessWidget {
               ),
             ),
           ),
-          // inforContest
+          // Info Contest
           Positioned(
             bottom: 0,
             left: 0,
@@ -77,13 +80,23 @@ class ContestCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       ct.title,
-                      style: Theme.of(context).textTheme.labelLarge,
+                      style: isDarkMode
+                          ? Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(color: Colors.black)
+                          : Theme.of(context).textTheme.labelLarge,
                     ),
                   ),
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
-                      print('Tham gia');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ContestDetail(contest: ct),
+                        ),
+                      );
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 20, bottom: 20),
@@ -92,18 +105,24 @@ class ContestCard extends StatelessWidget {
                         vertical: 20 / 4,
                       ),
                       decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(20)),
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: Text(
                         'Tham gia',
-                        style: Theme.of(context).textTheme.labelLarge,
+                        style: isDarkMode
+                            ? Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(color: Colors.black)
+                            : Theme.of(context).textTheme.labelLarge,
                       ),
                     ),
                   )
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

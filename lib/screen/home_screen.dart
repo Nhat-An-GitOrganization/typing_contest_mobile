@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:typing_contest_mobile/component/contest/category_list.dart';
 import 'package:typing_contest_mobile/component/contest/contest_card.dart';
 import 'package:typing_contest_mobile/component/contest/contest_caroulsel.dart';
@@ -25,18 +26,6 @@ class _HomePageState extends State<HomePage> {
   bool showProfile = false;
   bool showHomePage = true;
   bool showHistory = false;
-  bool isDarkMode = false;
-  ThemeData themeData = ThemeData.light();
-  void toggleDarkMode(bool value) {
-    setState(() {
-      isDarkMode = value;
-    });
-    if (isDarkMode) {
-      themeData = ThemeData.dark();
-    } else {
-      themeData = ThemeData.light();
-    }
-  }
 
   Future<void> logout() async {
     final GoogleSignIn googleSign = GoogleSignIn();
@@ -52,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
       bottom: false,
@@ -60,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           index: 1,
           color: const Color.fromARGB(255, 25, 145, 243),
           backgroundColor: Colors.transparent,
-          animationDuration: const Duration(milliseconds: 200),
+          animationDuration: const Duration(milliseconds: 300),
           onTap: (index) {
             setState(() {
               if (index == 2) {
@@ -142,10 +132,28 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 40,
           ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: const Text(
+                'Contest List',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           for (var i = 0; i < contest.length; i++)
-            ContestCard(
-              itemIndex: i,
-              ct: contest[i],
+            Column(
+              children: [
+                ContestCard(
+                  itemIndex: i,
+                  ct: contest[i],
+                ),
+                const SizedBox(height: 15), // Khoảng cách 5px giữa các phần tử
+              ],
             ),
         ],
       ),
@@ -208,9 +216,13 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   title: const Text('Dark Mode'),
-                  trailing: CupertinoSwitch(
-                    value: isDarkMode,
-                    onChanged: toggleDarkMode,
+                  trailing: Consumer<ThemeProvider>(
+                    builder: (context, themeProvider, _) => Switch(
+                      value: themeProvider.isDarkMode,
+                      onChanged: (value) {
+                        themeProvider.toggleDarkMode();
+                      },
+                    ),
                   ),
                 ),
                 const Divider(
@@ -239,5 +251,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+}
+
+class ThemeProvider with ChangeNotifier {
+  bool _isDarkMode = false;
+
+  bool get isDarkMode => _isDarkMode;
+
+  void toggleDarkMode() {
+    _isDarkMode = !_isDarkMode;
+    notifyListeners();
   }
 }

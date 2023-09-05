@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/details_contest/backdrop_details_cts.dart';
 import 'package:typing_contest_mobile/component/details_contest/genres_dt_contest.dart';
+import 'package:typing_contest_mobile/component/details_contest/organizer.dart';
 import 'package:typing_contest_mobile/component/details_contest/title_details_contest.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
@@ -15,7 +16,7 @@ class DetailsPageContest extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BackGroundDetailCT(size: size, contest: contest),
-        const SizedBox(height: 20),
+        const SizedBox(height: 5),
         TitleDetailsContest(contest: contest),
         Genres(contest: contest),
         Padding(
@@ -37,35 +38,11 @@ class DetailsPageContest extends StatelessWidget {
             ),
           ),
         ),
+        Organizers(
+          orga: contest.orga,
+        ),
       ],
     );
   }
 }
 
-class Organizers extends StatelessWidget {
-  const Organizers({super.key, required this.listOrga});
-  final List listOrga;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Text(
-            'Organizers',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          const SizedBox(
-            height: 20 / 2,
-          ),
-          SizedBox(
-            height: 150,
-            child: ListView.builder(
-              itemBuilder: (context, index) => Container(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

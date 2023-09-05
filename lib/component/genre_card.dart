@@ -7,6 +7,8 @@ class GenreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.only(left: 20),
@@ -20,7 +22,12 @@ class GenreCard extends StatelessWidget {
       ),
       child: Text(
         genre,
-        style: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 16),
+        style: TextStyle(
+          color: isDarkMode
+              ? Colors.white.withOpacity(0.5)
+              : Colors.black.withOpacity(0.8),
+          fontSize: 16,
+        ),
       ),
     );
   }
