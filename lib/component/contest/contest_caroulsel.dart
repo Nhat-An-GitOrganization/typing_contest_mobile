@@ -12,7 +12,7 @@ class ContestCarousel extends StatefulWidget {
 
 class _ContestCarouselState extends State<ContestCarousel> {
   late PageController _pageController;
-  int initialPage = 1;
+  int initialPage = 0;
   @override
   void initState() {
     super.initState();
