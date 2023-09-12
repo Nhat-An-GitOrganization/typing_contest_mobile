@@ -9,6 +9,7 @@ class TypingSpeedTestGame extends StatefulWidget {
 }
 
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
+  TextEditingController textEditingController = TextEditingController();
   static const maxTime = 60;
   int timeLeft = maxTime;
   int mistakes = 0;
@@ -17,7 +18,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   String typedText = '';
   List<Color?> correctCharacters = List.filled(paragraphs[0].length, null);
   late Timer timer;
-
+  bool isTypingComplete = false;
   @override
   void initState() {
     super.initState();
@@ -36,6 +37,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
         if (timeLeft > 0) {
           timeLeft--;
         } else {
+          _showResultDialog();
           timer.cancel();
         }
       });
@@ -50,6 +52,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       cpm = 0;
       typedText = '';
       startTimer();
+      _resetTextField();
     });
   }
 
@@ -84,9 +87,49 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           correctCharacters[i] = null;
         }
       }
-
+      if (typedText.length == paragraphs[0].length) {
+        // Check if typedText matches the original paragraph
+        isTypingComplete = true;
+        timer.cancel();
+        _showResultDialog(); // Display the result dialog
+      }
       calculateStats();
     });
+  }
+
+  void _showResultDialog() {
+    int totalTime = maxTime - timeLeft;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Typing Test Result'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Total time: $totalTime s / $maxTime s'),
+              Text('Mistakes: $mistakes'),
+              Text('WPM: $wpm'),
+              Text('CPM: $cpm'),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                resetGame();
+              },
+              child: const Text('Try Again'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _resetTextField() {
+    textEditingController.clear();
   }
 
   @override
@@ -138,25 +181,11 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                     Text('Mistakes: $mistakes'),
                     Text('WPM: $wpm'),
                     Text('CPM: $cpm'),
-                    ElevatedButton(
-                      onPressed: resetGame,
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        backgroundColor: const Color(0xFF17A2B8),
-                        foregroundColor: Colors.white,
-                      ),
-                      child: const Text('Try Again'),
-                    ),
                   ],
                 ),
                 const SizedBox(height: 17),
                 TextField(
+                  controller: textEditingController,
                   onChanged: handleInput,
                   enabled: timeLeft > 0,
                   autofocus: true,
@@ -178,6 +207,4 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 
 final List<String> paragraphs = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 ];
