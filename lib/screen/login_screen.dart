@@ -40,42 +40,60 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Column(
             children: [
-              Image.asset(
-                'lib/images/fpoly.png',
-                width: 200,
-                height: 200,
+              const SizedBox(
+                height: 130,
+              ),
+              Center(
+                child: Text(
+                  'FPLSP',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 70,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(
+                            0.5), // Thay đổi màu đổ bóng thành màu đen mờ
+                        offset: const Offset(
+                            4, 4), // Điều chỉnh độ lệch x và y của đổ bóng
+                        blurRadius: 8, // Điều chỉnh bán kính mờ của đổ bóng
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(
-                height: 200,
+                height: 20,
+              ),
+              Center(
+                child: Text(
+                  'Typing Contest',
+                  style: TextStyle(
+                    color: Colors.white, // Thay đổi màu chữ thành màu cam
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(
+                            0.5), // Thay đổi màu đổ bóng thành màu đen mờ
+                        offset: const Offset(
+                            4, 4), // Điều chỉnh độ lệch x và y của đổ bóng
+                        blurRadius: 8, // Điều chỉnh bán kính mờ của đổ bóng
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 130,
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    const Text(
-                      'FPLSP Typing Contest',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'The contest for anyone, Who want improve typing skill.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        height: 1.4,
-                        fontSize: 20,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
+                  children: [
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -123,6 +141,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 120,
+              ),
+              Image.asset(
+                'lib/images/fpoly.png',
+                width: 150,
+                height: 200,
               ),
             ],
           ),
