@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/screen/home_screen.dart';
 
 class UserInfor extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const UserInfor({Key? key});
 
   @override

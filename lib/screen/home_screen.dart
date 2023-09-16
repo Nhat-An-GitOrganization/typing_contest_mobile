@@ -1,7 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +25,21 @@ class _HomePageState extends State<HomePage> {
   bool showProfile = false;
   bool showHomePage = true;
   bool showHistory = false;
+
+  // Future<void> fectData() async {
+  //   const url =
+  //       'https://host.docker.internal:5000/api/Contest/allactivebyidorganizer/86b85ffd-95aa-427b-80a2-3690d86e6dc9';
+  //   final uri = Uri.parse(url);
+  //   final response = await http.get(uri);
+  //   print(response.statusCode);
+  //   print(response.body);
+  // }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   Future<void> logout() async {
     final GoogleSignIn googleSign = GoogleSignIn();

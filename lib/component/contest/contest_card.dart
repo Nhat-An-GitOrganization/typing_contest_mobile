@@ -74,7 +74,7 @@ class ContestCard extends StatelessWidget {
               width: size.width - 150,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
