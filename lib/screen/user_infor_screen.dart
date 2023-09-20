@@ -21,17 +21,7 @@ class _UserInforState extends State<UserInfor> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 1,
-          leading: const BackButton(),
-          // leading: IconButton(
-          //   icon: const Icon(Icons.arrow_back),
-          //   color: Colors.blue,
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (_) => const HomePage()),
-          //     );
-          //   },
-          // ),
+          leading: BackButton(color: isDarkMode ? Colors.white : Colors.blue),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
