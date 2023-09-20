@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'FPLSP',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 82, 113, 255),
+                    color: const Color.fromARGB(255, 82, 113, 255),
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'CenturyGothic',
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'Typing Contest',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 82, 113, 255),
+                    color: const Color.fromARGB(255, 82, 113, 255),
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'CenturyGothic',
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Color.fromARGB(255, 56, 182, 255),
+                        color: const Color.fromARGB(255, 56, 182, 255),
                       ),
                       child: MaterialButton(
                         minWidth: double.infinity,

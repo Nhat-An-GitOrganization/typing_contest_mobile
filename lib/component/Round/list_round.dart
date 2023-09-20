@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/Round/round.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
-import 'package:typing_contest_mobile/component/contest/contest_caroulsel.dart';
-import 'package:typing_contest_mobile/component/contest/contest_card.dart';
 
 class ListRound extends StatefulWidget {
   const ListRound({super.key, required this.contest});
@@ -42,6 +40,6 @@ AppBar buildAppbar() {
     elevation: 0,
     title: const Text('Contest'),
     centerTitle: false,
-    leading: BackButton(),
+    leading: const BackButton(),
   );
 }
