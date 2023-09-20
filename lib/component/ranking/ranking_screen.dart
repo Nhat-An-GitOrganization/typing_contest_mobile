@@ -17,6 +17,8 @@ class RankingScreen extends StatelessWidget {
     "Người chơi 10",
   ];
 
+  RankingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,7 @@ class RankingScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -76,7 +78,7 @@ class RankingScreen extends StatelessWidget {
   Widget buildRankingItem(BuildContext context, int index) {
     final position = index + 1;
     final playerName = names[index];
-    final playerScore = 100; // Thay thế bằng điểm số thực tế của người chơi
+    const playerScore = 100; // Thay thế bằng điểm số thực tế của người chơi
 
     Color itemColor = Colors.white;
     if (position == 1) {
@@ -88,32 +90,32 @@ class RankingScreen extends StatelessWidget {
     }
 
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       shadowColor: Colors.grey[200],
       color: itemColor,
       child: Container(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
               position.toString(),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            CircleAvatar(
+            const CircleAvatar(
               foregroundColor: Colors.green,
             ),
             Text(
               playerName,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
+            const Text(
               "$playerScore điểm",
               style: TextStyle(
                 color: Colors.black,

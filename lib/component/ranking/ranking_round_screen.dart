@@ -18,6 +18,8 @@ class RankingRoundScreen extends StatelessWidget {
     "Người chơi 10",
   ];
 
+  RankingRoundScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,12 +29,13 @@ class RankingRoundScreen extends StatelessWidget {
           child: Container(
             color: secondaryColor,
             child: Card(
-              margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
               elevation: 0,
               color: primaryColor,
               child: Container(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
+                padding: const EdgeInsets.all(8.0),
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
@@ -74,47 +77,45 @@ class RankingRoundScreen extends StatelessWidget {
               floating: false,
               expandedHeight: 200.0,
               bottom: PreferredSize(
-                preferredSize: Size.fromHeight(4.0),
+                preferredSize: const Size.fromHeight(4.0),
                 child: Container(
                   color: primaryColor.withOpacity(0.7),
                   height: 50,
-                  child: Container(
-                    child: Row(
-                      children: [
-                        SizedBox(width: 35),
-                        Text(
-                          "Vị trí",
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  child: const Row(
+                    children: [
+                      SizedBox(width: 35),
+                      Text(
+                        "Vị trí",
+                        style: TextStyle(
+                          color: secondaryColor,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(width: 52),
-                        Text(
-                          "Hồ sơ",
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      SizedBox(width: 52),
+                      Text(
+                        "Hồ sơ",
+                        style: TextStyle(
+                          color: secondaryColor,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(width: 60),
-                        Text(
-                          "Tên",
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      SizedBox(width: 60),
+                      Text(
+                        "Tên",
+                        style: TextStyle(
+                          color: secondaryColor,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(width: 60),
-                        Text(
-                          "Điểm",
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      SizedBox(width: 60),
+                      Text(
+                        "Điểm",
+                        style: TextStyle(
+                          color: secondaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -130,7 +131,7 @@ class RankingRoundScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(top: 50.0),
@@ -176,32 +177,32 @@ class RankingRoundScreen extends StatelessWidget {
 
     if (ind == 1) {
       listItem = Card(
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         shadowColor: Colors.grey[200],
         color: Colors.yellow, // Màu vàng
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 pos,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              CircleAvatar(
+              const CircleAvatar(
                 foregroundColor: Colors.green,
               ),
               Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 "Điểm",
                 style: TextStyle(
                   color: Colors.black,
@@ -214,32 +215,32 @@ class RankingRoundScreen extends StatelessWidget {
       );
     } else if (ind == 2) {
       listItem = Card(
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         shadowColor: Colors.grey[200],
         color: Colors.grey,
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 pos,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              CircleAvatar(
+              const CircleAvatar(
                 foregroundColor: Colors.green,
               ),
               Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 "Điểm",
                 style: TextStyle(
                   color: Colors.black,
@@ -253,31 +254,31 @@ class RankingRoundScreen extends StatelessWidget {
     } else if (ind == 3) {
       listItem = Card(
         shadowColor: Colors.grey[200],
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         color: Colors.brown,
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 pos,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              CircleAvatar(
+              const CircleAvatar(
                 foregroundColor: Colors.green,
               ),
               Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 "Điểm",
                 style: TextStyle(
                   color: Colors.black,
@@ -290,32 +291,32 @@ class RankingRoundScreen extends StatelessWidget {
       );
     } else {
       listItem = Card(
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         shadowColor: Colors.grey[200],
         color: secondaryColor, // Màu trắng
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 pos,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              CircleAvatar(
+              const CircleAvatar(
                 foregroundColor: Colors.green,
               ),
               Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 "Điểm",
                 style: TextStyle(
                   color: Colors.black,
