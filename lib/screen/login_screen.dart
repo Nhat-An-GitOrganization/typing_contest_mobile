@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-            color: Colors.blue,
+            color: Colors.white,
           ),
           child: Column(
             children: [
@@ -47,13 +47,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'FPLSP',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 70,
+                    color: Color.fromARGB(255, 82, 113, 255),
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'CenturyGothic',
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(
-                            0.5), // Thay đổi màu đổ bóng thành màu đen mờ
+                        color: const Color.fromARGB(255, 138, 138, 138)
+                            .withOpacity(
+                                0.5), // Thay đổi màu đổ bóng thành màu đen mờ
                         offset: const Offset(
                             4, 4), // Điều chỉnh độ lệch x và y của đổ bóng
                         blurRadius: 8, // Điều chỉnh bán kính mờ của đổ bóng
@@ -69,13 +71,13 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'Typing Contest',
                   style: TextStyle(
-                    color: Colors.white, // Thay đổi màu chữ thành màu cam
-                    fontSize: 50,
+                    color: Color.fromARGB(255, 82, 113, 255),
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
+                    fontFamily: 'CenturyGothic',
                     shadows: [
                       Shadow(
-                        color: Colors.black.withOpacity(
+                        color: Colors.grey.withOpacity(
                             0.5), // Thay đổi màu đổ bóng thành màu đen mờ
                         offset: const Offset(
                             4, 4), // Điều chỉnh độ lệch x và y của đổ bóng
@@ -86,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(
-                height: 130,
+                height: 100,
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -96,13 +98,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Colors.yellow,
-                            Colors.orange,
-                          ],
-                        ),
+                        borderRadius: BorderRadius.circular(30),
+                        color: Color.fromARGB(255, 56, 182, 255),
                       ),
                       child: MaterialButton(
                         minWidth: double.infinity,
@@ -125,30 +122,35 @@ class _LoginPageState extends State<LoginPage> {
                               child: Image.asset(
                                 'lib/images/logogg.png',
                                 width: 50,
-                                height: 50,
+                                height: 70,
                               ),
                             ),
                             const Text(
-                              'Continue with Google',
-                              style: TextStyle(fontSize: 17),
+                              'Đăng nhập với Google',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'CenturyGothic',
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 70,
                     ),
                   ],
                 ),
               ),
               const SizedBox(
-                height: 120,
+                height: 10,
               ),
               Image.asset(
                 'lib/images/fpoly.png',
                 width: 150,
-                height: 200,
+                height: 90,
               ),
             ],
           ),
