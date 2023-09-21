@@ -16,6 +16,16 @@ class RankingRoundScreen extends StatelessWidget {
     "Người chơi 8",
     "Người chơi 9",
     "Người chơi 10",
+    "Người chơi 11",
+    "Người chơi 12",
+    "Người chơi 13",
+    "Người chơi 14",
+    "Người chơi 15",
+    "Người chơi 16",
+    "Người chơi 17",
+    "Người chơi 18",
+    "Người chơi 19",
+    "Người chơi 20",
   ];
 
   RankingRoundScreen({super.key});
@@ -76,6 +86,13 @@ class RankingRoundScreen extends StatelessWidget {
               snap: false,
               floating: false,
               expandedHeight: 200.0,
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back, color: secondaryColor),
+                onPressed: () {
+                  // Đưa bạn về màn hình trước đó khi nút trở về được nhấn
+                  Navigator.of(context).pop();
+                },
+              ),
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(4.0),
                 child: Container(
