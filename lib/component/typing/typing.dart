@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -105,33 +106,18 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 
   void _showResultDialog() {
     int totalTime = maxTime - timeLeft;
-    showDialog(
+    AwesomeDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Typing Test Result'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Total time: $totalTime s / $maxTime s'),
-              Text('Mistakes: $mistakes'),
-              Text('WPM: $wpm'),
-              Text('CPM: $cpm'),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                resetGame();
-              },
-              child: const Text('Try Again'),
-            ),
-          ],
-        );
+      dialogType: DialogType.success,
+      animType: AnimType.scale,
+      title: 'Finished',
+      desc:
+          'Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
+      btnOkOnPress: () {
+        resetGame();
       },
-    );
+      btnOkText: 'Retstart',
+    ).show();
   }
 
   void _resetTextField() {
