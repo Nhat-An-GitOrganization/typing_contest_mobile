@@ -4,6 +4,7 @@ import 'package:typing_contest_mobile/component/typing/typing.dart';
 import 'package:typing_contest_mobile/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:typing_contest_mobile/screen/home_screen.dart';
+import 'package:typing_contest_mobile/screen/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           ? ThemeData.dark()
           : ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: const TypingSpeedTestGame(),
+      home: const LoginPage(),
     );
   }
 }

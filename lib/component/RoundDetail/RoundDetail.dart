@@ -1,30 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
 
 
-class ResultContest extends StatefulWidget {
+class RoundDetailPage extends StatefulWidget {
   final int userId;
-  ResultContest({required this.userId});
+
+  RoundDetailPage({required this.userId});
 
   @override
-  _UserDetailPageState createState() => _UserDetailPageState();
+  _RoundDetailPage createState() => _RoundDetailPage();
 }
 
-class _UserDetailPageState extends State<ResultContest> {
+class _RoundDetailPage extends State<RoundDetailPage> {
   late Future<User> futureUser;
-  final dataMap = <String, double>{
-    "Mức độ chính xác": 4,
-    "Phần còn lại": 16,
-  };
 
-  final colorList = <Color>[
-    Colors.greenAccent,
-    Colors.blue,
-  ];
   @override
   void initState() {
     super.initState();
@@ -33,9 +24,10 @@ class _UserDetailPageState extends State<ResultContest> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kết quả vòng thi của bạn '),
+        title: Text('Chi Tiết Cuoc Thi   '),
       ),
       body: FutureBuilder<User>(
         future: futureUser,
@@ -48,29 +40,19 @@ class _UserDetailPageState extends State<ResultContest> {
             final user = snapshot.data;
             return SingleChildScrollView(
               child: Column(
-
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.all(16.0),
-                    child: PieChart(
-                      dataMap: {
-                        "Mức độ chính xác": double.parse(user!.id.toString()),
-                        "Phần còn lại": 20 -double.parse(user!.id.toString()),
-                      },
-                      chartType: ChartType.ring,
-                      baseChartColor: Colors.grey[50]!.withOpacity(0.15),
-                      colorList: colorList,
-                      chartValuesOptions: ChartValuesOptions(
-                        showChartValuesInPercentage: true,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      image: DecorationImage(
+                        image: AssetImage('assets/actor_1.png'), // Thay thế bằng hình ảnh của người dùng nếu có
+                        fit: BoxFit.cover,
                       ),
-                      totalValue: 20,
                     ),
-                  ),
-                  Container(
-
                     width: double.infinity,
-                    height: 20.0,
+                    height: 150.0,
                     alignment: Alignment.center,
                     child: null, // Bạn có thể thêm các widget lớp phủ ở đây nếu cần.
                   ),
@@ -136,12 +118,27 @@ class _UserDetailPageState extends State<ResultContest> {
         },
       ),
       bottomNavigationBar: Container(
+
         padding: EdgeInsets.all(16.0),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.orange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
           onPressed: () {
 
           },
-          child: Text('Oke'),
+          child: Text(
+            'Tham gia',
+            style: isDarkMode
+                ? Theme.of(context)
+                .textTheme
+                .labelLarge
+                ?.copyWith(color: Colors.black)
+                : Theme.of(context).textTheme.labelLarge,
+          ),
         ),
       ),
     );
