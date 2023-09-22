@@ -2,6 +2,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:typing_contest_mobile/component/ResultContest/result_contest.dart';
+
 class TypingSpeedTestGame extends StatefulWidget {
   const TypingSpeedTestGame({super.key});
 
@@ -114,9 +116,15 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       desc:
           'Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
       btnOkOnPress: () {
-        resetGame();
+        // resetGame();
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (_) => const HomePage2(
+                      userId: 1,
+                    )));
       },
-      btnOkText: 'Retstart',
+      btnOkText: 'Done',
     ).show();
   }
 

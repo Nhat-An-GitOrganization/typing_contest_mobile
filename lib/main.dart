@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/component/typing/typing.dart';
 import 'package:typing_contest_mobile/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:typing_contest_mobile/screen/home_screen.dart';

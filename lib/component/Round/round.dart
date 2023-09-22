@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/component/typing/typing.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class Round extends StatelessWidget {
@@ -89,14 +90,14 @@ class Round extends StatelessWidget {
                   ),
                   const Spacer(),
                   GestureDetector(
-                    // onTap: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => ContestDetail(contest: ct),
-                    //     ),
-                    //   );
-                    // },
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TypingSpeedTestGame(),
+                        ),
+                      );
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 20, bottom: 20),
                       padding: const EdgeInsets.symmetric(
