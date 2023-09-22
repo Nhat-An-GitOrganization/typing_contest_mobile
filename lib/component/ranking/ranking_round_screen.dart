@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/screen/home_screen.dart';
 
 const Color primaryColor = Colors.blue; // Màu xanh chính
 const Color secondaryColor = Colors.white; // Màu trắng
@@ -91,6 +92,8 @@ class RankingRoundScreen extends StatelessWidget {
                 onPressed: () {
                   // Đưa bạn về màn hình trước đó khi nút trở về được nhấn
                   Navigator.of(context).pop();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const HomePage()));
                 },
               ),
               bottom: PreferredSize(

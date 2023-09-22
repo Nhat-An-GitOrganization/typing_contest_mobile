@@ -103,7 +103,7 @@ class RankingStudentScreen extends StatelessWidget {
                     onPressed: () {
                       // Điều hướng đến màn hình xếp hạng đầy đủ ở đây
                     },
-                    child: Text('Xem Bảng Xếp Hạng'),
+                    child: const Text('Xem Bảng Xếp Hạng'),
                   ),
                 ],
               ),
