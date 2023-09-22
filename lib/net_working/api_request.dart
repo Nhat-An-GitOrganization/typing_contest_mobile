@@ -12,7 +12,7 @@ class ApiServices {
     return users;
   }
 
-  static Future<User> fetchUserDetail(int userId) async {
+  static Future<User> fetchDetail(int userId) async {
     final response = await http.get(Uri.parse('${ApiUrls().GetAll}/$userId'));
 
     if (response.statusCode == 200) {
@@ -23,18 +23,4 @@ class ApiServices {
     }
   }
 
-  static Future<List<User>> fetchUsers() async {
-    try {
-        var result = await http.get(ApiUrls().GetAll);
-        if(result.statusCode ==200){
-          return compute(parseData,result.body);
-        }else
-        {
-          throw Exception("Lỗi load api");
-        }
-    } catch (error) {
-      print("Lỗi: $error");
-      throw Exception("Lỗi load api");
-    }
-  }
 }

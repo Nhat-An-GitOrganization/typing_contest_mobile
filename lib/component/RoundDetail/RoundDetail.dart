@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
-import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
 
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
 
-class ResultContest extends StatefulWidget {
+
+class RoundDetailPage extends StatefulWidget {
   final int userId;
-   ResultContest({required this.userId});
+
+  RoundDetailPage({required this.userId});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _UserDetailPageState createState() => _UserDetailPageState();
+  _RoundDetailPage createState() => _RoundDetailPage();
 }
 
-class _UserDetailPageState extends State<ResultContest> {
+class _RoundDetailPage extends State<RoundDetailPage> {
   late Future<User> futureUser;
-  final dataMap = <String, double>{
-    "Mức độ chính xác": 4,
-    "Phần còn lại": 16,
-  };
 
-  final colorList = <Color>[
-    Colors.greenAccent,
-    Colors.blue,
-  ];
   @override
   void initState() {
     super.initState();
@@ -33,16 +24,16 @@ class _UserDetailPageState extends State<ResultContest> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kết quả vòng thi của bạn '),
-        automaticallyImplyLeading: false,
+        title: Text('Chi Tiết Cuoc Thi   '),
       ),
       body: FutureBuilder<User>(
         future: futureUser,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Lỗi: ${snapshot.error}'));
           } else {
@@ -52,27 +43,18 @@ class _UserDetailPageState extends State<ResultContest> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.all(16.0),
-                    child: PieChart(
-                      dataMap: {
-                        "Mức độ chính xác": double.parse(user!.id.toString()),
-                        "Phần còn lại": 20 - double.parse(user!.id.toString()),
-                      },
-                      chartType: ChartType.ring,
-                      baseChartColor: Colors.grey[50]!.withOpacity(0.15),
-                      colorList: colorList,
-                      chartValuesOptions: const ChartValuesOptions(
-                        showChartValuesInPercentage: true,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      image: DecorationImage(
+                        image: AssetImage('assets/actor_1.png'), // Thay thế bằng hình ảnh của người dùng nếu có
+                        fit: BoxFit.cover,
                       ),
-                      totalValue: 20,
                     ),
-                  ),
-                  Container(
                     width: double.infinity,
-                    height: 20.0,
+                    height: 150.0,
                     alignment: Alignment.center,
-                    child:
-                        null, // Bạn có thể thêm các widget lớp phủ ở đây nếu cần.
+                    child: null, // Bạn có thể thêm các widget lớp phủ ở đây nếu cần.
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -80,22 +62,22 @@ class _UserDetailPageState extends State<ResultContest> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          user.title ?? '',
-                          style: const TextStyle(
+                          user?.title ?? '',
+                          style: TextStyle(
                             fontSize: 24.0,
                             color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 8.0),
+                        SizedBox(height: 8.0),
                         Text(
-                          user.body ?? '',
-                          style: const TextStyle(
+                          user?.body ?? '',
+                          style: TextStyle(
                             fontSize: 16.0,
                           ),
                         ),
-                        const SizedBox(height: 16.0),
-                        const Text(
+                        SizedBox(height: 16.0),
+                        Text(
                           'Thông tin chi tiết:',
                           style: TextStyle(
                             fontSize: 18.0,
@@ -103,15 +85,15 @@ class _UserDetailPageState extends State<ResultContest> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 8.0),
+                        SizedBox(height: 8.0),
                         Text(
-                          user.body ?? '',
-                          style: const TextStyle(
+                          user?.body ?? '',
+                          style: TextStyle(
                             fontSize: 16.0,
                           ),
                         ),
-                        const SizedBox(height: 16.0),
-                        const Text(
+                        SizedBox(height: 16.0),
+                        Text(
                           'Thông tin chi tiết:',
                           style: TextStyle(
                             fontSize: 18.0,
@@ -119,10 +101,10 @@ class _UserDetailPageState extends State<ResultContest> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 8.0),
+                        SizedBox(height: 8.0),
                         Text(
-                          user.body ?? '',
-                          style: const TextStyle(
+                          user?.body ?? '',
+                          style: TextStyle(
                             fontSize: 16.0,
                           ),
                         ),
@@ -136,15 +118,27 @@ class _UserDetailPageState extends State<ResultContest> {
         },
       ),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(16.0),
+
+        padding: EdgeInsets.all(16.0),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.orange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
           onPressed: () {
 
-            // Xử lý sự kiện khi nút được nhấn (nếu cần)
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => RankingRoundScreen()));
           },
-          child: const Text('Go to ranking'),
+          child: Text(
+            'Tham gia',
+            style: isDarkMode
+                ? Theme.of(context)
+                .textTheme
+                .labelLarge
+                ?.copyWith(color: Colors.black)
+                : Theme.of(context).textTheme.labelLarge,
+          ),
         ),
       ),
     );
