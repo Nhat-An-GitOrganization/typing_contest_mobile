@@ -2,8 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
-
 class TypingSpeedTestGame extends StatefulWidget {
   const TypingSpeedTestGame({super.key});
 
@@ -113,21 +111,12 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       dialogType: DialogType.success,
       animType: AnimType.scale,
       title: 'Finished',
-      titleTextStyle: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
       desc:
-          '\n Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
-      descTextStyle: const TextStyle(
-        fontSize: 15,
-      ),
+          'Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
       btnOkOnPress: () {
-        // resetGame();
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+        resetGame();
       },
-      btnOkText: 'Done',
+      btnOkText: 'Retstart',
     ).show();
   }
 
@@ -250,5 +239,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  'Text',
+  'New Text  New Text New Text New Text New Text New Text New Text',
 ];
