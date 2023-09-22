@@ -1,5 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
 
 class TypingSpeedTestGame extends StatefulWidget {
   const TypingSpeedTestGame({super.key});
@@ -10,7 +13,8 @@ class TypingSpeedTestGame extends StatefulWidget {
 
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   TextEditingController textEditingController = TextEditingController();
-  static const maxTime = 60;
+  FocusNode inputNode = FocusNode();
+  static const maxTime = 100;
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
@@ -19,6 +23,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   List<Color?> correctCharacters = List.filled(paragraphs[0].length, null);
   late Timer timer;
   bool isTypingComplete = false;
+  int currentCursorPosition = -1;
   @override
   void initState() {
     super.initState();
@@ -61,8 +66,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
     int totalWords = typedText.trim().split(' ').length;
     int elapsedTime = maxTime - timeLeft;
 
-    wpm = (totalWords / elapsedTime * 60).round();
-    cpm = (totalChars / elapsedTime * 60).round();
+    wpm = ((totalWords / elapsedTime) * 60).round();
+    cpm = ((totalChars / elapsedTime) * 60).round();
   }
 
   void handleInput(String input) {
@@ -93,43 +98,45 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
         timer.cancel();
         _showResultDialog(); // Display the result dialog
       }
+
+      // Cập nhật vị trí hiện tại của dấu "|"
+      currentCursorPosition = typedText.length - 1;
+
       calculateStats();
     });
   }
 
   void _showResultDialog() {
     int totalTime = maxTime - timeLeft;
-    showDialog(
+    AwesomeDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Typing Test Result'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Total time: $totalTime s / $maxTime s'),
-              Text('Mistakes: $mistakes'),
-              Text('WPM: $wpm'),
-              Text('CPM: $cpm'),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                resetGame();
-              },
-              child: const Text('Try Again'),
-            ),
-          ],
-        );
+      dialogType: DialogType.success,
+      animType: AnimType.scale,
+      title: 'Finished',
+      titleTextStyle: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      desc:
+          '\n Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
+      descTextStyle: const TextStyle(
+        fontSize: 15,
+      ),
+      btnOkOnPress: () {
+        // resetGame();
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => RankingRoundScreen()));
       },
-    );
+      btnOkText: 'Done',
+    ).show();
   }
 
   void _resetTextField() {
     textEditingController.clear();
+  }
+
+  void openKeyboard() {
+    FocusScope.of(context).requestFocus(inputNode);
   }
 
   @override
@@ -137,35 +144,69 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFF17A2B8),
-        body: Center(
-          child: Container(
-            width: 770,
-            padding: const EdgeInsets.all(35),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  offset: const Offset(0, 10),
-                  blurRadius: 15,
-                ),
-              ],
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
+        body: Container(
+          width: 770,
+          padding: const EdgeInsets.all(35),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                offset: const Offset(0, 10),
+                blurRadius: 15,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Mistakes: $mistakes',
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'WPM: $wpm',
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'CPM: $cpm',
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Center(
+                  child: SizedBox(
+                    width: double.infinity,
                     child: RichText(
                       text: TextSpan(
                         children: [
                           for (int i = 0; i < paragraphs[0].length; i++)
-                            TextSpan(
-                              text: paragraphs[0][i],
-                              style: TextStyle(
-                                fontSize: 21,
-                                letterSpacing: 1,
-                                color: correctCharacters[i] ?? Colors.grey,
+                            WidgetSpan(
+                              child: Text(
+                                paragraphs[0][i] +
+                                    (i == currentCursorPosition ? '|' : ''),
+                                style: TextStyle(
+                                  fontSize: 21,
+                                  letterSpacing: 1,
+                                  color: correctCharacters[i] ?? Colors.grey,
+                                ),
                               ),
                             ),
                         ],
@@ -173,31 +214,34 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 17),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Time Left: $timeLeft s'),
-                    Text('Mistakes: $mistakes'),
-                    Text('WPM: $wpm'),
-                    Text('CPM: $cpm'),
-                  ],
-                ),
-                const SizedBox(height: 17),
-                TextField(
-                  controller: textEditingController,
-                  onChanged: handleInput,
-                  enabled: timeLeft > 0,
-                  autofocus: true,
-                  style: const TextStyle(fontSize: 18),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Start typing here...',
-                    hintStyle: TextStyle(color: Colors.grey),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Time Left: $timeLeft s',
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
                   ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: textEditingController,
+                onChanged: handleInput,
+                enabled: timeLeft > 0,
+                autofocus: true,
+                focusNode: inputNode,
+                style: const TextStyle(fontSize: 18),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Start typing here...',
+                  hintStyle: TextStyle(color: Colors.grey),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -206,5 +250,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Text',
 ];
