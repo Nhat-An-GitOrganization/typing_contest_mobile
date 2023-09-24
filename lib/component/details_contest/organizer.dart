@@ -20,7 +20,7 @@ class Organizers extends StatelessWidget {
             height: 20,
           ),
           SizedBox(
-            height: 152,
+            height: 130,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: orga.length,

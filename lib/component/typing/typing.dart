@@ -115,15 +115,15 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       title: 'Finished',
       desc:
           'Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
-      btnOkOnPress: () {
-        // resetGame();
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (_) => const HomePage2(
-                      userId: 1,
-                    )));
-      },
+      // btnOkOnPress: () {
+      //   // resetGame();
+      //   Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (_) => const HomePage2(
+      //                 userId: 1,
+      //               )));
+      // },
       btnOkText: 'Done',
     ).show();
   }

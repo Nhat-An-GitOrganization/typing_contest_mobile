@@ -16,12 +16,12 @@ class DetailsPageContest extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BackGroundDetailCT(size: size, contest: contest),
-        const SizedBox(height: 5),
+        const SizedBox(height: 0),
         TitleDetailsContest(contest: contest),
-        Genres(contest: contest),
+        //Genres(contest: contest),
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 20 / 2,
+            vertical: 20 / 1.5,
             horizontal: 20,
           ),
           child: Text(
@@ -34,15 +34,12 @@ class DetailsPageContest extends StatelessWidget {
           child: Text(
             contest.description,
             style: const TextStyle(
-              color: Color(0xFF737599),
+              fontSize: 15,
+              color: Color.fromARGB(255, 89, 91, 118),
             ),
           ),
-        ),
-        Organizers(
-          orga: contest.orga,
         ),
       ],
     );
   }
 }
-

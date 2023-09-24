@@ -17,7 +17,7 @@ class _ListRoundState extends State<ListRound> {
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         buildAppbar(),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         for (var i = 0; i < contest.length; i++)
           Column(
@@ -26,7 +26,6 @@ class _ListRoundState extends State<ListRound> {
                 itemIndex: i,
                 ct: contest[i],
               ),
-              const SizedBox(height: 15), // Khoảng cách 5px giữa các phần tử
             ],
           ),
       ]),

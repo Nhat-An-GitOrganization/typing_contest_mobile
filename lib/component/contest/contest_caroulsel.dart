@@ -31,9 +31,9 @@ class _ContestCarouselState extends State<ContestCarousel> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 0),
       child: AspectRatio(
-        aspectRatio: 0.85,
+        aspectRatio: 0.95,
         child: PageView.builder(
           onPageChanged: (value) {
             setState(() {
