@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:typing_contest_mobile/component/details_contest/orga_card.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 

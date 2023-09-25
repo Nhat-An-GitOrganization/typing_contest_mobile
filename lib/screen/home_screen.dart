@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:typing_contest_mobile/component/contest/category_list.dart';
 import 'package:typing_contest_mobile/component/contest/contest_card.dart';
 import 'package:typing_contest_mobile/component/contest/contest_caroulsel.dart';
 import 'package:typing_contest_mobile/component/profile_menu.dart';

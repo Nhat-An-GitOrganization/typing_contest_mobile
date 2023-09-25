@@ -7,7 +7,7 @@ import '../../net_working/api_request.dart';
 
 class ResultContest extends StatefulWidget {
   final int userId;
-   ResultContest({required this.userId});
+  const ResultContest({super.key, required this.userId});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -56,7 +56,7 @@ class _UserDetailPageState extends State<ResultContest> {
                     child: PieChart(
                       dataMap: {
                         "Mức độ chính xác": double.parse(user!.id.toString()),
-                        "Phần còn lại": 20 - double.parse(user!.id.toString()),
+                        "Phần còn lại": 20 - double.parse(user.id.toString()),
                       },
                       chartType: ChartType.ring,
                       baseChartColor: Colors.grey[50]!.withOpacity(0.15),
@@ -139,7 +139,6 @@ class _UserDetailPageState extends State<ResultContest> {
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-
             // Xử lý sự kiện khi nút được nhấn (nếu cần)
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (_) => RankingRoundScreen()));

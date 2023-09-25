@@ -38,7 +38,7 @@ class Round extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 227, 227, 227),
+                color: const Color.fromARGB(255, 227, 227, 227),
                 borderRadius: BorderRadius.circular(22),
               ),
             ),

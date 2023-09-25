@@ -12,7 +12,6 @@ class ListRound extends StatefulWidget {
 class _ListRoundState extends State<ListRound> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         buildAppbar(),
