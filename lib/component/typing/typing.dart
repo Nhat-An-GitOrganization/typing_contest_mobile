@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:typing_contest_mobile/component/ResultContest/result_contest.dart';
+import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
 
 class TypingSpeedTestGame extends StatefulWidget {
   const TypingSpeedTestGame({super.key});
@@ -115,15 +115,11 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       title: 'Finished',
       desc:
           'Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
-      // btnOkOnPress: () {
-      //   // resetGame();
-      //   Navigator.pushReplacement(
-      //       context,
-      //       MaterialPageRoute(
-      //           builder: (_) => const HomePage2(
-      //                 userId: 1,
-      //               )));
-      // },
+      btnOkOnPress: () {
+        // resetGame();
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+      },
       btnOkText: 'Done',
     ).show();
   }
@@ -247,5 +243,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  'New Text  New Text New Text New Text New Text New Text New Text',
+  'Địt mẹ mày',
 ];
