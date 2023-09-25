@@ -87,7 +87,7 @@ class Round extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RoundDetailPage(
+                          builder: (context) =>  DetailRound(
                             userId: 1,
                           ),
                         ),
