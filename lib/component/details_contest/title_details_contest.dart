@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:typing_contest_mobile/component/Round/list_round.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
@@ -50,23 +51,19 @@ class TitleDetailsContest extends StatelessWidget {
             height: 64,
             width: 64,
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ListRound(contest: contest)),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ListRound(contest: contest)),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-              ),
-              child: const Icon(
-                Icons.add,
-                size: 28,
-              ),
-            ),
+                child: const FaIcon(FontAwesomeIcons.rightToBracket)),
           ),
         ],
       ),

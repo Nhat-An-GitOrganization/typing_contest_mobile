@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/component/typing/typing.dart';
 
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
@@ -128,7 +129,14 @@ class _RoundDetailPage extends State<RoundDetailPage> {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const TypingSpeedTestGame(),
+              ),
+            );
+          },
           child: Text(
             'Tham gia',
             style: isDarkMode
