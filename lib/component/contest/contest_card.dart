@@ -20,7 +20,7 @@ class ContestCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 20,
-        vertical: 20 / 2,
+        vertical: 10,
       ),
       height: 160,
       child: Stack(
@@ -34,18 +34,11 @@ class ContestCard extends StatelessWidget {
               color: itemIndex.isEven
                   ? const Color.fromARGB(255, 10, 187, 197)
                   : const Color.fromARGB(255, 246, 168, 59),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  blurRadius: 20,
-                  offset: const Offset(0, 3),
-                ),
-              ],
             ),
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color.fromARGB(255, 227, 227, 227),
                 borderRadius: BorderRadius.circular(22),
               ),
             ),
@@ -57,7 +50,7 @@ class ContestCard extends StatelessWidget {
             bottom: 20,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: 160,
+              height: 120,
               width: 150,
               child: Image.asset(
                 ct.image,

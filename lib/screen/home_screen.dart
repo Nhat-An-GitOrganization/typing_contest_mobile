@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                 if (showHomePage) ...[
                   buildAppbar(),
                   const SearchBox(),
-                  const CategoryList(),
+                  //const CategoryList(),
                   HomeMethod(),
                 ],
               ],

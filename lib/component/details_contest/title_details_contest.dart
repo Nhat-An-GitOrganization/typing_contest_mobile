@@ -25,20 +25,21 @@ class TitleDetailsContest extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(
-                  height: 20 / 2,
+                  height: 20 / 1.5,
                 ),
                 Row(
                   children: [
                     Text(
                       '${contest.dateStart} - ${contest.dateEnd}',
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 89, 91, 118)),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     const Text(
                       '15min',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Color.fromARGB(255, 89, 91, 118)),
                     ),
                   ],
                 ),

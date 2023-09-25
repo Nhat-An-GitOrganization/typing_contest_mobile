@@ -19,7 +19,7 @@ class Round extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.symmetric(
-        horizontal: 20,
+        horizontal: 10,
         vertical: 20 / 2,
       ),
       height: 160,
@@ -34,18 +34,11 @@ class Round extends StatelessWidget {
               color: itemIndex.isEven
                   ? const Color.fromARGB(255, 10, 187, 197)
                   : const Color.fromARGB(255, 246, 168, 59),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  blurRadius: 20,
-                  offset: const Offset(0, 3),
-                ),
-              ],
             ),
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color.fromARGB(255, 227, 227, 227),
                 borderRadius: BorderRadius.circular(22),
               ),
             ),
@@ -57,7 +50,7 @@ class Round extends StatelessWidget {
             bottom: 20,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: 160,
+              height: 120,
               width: 150,
               child: Image.asset(
                 ct.image,
@@ -70,7 +63,7 @@ class Round extends StatelessWidget {
             bottom: 0,
             left: 0,
             child: SizedBox(
-              height: 136,
+              height: 140,
               width: size.width - 150,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +94,7 @@ class Round extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.only(left: 20, bottom: 20),
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 20 * 1.5,
+                        horizontal: 20,
                         vertical: 20 / 4,
                       ),
                       decoration: BoxDecoration(

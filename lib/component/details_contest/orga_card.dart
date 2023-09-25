@@ -7,35 +7,31 @@ class OrgaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 20),
-      width: 80,
+      width: 300,
       child: Column(
         children: [
-          Container(
-            height: 80,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(orga['image']),
+          Row(
+            children: [
+              Container(
+                height: 65,
+                width: 90,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(orga['image']),
+                  ),
+                ),
               ),
-            ),
-          ),
-          const SizedBox(
-            height: 20 / 2,
-          ),
-          Text(
-            orga['orginalName'],
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium,
-            maxLines: 2,
-          ),
-          const SizedBox(
-            height: 20 / 4,
-          ),
-          const Text(
-            'Organizer',
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                orga['orginalName'],
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 2,
+              ),
+            ],
           ),
         ],
       ),
