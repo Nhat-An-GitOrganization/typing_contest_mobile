@@ -107,10 +107,12 @@ class _LoginPageState extends State<LoginPage> {
                           //implement google sign in func
                           await signInWithGoogle();
                           if (mounted) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => const HomePage()));
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const HomePage()),
+                              (route) => false,
+                            );
                           }
                         },
                         child: Row(
