@@ -147,10 +147,15 @@ class _DetailRoundState extends State<DetailRound> {
                                 padding: EdgeInsets.all(10.0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Xử lý sự kiện khi nút được nhấn
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const TypingSpeedTestGame(),
+                                      ),
+                                    );
                                   },
                                   child: Text(
-                                    'Button',
+                                    'Tham gia',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.0,

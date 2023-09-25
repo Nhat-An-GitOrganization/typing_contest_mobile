@@ -104,7 +104,7 @@ class Round extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'Tham gia',
+                        'Tham giaa',
                         style: isDarkMode
                             ? Theme.of(context)
                                 .textTheme
