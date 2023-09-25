@@ -52,9 +52,12 @@ class ContestCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               height: 120,
               width: 150,
-              child: Image.asset(
-                ct.image,
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  ct.image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
