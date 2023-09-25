@@ -43,47 +43,28 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 130,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'FPLSP',
                   style: TextStyle(
-                    color: const Color.fromARGB(255, 82, 113, 255),
+                    color: Color.fromARGB(255, 82, 113, 255),
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'CenturyGothic',
-                    shadows: [
-                      Shadow(
-                        color: const Color.fromARGB(255, 138, 138, 138)
-                            .withOpacity(
-                                0.5), // Thay đổi màu đổ bóng thành màu đen mờ
-                        offset: const Offset(
-                            4, 4), // Điều chỉnh độ lệch x và y của đổ bóng
-                        blurRadius: 8, // Điều chỉnh bán kính mờ của đổ bóng
-                      ),
-                    ],
                   ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'Typing Contest',
                   style: TextStyle(
-                    color: const Color.fromARGB(255, 82, 113, 255),
+                    color: Color.fromARGB(255, 82, 113, 255),
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'CenturyGothic',
-                    shadows: [
-                      Shadow(
-                        color: Colors.grey.withOpacity(
-                            0.5), // Thay đổi màu đổ bóng thành màu đen mờ
-                        offset: const Offset(
-                            4, 4), // Điều chỉnh độ lệch x và y của đổ bóng
-                        blurRadius: 8, // Điều chỉnh bán kính mờ của đổ bóng
-                      ),
-                    ],
                   ),
                 ),
               ),

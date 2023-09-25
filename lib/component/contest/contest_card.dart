@@ -38,7 +38,7 @@ class ContestCard extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 227, 227, 227),
+                color: const Color.fromARGB(255, 215, 215, 215),
                 borderRadius: BorderRadius.circular(22),
               ),
             ),
@@ -53,7 +53,7 @@ class ContestCard extends StatelessWidget {
               height: 120,
               width: 150,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(22),
                 child: Image.asset(
                   ct.image,
                   fit: BoxFit.cover,

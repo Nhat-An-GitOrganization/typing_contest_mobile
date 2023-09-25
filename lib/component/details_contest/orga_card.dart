@@ -28,8 +28,10 @@ class OrgaCard extends StatelessWidget {
               Text(
                 orga['orginalName'],
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 2,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
               ),
             ],
           ),
