@@ -7,9 +7,10 @@ import '../../net_working/api_request.dart';
 class DetailRound extends StatefulWidget {
   final int userId;
 
-  DetailRound({required this.userId});
+  const DetailRound({super.key, required this.userId});
 
   @override
+  // ignore: library_private_types_in_public_api
   _DetailRoundState createState() => _DetailRoundState();
 }
 
@@ -26,7 +27,7 @@ class _DetailRoundState extends State<DetailRound> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chi Tiết Cuộc Thi'),
+        title: const Text('Chi Tiết Cuộc Thi'),
       ),
       body: Stack(
         children: [
@@ -42,7 +43,7 @@ class _DetailRoundState extends State<DetailRound> {
             right: 0,
             child: Container(
               height: MediaQuery.of(context).size.height * 3 / 5,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(60.0),
@@ -54,7 +55,7 @@ class _DetailRoundState extends State<DetailRound> {
                     future: futureUser,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasError) {
                         return Center(child: Text('Lỗi: ${snapshot.error}'));
                       } else {
@@ -64,30 +65,29 @@ class _DetailRoundState extends State<DetailRound> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                         user?.title ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 24.0,
                                           color: Colors.lightBlueAccent,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                       Text(
                                         user?.body ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16.0,
                                         ),
                                       ),
-                                      SizedBox(height: 16.0),
-                                      Text(
+                                      const SizedBox(height: 16.0),
+                                      const Text(
                                         'Thông tin chi tiết:',
                                         style: TextStyle(
                                           fontSize: 18.0,
@@ -95,15 +95,15 @@ class _DetailRoundState extends State<DetailRound> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                       Text(
                                         user?.body ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16.0,
                                         ),
                                       ),
-                                      SizedBox(height: 16.0),
-                                      Text(
+                                      const SizedBox(height: 16.0),
+                                      const Text(
                                         'Thông tin chi tiết:',
                                         style: TextStyle(
                                           fontSize: 18.0,
@@ -111,10 +111,10 @@ class _DetailRoundState extends State<DetailRound> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                       Text(
                                         user?.body ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16.0,
                                         ),
                                       ),
@@ -128,7 +128,7 @@ class _DetailRoundState extends State<DetailRound> {
                       }
                     },
                   ),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height / 5,
                     child: Stack(
                       children: [
@@ -144,28 +144,29 @@ class _DetailRoundState extends State<DetailRound> {
                             ),
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const TypingSpeedTestGame(),
+                                        builder: (context) =>
+                                            const TypingSpeedTestGame(),
                                       ),
                                     );
                                   },
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blue,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20.0,
+                                      horizontal: 130.0,
+                                    ),
+                                  ),
+                                  child: const Text(
                                     'Tham gia',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.0,
-                                    ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.blue,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 20.0,
-                                      horizontal: 130.0,
                                     ),
                                   ),
                                 ),
