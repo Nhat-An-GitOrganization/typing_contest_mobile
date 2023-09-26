@@ -87,7 +87,7 @@ class Round extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RoundDetailPage(
+                          builder: (context) =>  DetailRound(
                             userId: 1,
                           ),
                         ),
@@ -104,7 +104,7 @@ class Round extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'Tham gia',
+                        'Tham giaa',
                         style: isDarkMode
                             ? Theme.of(context)
                                 .textTheme

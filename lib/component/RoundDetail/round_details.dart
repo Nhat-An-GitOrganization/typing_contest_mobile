@@ -4,17 +4,16 @@ import 'package:typing_contest_mobile/component/typing/typing.dart';
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
 
-class RoundDetailPage extends StatefulWidget {
+class DetailRound extends StatefulWidget {
   final int userId;
 
-  const RoundDetailPage({super.key, required this.userId});
+  DetailRound({required this.userId});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RoundDetailPage createState() => _RoundDetailPage();
+  _DetailRoundState createState() => _DetailRoundState();
 }
 
-class _RoundDetailPage extends State<RoundDetailPage> {
+class _DetailRoundState extends State<DetailRound> {
   late Future<User> futureUser;
 
   @override
@@ -25,90 +24,153 @@ class _RoundDetailPage extends State<RoundDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chi Tiết Cuoc Thi   '),
+        title: Text('Chi Tiết Cuộc Thi'),
       ),
-      body: FutureBuilder<User>(
-        future: futureUser,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Lỗi: ${snapshot.error}'));
-          } else {
-            final user = snapshot.data;
-            return SingleChildScrollView(
+      body: Stack(
+        children: [
+          Image.asset(
+            'assets/s1.png',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 3 / 5,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(60.0),
+                ),
+              ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      image: DecorationImage(
-                        image: AssetImage(
-                            'assets/actor_1.png'), // Thay thế bằng hình ảnh của người dùng nếu có
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    width: double.infinity,
-                    height: 150.0,
-                    alignment: Alignment.center,
-                    child:
-                        null, // Bạn có thể thêm các widget lớp phủ ở đây nếu cần.
+                  FutureBuilder<User>(
+                    future: futureUser,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Lỗi: ${snapshot.error}'));
+                      } else {
+                        final user = snapshot.data;
+                        return Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        user?.title ?? '',
+                                        style: TextStyle(
+                                          fontSize: 24.0,
+                                          color: Colors.lightBlueAccent,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        user?.body ?? '',
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                      SizedBox(height: 16.0),
+                                      Text(
+                                        'Thông tin chi tiết:',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: Colors.lightBlueAccent,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        user?.body ?? '',
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                      SizedBox(height: 16.0),
+                                      Text(
+                                        'Thông tin chi tiết:',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: Colors.lightBlueAccent,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        user?.body ?? '',
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          user?.title ?? '',
-                          style: const TextStyle(
-                            fontSize: 24.0,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          user?.body ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        const SizedBox(height: 16.0),
-                        const Text(
-                          'Thông tin chi tiết:',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          user?.body ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        const SizedBox(height: 16.0),
-                        const Text(
-                          'Thông tin chi tiết:',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          user?.body ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
+                  Container(
+                    height: MediaQuery.of(context).size.height / 5,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          bottom: 10,
+                          left: 0,
+                          right: 0,
+                          height: MediaQuery.of(context).size.height / 5,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black87,
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const TypingSpeedTestGame(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Tham gia',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.blue,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 20.0,
+                                      horizontal: 130.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -116,37 +178,9 @@ class _RoundDetailPage extends State<RoundDetailPage> {
                   ),
                 ],
               ),
-            );
-          }
-        },
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
             ),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const TypingSpeedTestGame(),
-              ),
-            );
-          },
-          child: Text(
-            'Tham gia',
-            style: isDarkMode
-                ? Theme.of(context)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(color: Colors.black)
-                : Theme.of(context).textTheme.labelLarge,
-          ),
-        ),
+        ],
       ),
     );
   }
