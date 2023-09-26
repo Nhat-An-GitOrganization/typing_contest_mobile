@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/round_details.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
@@ -28,66 +30,60 @@ class Round extends StatelessWidget {
         children: [
           // Background
           Container(
-            height: 140,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(22),
-              color: itemIndex.isEven
-                  ? const Color.fromARGB(255, 10, 187, 197)
-                  : const Color.fromARGB(255, 246, 168, 59),
-            ),
-            child: Container(
-              margin: const EdgeInsets.only(right: 10),
+              height: 160,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 215, 215, 215),
                 borderRadius: BorderRadius.circular(22),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(ct.image),
+                ),
               ),
-            ),
-          ),
-          // Contest
-          Positioned(
-            top: 0,
-            right: 0,
-            bottom: 20,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: 120,
-              width: 150,
-              child: Image.asset(
-                ct.image,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+              child: ClipRect(
+                  child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(22),
+                              color: isDarkMode
+                                  ? Colors.black.withOpacity(0.3)
+                                  : Colors.white.withOpacity(0.3)))))),
           // Info Contest
           Positioned(
             bottom: 0,
             left: 0,
             child: SizedBox(
-              height: 140,
-              width: size.width - 150,
+              height: 170,
+              width: size.width - 50,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.only(left: 20, top: 20),
                     child: Text(
                       ct.title,
-                      style: isDarkMode
-                          ? Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: Colors.black)
-                          : Theme.of(context).textTheme.labelLarge,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'BeVietnamPro',
+                      ),
                     ),
                   ),
+                  const Spacer(),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        '${ct.dateStart} - ${ct.dateEnd}',
+                        style: const TextStyle(
+                            fontSize: 15, fontFamily: 'BeVietnamPro'),
+                      )),
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  const DetailRound(
+                          builder: (context) => const DetailRound(
                             userId: 1,
                           ),
                         ),
@@ -100,20 +96,18 @@ class Round extends StatelessWidget {
                         vertical: 20 / 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.orange,
+                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Text(
-                        'Tham giaa',
-                        style: isDarkMode
-                            ? Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(color: Colors.black)
-                            : Theme.of(context).textTheme.labelLarge,
+                      child: const Text(
+                        'Tham gia',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontFamily: 'BeVietnamPro'),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

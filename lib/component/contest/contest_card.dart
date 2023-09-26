@@ -38,7 +38,9 @@ class ContestCard extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 215, 215, 215),
+                color: isDarkMode
+                    ? Color.fromARGB(255, 76, 76, 76)
+                    : const Color.fromARGB(255, 215, 215, 215),
                 borderRadius: BorderRadius.circular(22),
               ),
             ),
@@ -76,12 +78,11 @@ class ContestCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       ct.title,
-                      style: isDarkMode
-                          ? Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: Colors.black)
-                          : Theme.of(context).textTheme.labelLarge,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'BeVietnamPro',
+                      ),
                     ),
                   ),
                   const Spacer(),
@@ -101,17 +102,15 @@ class ContestCard extends StatelessWidget {
                         vertical: 20 / 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.orange,
+                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Tham gia',
-                        style: isDarkMode
-                            ? Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(color: Colors.black)
-                            : Theme.of(context).textTheme.labelLarge,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontFamily: 'BeVietnamPro'),
                       ),
                     ),
                   )

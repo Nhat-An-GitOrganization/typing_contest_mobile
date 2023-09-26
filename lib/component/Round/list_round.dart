@@ -36,7 +36,10 @@ AppBar buildAppbar() {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,
-    title: const Text('Contest'),
+    title: const Text(
+      'List Round',
+      style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'BeVietnamPro'),
+    ),
     centerTitle: false,
     leading: const BackButton(),
   );
