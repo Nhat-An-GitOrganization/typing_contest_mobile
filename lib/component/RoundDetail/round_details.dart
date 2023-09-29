@@ -4,6 +4,8 @@ import 'package:typing_contest_mobile/component/typing/typing.dart';
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
 
+import 'package:flutter/material.dart';
+
 class DetailRound extends StatefulWidget {
   final int userId;
 
@@ -26,22 +28,38 @@ class _DetailRoundState extends State<DetailRound> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chi Tiết Cuộc Thi'),
-      ),
       body: Stack(
         children: [
-          Image.asset(
-            'assets/s1.png',
-            fit: BoxFit.cover,
+          Container(
+            decoration:const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('lib/images/background.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
             width: double.infinity,
             height: double.infinity,
+          ),
+          Positioned(
+            top: 20.0,
+            left: 5.0,
+            child: IconButton(
+              icon:const Icon(
+                Icons.arrow_back,
+                color: Colors.blueAccent,
+                size: 30.0,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
           ),
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
             child: Container(
+
               height: MediaQuery.of(context).size.height * 3 / 5,
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -62,6 +80,9 @@ class _DetailRoundState extends State<DetailRound> {
                         final user = snapshot.data;
                         return Expanded(
                           child: SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0.0),
+                            clipBehavior: Clip.hardEdge,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -69,7 +90,7 @@ class _DetailRoundState extends State<DetailRound> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                         user?.title ?? '',
@@ -129,18 +150,20 @@ class _DetailRoundState extends State<DetailRound> {
                     },
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 5,
+                    height: MediaQuery.of(context).size.height / 7,
                     child: Stack(
                       children: [
                         Positioned(
-                          bottom: 10,
                           left: 0,
                           right: 0,
-                          height: MediaQuery.of(context).size.height / 5,
+                          height: MediaQuery.of(context).size.height / 6,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration:const BoxDecoration(
                               color: Colors.black87,
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(40.0),
+                                topRight: Radius.circular(40.0),
+                              ),
                             ),
                             child: Center(
                               child: Padding(
@@ -151,7 +174,7 @@ class _DetailRoundState extends State<DetailRound> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const TypingSpeedTestGame(),
+                                        const TypingSpeedTestGame(),
                                       ),
                                     );
                                   },
@@ -186,3 +209,4 @@ class _DetailRoundState extends State<DetailRound> {
     );
   }
 }
+
