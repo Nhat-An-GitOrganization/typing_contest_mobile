@@ -27,24 +27,9 @@ List<Contest> contest = [
     image: 'lib/images/blue.jpg',
     orga: [
       {
-        "orginalName": "James Mangold",
-        "movieName": "Director",
-        "image": "lib/images/actor_1.png",
-      },
-      {
-        "orginalName": "Matt Damon",
-        "movieName": "Carroll",
-        "image": "lib/images/actor_2.png",
-      },
-      {
         "orginalName": "Christian Bale",
         "movieName": "Ken Miles",
         "image": "lib/images/actor_3.png",
-      },
-      {
-        "orginalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "lib/images/actor_4.png",
       },
     ],
   ),
@@ -54,7 +39,7 @@ List<Contest> contest = [
     description:
         'Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm, nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng; nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ.',
     dateStart: '10-02-2023',
-    dateEnd: '15-02-2023',
+    dateEnd: '15-03-2023',
     genra: ["BackSpace", "No Special Characters"],
     image: 'lib/images/anLogo.jpg',
     orga: [
@@ -62,21 +47,6 @@ List<Contest> contest = [
         "orginalName": "James Mangold",
         "movieName": "Director",
         "image": "lib/images/actor_1.png",
-      },
-      {
-        "orginalName": "Matt Damon",
-        "movieName": "Carroll",
-        "image": "lib/images/actor_2.png",
-      },
-      {
-        "orginalName": "Christian Bale",
-        "movieName": "Ken Miles",
-        "image": "lib/images/actor_3.png",
-      },
-      {
-        "orginalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "lib/images/actor_4.png",
       },
     ],
   ),
@@ -91,24 +61,26 @@ List<Contest> contest = [
     image: 'lib/images/background.png',
     orga: [
       {
-        "orginalName": "James Mangold",
-        "movieName": "Director",
-        "image": "lib/images/actor_1.png",
-      },
-      {
         "orginalName": "Matt Damon",
         "movieName": "Carroll",
         "image": "lib/images/actor_2.png",
       },
+    ],
+  ),
+  Contest(
+    id: 4,
+    title: 'Typing Contest 1',
+    description:
+        'Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm, nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng; nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ.',
+    dateStart: '10-02-2023',
+    dateEnd: '15-02-2023',
+    genra: ["No BackSpace", "Special Characters"],
+    image: 'lib/images/blue.jpg',
+    orga: [
       {
         "orginalName": "Christian Bale",
         "movieName": "Ken Miles",
         "image": "lib/images/actor_3.png",
-      },
-      {
-        "orginalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "lib/images/actor_4.png",
       },
     ],
   ),

@@ -49,6 +49,7 @@ dependencies:
   animations: ^2.0.8
   intl: ^0.18.1
   http: ^1.1.0
+  popover: ^0.2.8+2
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +95,10 @@ flutter:
     - family: CenturyGothic
       fonts:
         - asset: assets/fonts/CenturyGothic.ttf
+
+    - family: BeVietnamPro
+      fonts:
+        - asset: assets/fonts/BeVietnamProRegular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

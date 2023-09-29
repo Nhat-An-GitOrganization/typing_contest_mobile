@@ -39,7 +39,7 @@ class ContestCard extends StatelessWidget {
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 color: isDarkMode
-                    ? Color.fromARGB(255, 76, 76, 76)
+                    ? const Color.fromARGB(255, 76, 76, 76)
                     : const Color.fromARGB(255, 215, 215, 215),
                 borderRadius: BorderRadius.circular(22),
               ),
@@ -79,8 +79,8 @@ class ContestCard extends StatelessWidget {
                     child: Text(
                       ct.title,
                       style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        //fontWeight: FontWeight.bold,
                         fontFamily: 'BeVietnamPro',
                       ),
                     ),

@@ -43,7 +43,7 @@ class ContestCardCarou extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                    ?.copyWith(fontWeight: FontWeight.w400),
               ),
             )
           ],
