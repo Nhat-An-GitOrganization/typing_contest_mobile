@@ -227,7 +227,10 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blue,
                     ),
                   ),
-                  title: const Text('Dark Mode'),
+                  title: const Text(
+                    'Dark Mode',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  ),
                   trailing: Consumer<ThemeProvider>(
                     builder: (context, themeProvider, _) => Switch(
                       value: themeProvider.isDarkMode,
