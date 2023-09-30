@@ -67,95 +67,14 @@ class _DetailRoundState extends State<DetailRound> {
               child: Column(
                 children: <Widget>[
                   ContestDataDisplay(futureUser: futureUser),
-                  FutureBuilder<User>(
-                    future: futureUser,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('Lỗi: ${snapshot.error}'));
-                      } else {
-                        final user = snapshot.data;
-                        return Expanded(
-                          child: SingleChildScrollView(
-                            physics: const ClampingScrollPhysics(),
-                            padding: const EdgeInsets.fromLTRB(
-                                16.0, 20.0, 16.0, 0.0),
-                            clipBehavior: Clip.hardEdge,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        user?.title ?? '',
-                                        style: const TextStyle(
-                                          fontSize: 24.0,
-                                          color: Colors.lightBlueAccent,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8.0),
-                                      Text(
-                                        user?.body ?? '',
-                                        style: const TextStyle(
-                                          fontSize: 16.0,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 16.0),
-                                      const Text(
-                                        'Thông tin chi tiết:',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          color: Colors.lightBlueAccent,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8.0),
-                                      Text(
-                                        user?.body ?? '',
-                                        style: const TextStyle(
-                                          fontSize: 16.0,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 16.0),
-                                      const Text(
-                                        'Thông tin chi tiết:',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          color: Colors.lightBlueAccent,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8.0),
-                                      Text(
-                                        user?.body ?? '',
-                                        style: const TextStyle(
-                                          fontSize: 16.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 7,
+                    height: MediaQuery.of(context).size.height / 10,
                     child: Stack(
                       children: [
                         Positioned(
                           left: 0,
                           right: 0,
-                          height: MediaQuery.of(context).size.height / 6,
+                          height: MediaQuery.of(context).size.height / 9,
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.black87,
@@ -180,8 +99,8 @@ class _DetailRoundState extends State<DetailRound> {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
                                     padding: const EdgeInsets.symmetric(
-                                      vertical: 20.0,
-                                      horizontal: 130.0,
+                                      vertical: 10.0,
+                                      horizontal: 120.0,
                                     ),
                                   ),
                                   child: const Text(
