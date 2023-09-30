@@ -106,7 +106,7 @@ class DetailRoundResult extends StatelessWidget {
               ),
               SizedBox(height: 8.0),
               Text(
-                "30",
+                "35",
                 style: TextStyle(
                   fontSize: 16.0,
                 ),
