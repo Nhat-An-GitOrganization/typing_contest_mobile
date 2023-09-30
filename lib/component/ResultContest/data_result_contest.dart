@@ -37,7 +37,7 @@ class DetailRoundResult extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
-          height: 20.0,
+          height: MediaQuery.of(context).size.height/35,
           alignment: Alignment.center,
           child: null,
         ),

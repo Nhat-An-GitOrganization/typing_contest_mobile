@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:typing_contest_mobile/component/contest_join/section_title.dart';
+import 'package:typing_contest_mobile/models/contest.dart';
 
 
 
@@ -83,8 +84,8 @@ class SpecialOfferCard extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Color(0xFF343434).withOpacity(0.4),
-                        Color(0xFF343434).withOpacity(0.15),
+                       const Color(0xFF343434).withOpacity(0.4),
+                       const Color(0xFF343434).withOpacity(0.15),
                       ],
                     ),
                   ),
