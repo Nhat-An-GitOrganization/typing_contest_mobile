@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
 import '../../models/User.dart';
-import '../../net_working/api_request.dart';
 import 'data_result_contest.dart';
 
 class ResultContest extends StatefulWidget {
@@ -20,11 +19,6 @@ class _ResultContestPageState extends State<ResultContest> {
     Colors.greenAccent,
     Colors.blue,
   ];
-  @override
-  void initState() {
-    super.initState();
-    futureUser = ApiServices.fetchDetail(widget.userId);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,29 +49,22 @@ class _ResultContestPageState extends State<ResultContest> {
       ),
       bottomNavigationBar: Container(
 
-
-        child: Container(
-
-          padding:const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-          decoration:const BoxDecoration(
-            color: Colors.black87,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40.0),
-              topRight: Radius.circular(40.0),
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: () {
-
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (_) => RankingRoundScreen()));
-            },
-            child: const Text('Go to ranking'),
+        padding:const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        decoration:const BoxDecoration(
+          color: Colors.black87,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40.0),
+            topRight: Radius.circular(40.0),
           ),
         ),
+        child: ElevatedButton(
+          onPressed: () {
 
-
-
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+          },
+          child: const Text('Go to ranking'),
+        ),
       ),
     );
   }

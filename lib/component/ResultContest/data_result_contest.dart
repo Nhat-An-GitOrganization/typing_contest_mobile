@@ -3,9 +3,10 @@ import 'package:pie_chart/pie_chart.dart';
 
 
 class DetailRoundResult extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final user;
 
-  const DetailRoundResult(this.user);
+  const DetailRoundResult(this.user, {super.key});
 
   @override
   Widget build(BuildContext context) {

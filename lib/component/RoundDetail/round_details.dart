@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/typing/typing.dart';
 import '../../models/User.dart';
-import '../../net_working/api_request.dart';
 import 'data_of_round.dart';
 
 class DetailRound extends StatefulWidget {
@@ -17,11 +16,6 @@ class DetailRound extends StatefulWidget {
 class _DetailRoundState extends State<DetailRound> {
   late Future<User> futureUser;
 
-  @override
-  void initState() {
-    super.initState();
-    futureUser = ApiServices.fetchDetail(widget.userId);
-  }
 
   @override
   Widget build(BuildContext context) {
