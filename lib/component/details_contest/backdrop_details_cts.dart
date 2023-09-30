@@ -38,7 +38,7 @@ class BackGroundDetailCT extends StatelessWidget {
             child: Container(
               //cover 90% picture
               width: size.width * 0.55,
-              height: 70,
+              height: size.height * 0.085,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.only(

@@ -31,8 +31,8 @@ class DetailsPageContest extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             contest.description,
-            style: const TextStyle(
-              fontSize: 15,
+            style: TextStyle(
+              fontSize: size.height * (16 / size.height),
               color: Color.fromARGB(255, 89, 91, 118),
             ),
           ),

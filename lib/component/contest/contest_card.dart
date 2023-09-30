@@ -78,10 +78,8 @@ class ContestCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       ct.title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        //fontWeight: FontWeight.bold,
-                        fontFamily: 'BeVietnamPro',
+                      style: TextStyle(
+                        fontSize: size.height * (16 / size.height),
                       ),
                     ),
                   ),
