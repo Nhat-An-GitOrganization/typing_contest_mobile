@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
-
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
+import 'data_result_contest.dart';
 
 class ResultContest extends StatefulWidget {
   final int userId;
@@ -11,15 +10,11 @@ class ResultContest extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _UserDetailPageState createState() => _UserDetailPageState();
+  _ResultContestPageState createState() => _ResultContestPageState();
 }
 
-class _UserDetailPageState extends State<ResultContest> {
+class _ResultContestPageState extends State<ResultContest> {
   late Future<User> futureUser;
-  final dataMap = <String, double>{
-    "Mức độ chính xác": 4,
-    "Phần còn lại": 16,
-  };
 
   final colorList = <Color>[
     Colors.greenAccent,
@@ -48,103 +43,41 @@ class _UserDetailPageState extends State<ResultContest> {
           } else {
             final user = snapshot.data;
             return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    child: PieChart(
-                      dataMap: {
-                        "Mức độ chính xác": double.parse(user!.id.toString()),
-                        "Phần còn lại": 20 - double.parse(user.id.toString()),
-                      },
-                      chartType: ChartType.ring,
-                      baseChartColor: Colors.grey[50]!.withOpacity(0.15),
-                      colorList: colorList,
-                      chartValuesOptions: const ChartValuesOptions(
-                        showChartValuesInPercentage: true,
-                      ),
-                      totalValue: 20,
-                    ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 20.0,
-                    alignment: Alignment.center,
-                    child:
-                        null, // Bạn có thể thêm các widget lớp phủ ở đây nếu cần.
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          user.title ?? '',
-                          style: const TextStyle(
-                            fontSize: 24.0,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          user.body ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        const SizedBox(height: 16.0),
-                        const Text(
-                          'Thông tin chi tiết:',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          user.body ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        const SizedBox(height: 16.0),
-                        const Text(
-                          'Thông tin chi tiết:',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          user.body ?? '',
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    DetailRoundResult(user), // Call MyWidget here with the user data
+                  ],
+                )
             );
           }
         },
       ),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          onPressed: () {
-            // Xử lý sự kiện khi nút được nhấn (nếu cần)
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => RankingRoundScreen()));
-          },
-          child: const Text('Go to ranking'),
+
+
+        child: Container(
+
+          padding:const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          decoration:const BoxDecoration(
+            color: Colors.black87,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40.0),
+              topRight: Radius.circular(40.0),
+            ),
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+            },
+            child: const Text('Go to ranking'),
+          ),
         ),
+
+
+
       ),
     );
   }
