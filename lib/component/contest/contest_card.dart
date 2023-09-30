@@ -68,7 +68,7 @@ class ContestCard extends StatelessWidget {
             bottom: 0,
             left: 0,
             child: SizedBox(
-              height: 136,
+              height: size.height - 150,
               width: size.width - 150,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

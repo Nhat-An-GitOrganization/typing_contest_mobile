@@ -18,7 +18,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
-  int cpm = 0;
   String typedText = '';
   List<Color?> correctCharacters = List.filled(paragraphs[0].length, null);
   late Timer timer;
@@ -54,7 +53,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       timeLeft = maxTime;
       mistakes = 0;
       wpm = 0;
-      cpm = 0;
       typedText = '';
       startTimer();
       _resetTextField();
@@ -62,12 +60,23 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   }
 
   void calculateStats() {
-    int totalChars = typedText.length;
     int totalWords = typedText.trim().split(' ').length;
     int elapsedTime = maxTime - timeLeft;
 
     wpm = ((totalWords / elapsedTime) * 60).round();
-    cpm = ((totalChars / elapsedTime) * 60).round();
+  }
+
+  double calculateAccuracy() {
+    int correctCharactersCount = 0;
+
+    for (int i = 0; i < typedText.length; i++) {
+      if (i < paragraphs[0].length && typedText[i] == paragraphs[0][i]) {
+        correctCharactersCount++;
+      }
+    }
+
+    double accuracy = (correctCharactersCount / typedText.length) * 100;
+    return accuracy;
   }
 
   void handleInput(String input) {
@@ -108,13 +117,14 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 
   void _showResultDialog() {
     int totalTime = maxTime - timeLeft;
+    double accuracy = calculateAccuracy();
     AwesomeDialog(
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.scale,
       title: 'Finished',
       desc:
-          'Full time: $totalTime s / $maxTime s \n Mistakes: $mistakes \n WPM: $wpm \n CPM: $cpm \n',
+          'WPM: $wpm \n Mistakes: $mistakes  \n Accuracy: ${accuracy.toStringAsFixed(2)}% \n Full time: $totalTime s / $maxTime s',
       btnOkOnPress: () {
         // resetGame();
         Navigator.pushReplacement(
@@ -134,11 +144,14 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double progressPercentage = (typedText.length / paragraphs[0].length) * 100;
+    double backgroundOpacity = 0.3;
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFF17A2B8),
         body: Container(
-          width: 770,
+          height: size.height,
           padding: const EdgeInsets.all(35),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -154,6 +167,39 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Stack(
+                children: [
+                  Container(
+                    height: 25,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(backgroundOpacity),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  LinearProgressIndicator(
+                    value: progressPercentage / 100,
+                    backgroundColor: Colors.transparent,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                    minHeight: 25,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '${progressPercentage.toStringAsFixed(0)}%',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -174,7 +220,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                     ),
                   ),
                   Text(
-                    'CPM: $cpm',
+                    'Time: $timeLeft',
                     style: const TextStyle(
                       color: Colors.blue,
                       fontSize: 15,
@@ -184,54 +230,51 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                 ],
               ),
               Expanded(
-                child: Center(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          for (int i = 0; i < paragraphs[0].length; i++)
-                            WidgetSpan(
-                              child: Text(
-                                paragraphs[0][i] +
-                                    (i == currentCursorPosition ? '|' : ''),
-                                style: TextStyle(
-                                  fontSize: 21,
-                                  letterSpacing: 1,
-                                  color: correctCharacters[i] ?? Colors.grey,
+                child: InkWell(
+                  onTap: () {
+                    // Xử lý sự kiện nhấp vào ở đây
+                    if (!inputNode.hasFocus) {
+                      FocusScope.of(context).requestFocus(inputNode);
+                    }
+                  },
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            for (int i = 0; i < paragraphs[0].length; i++)
+                              WidgetSpan(
+                                child: Text(
+                                  paragraphs[0][i] +
+                                      (i == currentCursorPosition ? '|' : ''),
+                                  style: TextStyle(
+                                    fontSize: 21,
+                                    letterSpacing: 1,
+                                    color: correctCharacters[i] ?? Colors.grey,
+                                  ),
                                 ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Time Left: $timeLeft s',
-                    style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
+              Opacity(
+                opacity: 0.0,
+                child: TextField(
+                  controller: textEditingController,
+                  onChanged: handleInput,
+                  enabled: timeLeft > 0,
+                  autofocus: true,
+                  focusNode: inputNode,
+                  style: const TextStyle(fontSize: 18),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Start typing here...',
+                    hintStyle: TextStyle(color: Colors.grey),
                   ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: textEditingController,
-                onChanged: handleInput,
-                enabled: timeLeft > 0,
-                autofocus: true,
-                focusNode: inputNode,
-                style: const TextStyle(fontSize: 18),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Start typing here...',
-                  hintStyle: TextStyle(color: Colors.grey),
                 ),
               ),
             ],
@@ -243,5 +286,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  'Địt mẹ mày',
+  'New New',
 ];
