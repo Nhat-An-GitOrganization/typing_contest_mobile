@@ -14,6 +14,7 @@ class _UserInforState extends State<UserInfor> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return SafeArea(
@@ -34,23 +35,23 @@ class _UserInforState extends State<UserInfor> {
           padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
           child: ListView(
             children: [
-              const Text(
+              Text(
                 'My Profile',
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: size.height * 0.032,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: size.height * 0.02),
               Center(
                 child: Stack(
                   children: [
                     Container(
-                      width: 130,
-                      height: 130,
+                      width: size.width * (130 / size.width),
+                      height: size.height * (130 / size.height),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          width: 4,
+                          width: size.width * (4 / size.width),
                           color: Theme.of(context).scaffoldBackgroundColor,
                         ),
                         boxShadow: [
@@ -72,12 +73,12 @@ class _UserInforState extends State<UserInfor> {
                       bottom: 0,
                       right: 0,
                       child: Container(
-                        height: 40,
-                        width: 40,
+                        height: size.height * (40 / size.height),
+                        width: size.width * (40 / size.width),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            width: 4,
+                            width: size.width * (4 / size.width),
                             color: Theme.of(context).scaffoldBackgroundColor,
                           ),
                           color: Colors.blue,
@@ -91,9 +92,9 @@ class _UserInforState extends State<UserInfor> {
                   ],
                 ),
               ),
-              const SizedBox(height: 45),
-              texfieldMethod('Full Name', user.displayName!, isDarkMode),
-              texfieldMethod('E-mail', user.email!, isDarkMode),
+              SizedBox(height: size.height * 0.08),
+              texfieldMethod('Full Name', size, user.displayName!, isDarkMode),
+              texfieldMethod('E-mail', size, user.email!, isDarkMode),
             ],
           ),
         ),
@@ -101,7 +102,8 @@ class _UserInforState extends State<UserInfor> {
     );
   }
 
-  Widget texfieldMethod(String labeltext, String placeholder, bool isDarkMode) {
+  Widget texfieldMethod(
+      String labeltext, Size size, String placeholder, bool isDarkMode) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35),
       child: TextField(
@@ -109,14 +111,14 @@ class _UserInforState extends State<UserInfor> {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(bottom: 3),
           labelText: labeltext,
-          labelStyle: const TextStyle(
+          labelStyle: TextStyle(
             color: Colors.blue,
-            fontSize: 20,
+            fontSize: size.height * (20 / size.height),
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
           hintStyle: TextStyle(
-            fontSize: 16,
+            fontSize: size.height * (14 / size.height),
             fontWeight: FontWeight.bold,
             color: isDarkMode ? Colors.white : Colors.black,
           ),

@@ -22,13 +22,13 @@ class ContestCard extends StatelessWidget {
         horizontal: 20,
         vertical: 10,
       ),
-      height: 160,
+      height: size.height * (160 / size.height),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           // Background
           Container(
-            height: 140,
+            height: size.height * (140 / size.height),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
               color: itemIndex.isEven
@@ -52,8 +52,8 @@ class ContestCard extends StatelessWidget {
             bottom: 20,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: 120,
-              width: 150,
+              height: size.height * (120 / size.height),
+              width: size.width * (150 / size.width),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(22),
                 child: Image.asset(
@@ -105,11 +105,11 @@ class ContestCard extends StatelessWidget {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Tham gia',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: size.height * (15 / size.height),
                             fontFamily: 'BeVietnamPro'),
                       ),
                     ),

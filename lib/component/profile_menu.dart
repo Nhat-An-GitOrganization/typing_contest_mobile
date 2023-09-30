@@ -16,11 +16,12 @@ class ProfileMenu extends StatelessWidget {
   final Color? textColor;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return ListTile(
       onTap: onPress,
       leading: Container(
-        width: 40,
-        height: 40,
+        width: size.width * 0.1,
+        height: size.height * 0.046,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
             color: Colors.blue.withOpacity(0.1)),
@@ -31,20 +32,21 @@ class ProfileMenu extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)
+        style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: size.height * 0.017)
             .apply(color: textColor),
       ),
       trailing: endIcon
           ? Container(
-              width: 30,
-              height: 30,
+              width: size.width * 0.08,
+              height: size.height * 0.04,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   color: Colors.grey.withOpacity(0.1)),
-              child: const Icon(
+              child: Icon(
                 Icons.chevron_right,
                 color: Colors.grey,
-                size: 18,
+                size: size.height * 0.02,
               ),
             )
           : null,

@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     final themeProvider = Provider.of<ThemeProvider>(context);
     final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
@@ -100,13 +101,13 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                if (showProfile) ProFileMethod(user, context),
+                if (showProfile) ProFileMethod(user, size, context),
                 if (showHistory) const Text('History'),
                 if (showHomePage) ...[
                   buildAppbar(),
                   const SearchBox(),
                   //const CategoryList(),
-                  HomeMethod(),
+                  HomeMethod(size),
                 ],
               ],
             ),
@@ -132,30 +133,31 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ignore: non_constant_identifier_names
-  Center HomeMethod() {
+  Center HomeMethod(Size size) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: size.height * 0.04,
           ),
           const ContestCarousel(),
-          const SizedBox(
-            height: 40,
+          SizedBox(
+            height: size.height * 0.08,
           ),
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: const Text(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.09),
+              child: Text(
                 'Contest List',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: size.height * 0.034, fontWeight: FontWeight.w600),
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: size.height * 0.06,
           ),
           for (var i = 0; i < contest.length; i++)
             Column(
@@ -164,7 +166,9 @@ class _HomePageState extends State<HomePage> {
                   itemIndex: i,
                   ct: contest[i],
                 ),
-                const SizedBox(height: 15), // Khoảng cách 5px giữa các phần tử
+                SizedBox(
+                  height: size.height * 0.035,
+                ),
               ],
             ),
         ],
@@ -173,23 +177,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   // ignore: non_constant_identifier_names
-  Widget ProFileMethod(User user, BuildContext context) {
+  Widget ProFileMethod(User user, Size size, BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: size.height * 0.035),
+            Text(
               'Profile',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: size.height * 0.029),
             ),
-            const SizedBox(height: 50),
+            SizedBox(height: size.height * 0.05),
             Column(
               children: [
                 SizedBox(
-                  height: 115,
-                  width: 115,
+                  height: size.height * 0.125,
+                  width: size.width * 0.27,
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
@@ -199,7 +203,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 70),
+                SizedBox(height: size.height * 0.09),
                 ProfileMenu(
                   icon: Icons.person_3,
                   onPress: () {
@@ -208,17 +212,17 @@ class _HomePageState extends State<HomePage> {
                   },
                   title: 'My Profile',
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: size.height * 0.02),
                 ProfileMenu(
                   icon: Icons.settings,
                   onPress: () {},
                   title: 'Settings',
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: size.height * 0.02),
                 ListTile(
                   leading: Container(
-                    width: 40,
-                    height: 40,
+                    width: size.width * 0.1,
+                    height: size.height * 0.046,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Colors.blue.withOpacity(0.1)),
@@ -227,9 +231,11 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blue,
                     ),
                   ),
-                  title: const Text(
+                  title: Text(
                     'Dark Mode',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: size.height * 0.017),
                   ),
                   trailing: Consumer<ThemeProvider>(
                     builder: (context, themeProvider, _) => Switch(
@@ -243,8 +249,8 @@ class _HomePageState extends State<HomePage> {
                 const Divider(
                   color: Colors.grey,
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: size.height * 0.018,
                 ),
                 ProfileMenu(
                   title: 'Logout',
