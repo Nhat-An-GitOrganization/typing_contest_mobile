@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -40,34 +41,34 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Column(
             children: [
-              const SizedBox(
-                height: 130,
+              SizedBox(
+                height: size.height * 0.16,
               ),
-              const Center(
+              Center(
                 child: Text(
                   'FPLSP',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 82, 113, 255),
-                    fontSize: 50,
+                    color: const Color.fromARGB(255, 82, 113, 255),
+                    fontSize: size.height * 0.07,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: size.height * 0.016,
               ),
-              const Center(
+              Center(
                 child: Text(
                   'Typing Contest',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 82, 113, 255),
-                    fontSize: 40,
+                    color: const Color.fromARGB(255, 82, 113, 255),
+                    fontSize: size.height * 0.05,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 100,
+              SizedBox(
+                height: size.height * 0.16,
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -102,36 +103,35 @@ class _LoginPageState extends State<LoginPage> {
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Image.asset(
                                 'lib/images/logogg.png',
-                                width: 50,
-                                height: 70,
+                                width: size.width * 0.12,
+                                height: size.height * 0.08,
                               ),
                             ),
-                            const Text(
+                            Text(
                               'Đăng nhập với Google',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: size.width * 0.05,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'CenturyGothic',
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: const Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 70,
+                    SizedBox(
+                      height: size.height * 0.10,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: size.height * 0.10,
               ),
               Image.asset(
                 'lib/images/fpoly.png',
-                width: 150,
-                height: 90,
+                width: size.height * 0.18,
+                height: size.height * 0.10,
               ),
             ],
           ),
