@@ -98,18 +98,22 @@ class _HomePageState extends State<HomePage> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {},
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                if (showProfile) ProFileMethod(user, size, context),
-                if (showHistory) const Text('History'),
-                if (showHomePage) ...[
-                  buildAppbar(),
-                  const SearchBox(),
-                  //const CategoryList(),
-                  HomeMethod(size),
+          child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  if (showProfile) ProFileMethod(user, size, context),
+                  if (showHistory) const Text('History'),
+                  if (showHomePage) ...[
+                    buildAppbar(),
+                    const SearchBox(),
+                    HomeMethod(size),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),
