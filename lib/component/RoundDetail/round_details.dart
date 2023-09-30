@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/typing/typing.dart';
-
 import '../../models/User.dart';
 import '../../net_working/api_request.dart';
+import 'data_of_round.dart';
 
 class DetailRound extends StatefulWidget {
   final int userId;
@@ -66,6 +66,7 @@ class _DetailRoundState extends State<DetailRound> {
               ),
               child: Column(
                 children: <Widget>[
+                  ContestDataDisplay(futureUser: futureUser),
                   FutureBuilder<User>(
                     future: futureUser,
                     builder: (context, snapshot) {
