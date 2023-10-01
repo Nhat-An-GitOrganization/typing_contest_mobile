@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:typing_contest_mobile/component/contest_join/section_title.dart';
-import 'package:typing_contest_mobile/models/contest.dart';
-
-
 
 class SpecialOffers extends StatelessWidget {
   const SpecialOffers({
@@ -15,8 +11,7 @@ class SpecialOffers extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding:
-          const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
             title: "Lựa chọn của bạn",
             press: () {},
@@ -84,29 +79,28 @@ class SpecialOfferCard extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                       const Color(0xFF343434).withOpacity(0.4),
-                       const Color(0xFF343434).withOpacity(0.15),
+                        const Color(0xFF343434).withOpacity(0.4),
+                        const Color(0xFF343434).withOpacity(0.15),
                       ],
                     ),
                   ),
                 ),
                 Padding(
-                  padding:const EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 15.0,
                     vertical: 10,
                   ),
                   child: Text.rich(
                     TextSpan(
-                      style:const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       children: [
                         TextSpan(
                           text: "$category\n",
-                          style:const TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-
                       ],
                     ),
                   ),

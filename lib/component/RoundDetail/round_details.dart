@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/typing/typing.dart';
 import '../../models/User.dart';
-import '../../net_working/api_request.dart';
 import 'data_of_round.dart';
+
+
+Future<User> fetchData() async {
+  // Tạo một đối tượng User với dữ liệu cố định
+  User user = User(
+    userId: 1,
+    id: 1,
+    title: "cuoc thi",
+    body: "Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm,"
+        " nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, "
+        "quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng;"
+        " nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ",
+  );
+
+  // Đợi một khoảng thời gian như làm tác vụ mạng thường làm
+  await Future.delayed(Duration(seconds: 2));
+
+  // Trả về đối tượng User đã được tạo và giữ cố định dữ liệu
+  return user;
+}
+
 
 class DetailRound extends StatefulWidget {
   final int userId;
@@ -15,13 +35,8 @@ class DetailRound extends StatefulWidget {
 }
 
 class _DetailRoundState extends State<DetailRound> {
-  late Future<User> futureUser;
+  late Future<User> futureUser = fetchData();
 
-  @override
-  void initState() {
-    super.initState();
-    futureUser = ApiServices.fetchDetail(widget.userId);
-  }
 
   @override
   Widget build(BuildContext context) {

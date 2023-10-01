@@ -33,7 +33,7 @@ class DetailsPageContest extends StatelessWidget {
             contest.description,
             style: TextStyle(
               fontSize: size.height * (16 / size.height),
-              color: Color.fromARGB(255, 89, 91, 118),
+              color: const Color.fromARGB(255, 89, 91, 118),
             ),
           ),
         ),

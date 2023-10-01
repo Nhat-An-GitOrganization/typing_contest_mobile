@@ -179,7 +179,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   LinearProgressIndicator(
                     value: progressPercentage / 100,
                     backgroundColor: Colors.transparent,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                    valueColor:
+                        const AlwaysStoppedAnimation<Color>(Colors.green),
                     minHeight: 25,
                     borderRadius: BorderRadius.circular(20),
                   ),
