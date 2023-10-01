@@ -17,7 +17,7 @@ Future<User> fetchData() async {
   );
 
   // Đợi một khoảng thời gian như làm tác vụ mạng thường làm
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
 
   // Trả về đối tượng User đã được tạo và giữ cố định dữ liệu
   return user;
