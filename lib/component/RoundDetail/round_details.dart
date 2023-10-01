@@ -3,6 +3,27 @@ import 'package:typing_contest_mobile/component/typing/typing.dart';
 import '../../models/User.dart';
 import 'data_of_round.dart';
 
+
+Future<User> fetchData() async {
+  // Tạo một đối tượng User với dữ liệu cố định
+  User user = User(
+    userId: 1,
+    id: 1,
+    title: "cuoc thi",
+    body: "Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm,"
+        " nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, "
+        "quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng;"
+        " nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ",
+  );
+
+  // Đợi một khoảng thời gian như làm tác vụ mạng thường làm
+  await Future.delayed(Duration(seconds: 2));
+
+  // Trả về đối tượng User đã được tạo và giữ cố định dữ liệu
+  return user;
+}
+
+
 class DetailRound extends StatefulWidget {
   final int userId;
 
@@ -14,11 +35,13 @@ class DetailRound extends StatefulWidget {
 }
 
 class _DetailRoundState extends State<DetailRound> {
-  late Future<User> futureUser;
+  late Future<User> futureUser = fetchData();
 
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    EdgeInsetsGeometry padding = EdgeInsets.all(size.width * 0.05);
     return Scaffold(
       body: Stack(
         children: [
@@ -33,8 +56,8 @@ class _DetailRoundState extends State<DetailRound> {
             height: double.infinity,
           ),
           Positioned(
-            top: 20.0,
-            left: 5.0,
+            top: size.height *0.02,
+            left: size.width *0.01,
             child: IconButton(
               icon: const Icon(
                 Icons.arrow_back,
@@ -77,9 +100,10 @@ class _DetailRoundState extends State<DetailRound> {
                                 topRight: Radius.circular(40.0),
                               ),
                             ),
+
                             child: Center(
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: padding,
                                 child: ElevatedButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -92,16 +116,16 @@ class _DetailRoundState extends State<DetailRound> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0,
-                                      horizontal: 120.0,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: size.height * 0.01,
+                                      horizontal: size.width * 0.3,
                                     ),
                                   ),
-                                  child: const Text(
+                                  child:  Text(
                                     'Tham gia',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20.0,
+                                      fontSize: size.width *0.045,
                                     ),
                                   ),
                                 ),

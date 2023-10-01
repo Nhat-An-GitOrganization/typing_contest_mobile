@@ -8,91 +8,93 @@ class ContestDataDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return FutureBuilder<User>(
       future: futureUser,
       builder: (context, snapshot) {
+
         // if (snapshot.connectionState == ConnectionState.waiting) {
         //   return const Center(child: CircularProgressIndicator());
         // } else if (snapshot.hasError) {
         //   return Center(child: Text('Lỗi: ${snapshot.error}'));
         // } else {
         //   final user = snapshot.data;
-          return const Expanded(
+          return  Expanded(
             child: SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
-              padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0.0),
+              physics:const ClampingScrollPhysics(),
+
               clipBehavior: Clip.hardEdge,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(size.height * 0.05),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                        Text(
                           "TypingContest 1",
                           style: TextStyle(
-                            fontSize: 24.0,
+                            fontSize:  size.width *0.05,
                             color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8.0),
-                      Text(
+                        SizedBox(height: size.height*0.01),
+                         Text(
                           "Tốc độ đánh máy của bạn có nhanh không? "
                               "Làm bài kiểm tra đánh máy của chúng tôi và "
                               "kiểm tra tốc độ đánh máy hiện tại của bạn.",
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize:  size.width *0.045,
                           ),
                         ),
-                        SizedBox(height: 16.0),
-                        Text(
+                        SizedBox(height: size.height*0.02),
+                         Text(
                           'Miêu tả:',
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize:  size.width *0.05,
                             color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8.0),
-                       Text(
+                        SizedBox(height: size.height*0.01),
+                         Text(
                           "Cuộc thi đánh máy poly",
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize:  size.width *0.05,
                           ),
                         ),
-                        SizedBox(height: 16.0),
-                        Text(
+                        SizedBox(height: size.height*0.02),
+                         Text(
                           'Thời gian bắt đầu:',
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize:  size.width *0.05,
                             color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8.0),
-                        Text(
+                        SizedBox(height: size.height*0.01),
+                         Text(
                           "30/9/2023",
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize: size.width *0.045,
                           ),
                         ),
-                        SizedBox(height: 16.0),
-                        Text(
+                        SizedBox(height: size.height*0.02),
+                         Text(
                           'Thời gian kết thúc:',
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: size.width *0.05,
                             color: Colors.lightBlueAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8.0),
-                        Text(
+                        SizedBox(height: size.height*0.01),
+                         Text(
                           "30/10/2023",
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize: size.width *0.045,
                           ),
                         ),
                       ],
