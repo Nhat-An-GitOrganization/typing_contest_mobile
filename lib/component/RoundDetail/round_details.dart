@@ -25,6 +25,8 @@ class _DetailRoundState extends State<DetailRound> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    EdgeInsetsGeometry padding = EdgeInsets.all(size.width * 0.05);
     return Scaffold(
       body: Stack(
         children: [
@@ -39,8 +41,8 @@ class _DetailRoundState extends State<DetailRound> {
             height: double.infinity,
           ),
           Positioned(
-            top: 20.0,
-            left: 5.0,
+            top: size.height *0.02,
+            left: size.width *0.01,
             child: IconButton(
               icon: const Icon(
                 Icons.arrow_back,
@@ -83,9 +85,10 @@ class _DetailRoundState extends State<DetailRound> {
                                 topRight: Radius.circular(40.0),
                               ),
                             ),
+
                             child: Center(
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: padding,
                                 child: ElevatedButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -98,16 +101,16 @@ class _DetailRoundState extends State<DetailRound> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0,
-                                      horizontal: 120.0,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: size.height * 0.01,
+                                      horizontal: size.width * 0.3,
                                     ),
                                   ),
-                                  child: const Text(
+                                  child:  Text(
                                     'Tham gia',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20.0,
+                                      fontSize: size.width *0.045,
                                     ),
                                   ),
                                 ),

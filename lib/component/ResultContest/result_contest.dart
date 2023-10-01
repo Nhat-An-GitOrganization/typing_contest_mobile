@@ -28,6 +28,7 @@ class _ResultContestPageState extends State<ResultContest> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Kết quả vòng thi của bạn '),
@@ -58,7 +59,7 @@ class _ResultContestPageState extends State<ResultContest> {
 
         child: Container(
 
-          padding:const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: size.height*0.05, vertical: size.height*0.02),
           decoration:const BoxDecoration(
             color: Colors.black87,
             borderRadius: BorderRadius.only(

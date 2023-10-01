@@ -9,6 +9,7 @@ class DetailRoundResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     final colorList = <Color>[
       Colors.greenAccent,
       Colors.blue,
@@ -17,9 +18,10 @@ class DetailRoundResult extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 60.0),
+
+        SizedBox(height:size.height * 0.03),
         Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(size.height*0.01),
           child: PieChart(
             dataMap: {
               "Mức độ chính xác": double.parse(user!.id.toString()),
@@ -41,74 +43,74 @@ class DetailRoundResult extends StatelessWidget {
           alignment: Alignment.center,
           child: null,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.0),
+         Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width*0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 "Kết quả",
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: size.width *0.06,
                   color: Colors.lightBlueAccent,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 "Kết quả cuộc thi Typing Contest 1. "
                     "Chúc mừng bạn đã hoàn thành cuộc thi",
 
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: size.width *0.045,
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 'Người tham gia:',
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: size.width *0.06,
                   color: Colors.lightBlueAccent,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 "Phạm Việt Hoàng",
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: size.width *0.045,
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 'Độ chính xác:',
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: size.width *0.06,
                   color: Colors.lightBlueAccent,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 "100%",
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: size.width *0.045,
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 'Tốc độ (WPM):',
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: size.width *0.06,
                   color: Colors.lightBlueAccent,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: size.height*0.01),
               Text(
                 "35",
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: size.width *0.045,
                 ),
               ),
             ],
