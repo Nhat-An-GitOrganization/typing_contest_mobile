@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
-import 'package:typing_contest_mobile/component/class/menu_item.dart';
-import 'package:typing_contest_mobile/component/class/orga.dart';
+import 'package:typing_contest_mobile/component/classPage/menu_item.dart';
+import 'package:typing_contest_mobile/component/classPage/orga.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 import 'package:typing_contest_mobile/screen/contest_dts_screen.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/component/class/class.dart';
+import 'package:typing_contest_mobile/component/classPage/class.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class ListClass extends StatefulWidget {
