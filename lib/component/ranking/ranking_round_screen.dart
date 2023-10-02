@@ -1,361 +1,363 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/screen/home_screen.dart';
 
-const Color primaryColor = Colors.blue; // Màu xanh chính
-const Color secondaryColor = Colors.white; // Màu trắng
-
-// ignore: must_be_immutable
 class RankingRoundScreen extends StatelessWidget {
-  List<String> names = [
-    "Người chơi 1",
-    "Người chơi 2",
-    "Người chơi 3",
-    "Người chơi 4",
-    "Người chơi 5",
-    "Người chơi 6",
-    "Người chơi 7",
-    "Người chơi 8",
-    "Người chơi 9",
-    "Người chơi 10",
-    "Người chơi 11",
-    "Người chơi 12",
-    "Người chơi 13",
-    "Người chơi 14",
-    "Người chơi 15",
-    "Người chơi 16",
-    "Người chơi 17",
-    "Người chơi 18",
-    "Người chơi 19",
-    "Người chơi 20",
-  ];
-
-  RankingRoundScreen({super.key});
+  const RankingRoundScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false, // Tắt biểu tượng debug
-      home: Scaffold(
-        bottomNavigationBar: BottomAppBar(
-          child: Container(
-            color: secondaryColor,
-            child: Card(
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-              elevation: 0,
-              color: primaryColor,
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "Vị trí",
-                      style: TextStyle(
-                        color: secondaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    CircleAvatar(
-                      foregroundColor: Colors.green,
-                    ),
-                    Text(
-                      "Tên",
-                      style: TextStyle(
-                        color: secondaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      "Điểm",
-                      style: TextStyle(
-                        color: secondaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.lightBlue,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
           ),
         ),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              backgroundColor: primaryColor,
-              pinned: true,
-              snap: false,
-              floating: false,
-              expandedHeight: 200.0,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back, color: secondaryColor),
-                onPressed: () {
-                  // Đưa bạn về màn hình trước đó khi nút trở về được nhấn
-                  Navigator.of(context).pop();
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => const HomePage()));
-                },
-              ),
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(4.0),
-                child: Container(
-                  color: primaryColor.withOpacity(0.7),
-                  height: 50,
-                  child: const Row(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(size.height * 0.008),
+            child: Column(
+              children: [
+                Text(
+                  'BẢNG XẾP HẠNG VÒNG THI',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: size.width * 0.07,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'BeVietnamPro'),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      gradient: const LinearGradient(
+                          colors: [Colors.white, Colors.white, Colors.white])),
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      SizedBox(width: 35),
-                      Text(
-                        "Vị trí",
-                        style: TextStyle(
-                          color: secondaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      WinnerContainer(
+                        url: 'lib/images/actor_1.png',
+                        winnerName: 'Alina',
+                        height: size.height * 0.16,
+                        rank: '2',
+                        color: Colors.green,
                       ),
-                      SizedBox(width: 52),
-                      Text(
-                        "Hồ sơ",
-                        style: TextStyle(
-                          color: secondaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      const WinnerContainer(
+                        isFirst: true,
+                        color: Colors.yellow,
                       ),
-                      SizedBox(width: 60),
-                      Text(
-                        "Tên",
-                        style: TextStyle(
-                          color: secondaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      WinnerContainer(
+                        winnerName: 'Sofiya',
+                        url: 'lib/images/actor_1.png',
+                        height: size.height * 0.15,
+                        rank: '3',
+                        color: Colors.orange,
                       ),
-                      SizedBox(width: 60),
-                      Text(
-                        "Điểm",
-                        style: TextStyle(
-                          color: secondaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
                     ],
                   ),
                 ),
-              ),
-              flexibleSpace: FlexibleSpaceBar(
-                background: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: <Color>[
-                        primaryColor.withOpacity(0.7),
-                        secondaryColor
-                      ],
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.0),
+                          topRight: Radius.circular(20.0)),
+                      gradient: LinearGradient(
+                          colors: [Colors.white, Colors.white, Colors.white])),
+                  child: Padding(
+                    padding: EdgeInsets.all(size.width * 0.002),
+                    child: Container(
+                      height: size.height * 0.47,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0)),
+                          color: Colors.blue),
+                      child: GridView.count(
+                        crossAxisCount: 1,
+                        childAspectRatio: 3.5,
+                        children: const [
+                          ContestantList(
+                            url: 'lib/images/actor_1.png',
+                            name: 'Shona',
+                            rank: '1145',
+                          ),
+                          ContestantList(
+                            url: 'lib/images/actor_1.png',
+                            name: 'Emily',
+                            rank: '1245',
+                          ),
+                          ContestantList(
+                            url: 'lib/images/actor_1.png',
+                            name: 'Josheph',
+                            rank: '2153',
+                          ),
+                          ContestantList(
+                            url: 'lib/images/actor_1.png',
+                            rank: '3456',
+                            name: 'Kristine',
+                          ),
+                          ContestantList(),
+                        ],
+                      ),
                     ),
                   ),
-                  child: const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 50.0),
-                        child: Text(
-                          "BẢNG XẾP HẠNG",
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: secondaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Icon(
-                        Icons.emoji_events_rounded,
-                        color: Colors.yellow, // Màu vàng
-                        size: 70,
-                      ),
-                    ],
-                  ),
                 ),
-              ),
-              elevation: 9.0,
+              ],
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) => buildList(context, index),
-                childCount: names.length,
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );
   }
+}
 
-  Widget buildList(BuildContext txt, int index) {
-    int ind = index + 1;
-    final pos = ind.toString();
-    final name = names[index];
+class WinnerContainer extends StatelessWidget {
+  final bool isFirst;
+  final Color? color;
+  final String? winnerPosition;
+  final String? url;
+  final String? winnerName;
+  final String? rank;
+  final double? height;
+  const WinnerContainer(
+      {Key? key,
+      this.isFirst = false,
+      this.color,
+      this.winnerPosition,
+      this.winnerName,
+      this.rank,
+      this.height,
+      this.url})
+      : super(key: key);
 
-    Widget listItem;
-
-    if (ind == 1) {
-      listItem = Card(
-        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        shadowColor: Colors.grey[200],
-        color: Colors.yellow, // Màu vàng
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                pos,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.all(size.width * 0.002),
+      child: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.11),
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                      colors: [Colors.white, Colors.white, Colors.white]),
+                  border: Border.all(
+                    color:
+                        Colors.white, //kHintColor, so this should be changed?
+                  ),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(40.0),
+                      topRight: Radius.circular(40.0)),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(size.width * 0.002),
+                  child: Container(
+                    height: height ?? size.height * 0.18,
+                    width: size.width * 0.26,
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40.0),
+                          topRight: Radius.circular(40.0)),
+                    ),
+                  ),
                 ),
               ),
-              const CircleAvatar(
-                foregroundColor: Colors.green,
-              ),
-              Text(
-                name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+            ),
+          ),
+          Center(
+            child: Stack(
+              children: [
+                if (isFirst)
+                  Image.asset(
+                    'lib/images/crown.png',
+                    height: size.height * 0.096,
+                    width: size.width * 0.27,
+                  ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.06, left: size.height * 0.02),
+                  child: ClipOval(
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [Colors.white, Colors.white, Colors.white]),
+                        border: Border.all(
+                          color: Colors
+                              .amber, //kHintColor, so this should be changed?
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(size.width * 0.005),
+                        child: ClipOval(
+                          clipBehavior: Clip.antiAlias,
+                          child: Image.asset(
+                            url ?? 'lib/images/actor_1.png',
+                            height: size.height * 0.09,
+                            width: size.height * 0.09,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.145, left: size.height * 0.06),
+                  child: Container(
+                    height: size.height * 0.025,
+                    width: size.height * 0.025,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color ?? Colors.red,
+                    ),
+                    child: Center(
+                        child: Text(
+                      rank ?? '1',
+                      style: const TextStyle(color: Colors.white),
+                    )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: size.width * 0.38,
+            child: SizedBox(
+              width: size.width * 0.26,
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      winnerName ?? 'Emma Aria',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: size.width * 0.04,
+                          fontFamily: 'BeVietnamPro',
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      rank ?? '1',
+                      style: TextStyle(
+                        color: color ?? Colors.white,
+                        fontSize: size.width * 0.05,
+                        fontFamily: 'BeVietnamPro',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const Text(
-                "Điểm",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ContestantList extends StatelessWidget {
+  final String? url;
+  final String? name;
+  final String? rank;
+  const ContestantList({Key? key, this.url, this.name, this.rank})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.only(
+          left: size.width * 0.06,
+          right: size.width * 0.06,
+          bottom: size.width * 0.01,
+          top: size.width * 0.03),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+              colors: [Colors.white, Colors.white, Colors.white]),
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(size.width * 0.005),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.05, vertical: size.width * 0.01),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: ClipOval(
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          url ?? 'lib/images/actor_1.png',
+                          height: size.height * 0.07,
+                          width: size.height * 0.07,
+                          fit: BoxFit.fill,
+                        )),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name ?? 'Name',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        '@${name ?? 'Name'}',
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: size.width * 0.04,
+                          fontFamily: 'BeVietnamPro',
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        rank ?? '1234',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      );
-    } else if (ind == 2) {
-      listItem = Card(
-        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        shadowColor: Colors.grey[200],
-        color: Colors.grey,
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                pos,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const CircleAvatar(
-                foregroundColor: Colors.green,
-              ),
-              Text(
-                name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                "Điểm",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
-          ),
-        ),
-      );
-    } else if (ind == 3) {
-      listItem = Card(
-        shadowColor: Colors.grey[200],
-        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        color: Colors.brown,
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                pos,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const CircleAvatar(
-                foregroundColor: Colors.green,
-              ),
-              Text(
-                name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                "Điểm",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
-          ),
-        ),
-      );
-    } else {
-      listItem = Card(
-        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        shadowColor: Colors.grey[200],
-        color: secondaryColor, // Màu trắng
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                pos,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const CircleAvatar(
-                foregroundColor: Colors.green,
-              ),
-              Text(
-                name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                "Điểm",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
-          ),
-        ),
-      );
-    }
-
-    return Stack(
-      children: [
-        Container(
-          color: Colors.grey[200],
-          child: listItem,
-        ),
-      ],
+      ),
     );
   }
 }
