@@ -5,16 +5,17 @@ class OrgaCard extends StatelessWidget {
   final Map orga;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(right: 20),
-      width: 300,
+      margin: EdgeInsets.only(right: size.width * 0.01),
+      width: size.width,
       child: Column(
         children: [
           Row(
             children: [
               Container(
-                height: 65,
-                width: 90,
+                height: size.height * 0.07,
+                width: size.width * 0.2,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -22,15 +23,15 @@ class OrgaCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: size.height * 0.01,
               ),
               Text(
                 orga['orginalName'],
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.black,
-                  fontSize: 15,
+                  fontSize: size.width * 0.035,
                 ),
               ),
             ],

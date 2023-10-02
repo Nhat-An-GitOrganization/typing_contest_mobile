@@ -5,22 +5,25 @@ class Orga extends StatelessWidget {
   final Map orga;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(
           children: [
             Container(
-              height: 100,
-              width: 100,
+              height: size.height * 0.085,
+              width: size.width * 0.27,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage(orga['image']),
+                  image: AssetImage(
+                    orga['image'],
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: size.height * 0.12,
             ),
           ],
         ),

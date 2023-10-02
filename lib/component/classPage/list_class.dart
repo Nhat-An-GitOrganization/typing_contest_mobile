@@ -3,7 +3,8 @@ import 'package:typing_contest_mobile/component/classPage/class.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class ListClass extends StatefulWidget {
-  const ListClass({super.key});
+  const ListClass({super.key, required this.contest});
+  final Contest contest;
   @override
   State<ListClass> createState() => _ListClassState();
 }
@@ -11,10 +12,22 @@ class ListClass extends StatefulWidget {
 class _ListClassState extends State<ListClass> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(//crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-        //buildAppbar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: const Text(
+          'Class',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BeVietnamPro',
+          ),
+        ),
+        centerTitle: false,
+        leading: const BackButton(),
+      ),
+      body: Stack(children: [
         Expanded(
           child: ListView.builder(
             itemCount: contest.length,
@@ -31,11 +44,11 @@ class _ListClassState extends State<ListClass> {
           ),
         ),
         Positioned(
-          bottom: 15,
-          right: 15,
+          bottom: size.height * 0.015,
+          right: size.height * 0.015,
           child: SizedBox(
-            width: 60,
-            height: 60,
+            width: size.width * 0.15,
+            height: size.width * 0.15,
             child: ElevatedButton(
               onPressed: () {
                 // Navigator.push(
@@ -49,9 +62,9 @@ class _ListClassState extends State<ListClass> {
                   borderRadius: BorderRadius.circular(35),
                 ),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.add,
-                size: 30,
+                size: size.width * 0.08,
               ),
             ),
           ),
@@ -59,17 +72,4 @@ class _ListClassState extends State<ListClass> {
       ]),
     );
   }
-}
-
-AppBar buildAppbar() {
-  return AppBar(
-    automaticallyImplyLeading: false,
-    elevation: 0,
-    title: const Text(
-      'Class',
-      style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'BeVietnamPro'),
-    ),
-    centerTitle: false,
-    leading: const BackButton(),
-  );
 }

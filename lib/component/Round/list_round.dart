@@ -12,35 +12,41 @@ class ListRound extends StatefulWidget {
 class _ListRoundState extends State<ListRound> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        buildAppbar(),
-        const SizedBox(
-          height: 10,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: const Text(
+          'List Round',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontFamily: 'BeVietnamPro'),
         ),
-        for (var i = 0; i < contest.length; i++)
-          Column(
-            children: [
-              Round(
-                itemIndex: i,
-                ct: contest[i],
-              ),
-            ],
+        centerTitle: false,
+        leading: const BackButton(),
+      ),
+      body: Stack(
+        children: [
+          SizedBox(
+            height: size.height * 0.001,
           ),
-      ]),
+          Expanded(
+            child: ListView.builder(
+              itemCount: contest.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Round(
+                      itemIndex: index,
+                      ct: contest[index],
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
-}
-
-AppBar buildAppbar() {
-  return AppBar(
-    automaticallyImplyLeading: false,
-    elevation: 0,
-    title: const Text(
-      'List Round',
-      style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'BeVietnamPro'),
-    ),
-    centerTitle: false,
-    leading: const BackButton(),
-  );
 }

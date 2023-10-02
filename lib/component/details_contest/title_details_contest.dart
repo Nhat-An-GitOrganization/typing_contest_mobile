@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:typing_contest_mobile/component/Round/list_round.dart';
+import 'package:typing_contest_mobile/component/classPage/list_class.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class TitleDetailsContest extends StatelessWidget {
@@ -13,8 +14,9 @@ class TitleDetailsContest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(size.width * 0.042),
       child: Row(
         children: [
           Expanded(
@@ -25,8 +27,8 @@ class TitleDetailsContest extends StatelessWidget {
                   contest.title,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                const SizedBox(
-                  height: 20 / 1.5,
+                SizedBox(
+                  height: size.height * 0.012,
                 ),
                 Row(
                   children: [
@@ -35,8 +37,8 @@ class TitleDetailsContest extends StatelessWidget {
                       style: const TextStyle(
                           color: Color.fromARGB(255, 89, 91, 118)),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(
+                      width: size.width * 0.08,
                     ),
                     const Text(
                       '15min',
@@ -48,14 +50,14 @@ class TitleDetailsContest extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 64,
-            width: 64,
+            height: size.height * 0.075,
+            width: size.height * 0.075,
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ListRound(contest: contest)),
+                        builder: (context) => ListClass(contest: contest)),
                   );
                 },
                 style: ElevatedButton.styleFrom(

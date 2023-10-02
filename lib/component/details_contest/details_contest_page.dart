@@ -18,9 +18,9 @@ class DetailsPageContest extends StatelessWidget {
         TitleDetailsContest(contest: contest),
         //Genres(contest: contest),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 20 / 1.5,
-            horizontal: 20,
+          padding: EdgeInsets.symmetric(
+            vertical: size.width * 0.042,
+            horizontal: size.width * 0.047,
           ),
           child: Text(
             'Details',
@@ -28,7 +28,7 @@ class DetailsPageContest extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.047),
           child: Text(
             contest.description,
             style: TextStyle(

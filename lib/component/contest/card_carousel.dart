@@ -7,8 +7,9 @@ class ContestCardCarou extends StatelessWidget {
   final Contest ct;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: InkWell(
         onTap: () => Navigator.push(
           context,
@@ -37,7 +38,7 @@ class ContestCardCarou extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20 / 2),
+              padding: EdgeInsets.symmetric(vertical: size.width * 0.02),
               child: Text(
                 ct.title,
                 style: Theme.of(context)

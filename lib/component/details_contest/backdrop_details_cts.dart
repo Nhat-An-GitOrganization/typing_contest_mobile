@@ -14,6 +14,7 @@ class BackGroundDetailCT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SizedBox(
       //40% of our total height
       height: size.height * 0.35,
@@ -33,7 +34,7 @@ class BackGroundDetailCT extends StatelessWidget {
           ),
           //somthing in here
           Positioned(
-            bottom: 15,
+            bottom: size.width * 0.04,
             right: 0,
             child: Container(
               //cover 90% picture
@@ -55,8 +56,8 @@ class BackGroundDetailCT extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 3,
+                  SizedBox(
+                    height: size.height * 0.006,
                   ),
                   OrgaCard(orga: contest.orga[0]),
                 ],
