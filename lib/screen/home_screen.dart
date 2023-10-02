@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(
-            height: size.height * 0.06,
+            height: size.height * 0.01,
           ),
           for (var i = 0; i < contest.length; i++)
             Column(
@@ -169,9 +169,6 @@ class _HomePageState extends State<HomePage> {
                 ContestCard(
                   itemIndex: i,
                   ct: contest[i],
-                ),
-                SizedBox(
-                  height: size.height * 0.035,
                 ),
               ],
             ),
@@ -228,8 +225,9 @@ class _HomePageState extends State<HomePage> {
                     width: size.width * 0.1,
                     height: size.height * 0.046,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.blue.withOpacity(0.1)),
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.blue.withOpacity(0.1),
+                    ),
                     child: const Icon(
                       Icons.dark_mode,
                       color: Colors.blue,
@@ -264,7 +262,9 @@ class _HomePageState extends State<HomePage> {
                     // ignore: use_build_context_synchronously
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => const LoginPage()),
+                      MaterialPageRoute(
+                        builder: (_) => const LoginPage(),
+                      ),
                     );
                   },
                   endIcon: false,

@@ -30,10 +30,11 @@ class _ContestCarouselState extends State<ContestCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 0),
       child: AspectRatio(
-        aspectRatio: 0.95,
+        aspectRatio: size.width * 0.0022,
         child: PageView.builder(
           onPageChanged: (value) {
             setState(() {
