@@ -81,7 +81,7 @@ class _ResultContestPageState extends State<ResultContest> {
         child: ElevatedButton(
           onPressed: () {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+                MaterialPageRoute(builder: (_) => const RankingRoundScreen()));
           },
           child: const Text('Go to ranking'),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:typing_contest_mobile/component/Round/list_round.dart';
-import 'package:typing_contest_mobile/component/classPage/list_class.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class TitleDetailsContest extends StatelessWidget {
@@ -57,7 +56,7 @@ class TitleDetailsContest extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ListClass(contest: contest)),
+                        builder: (context) => ListRound(contest: contest)),
                   );
                 },
                 style: ElevatedButton.styleFrom(
