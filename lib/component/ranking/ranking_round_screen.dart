@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/screen/home_screen.dart';
 
 class RankingRoundScreen extends StatelessWidget {
   const RankingRoundScreen({super.key});
