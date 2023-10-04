@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:typing_contest_mobile/component/classPage/class.dart';
 import 'package:typing_contest_mobile/component/contest/contest_card.dart';
 import 'package:typing_contest_mobile/component/contest/contest_caroulsel.dart';
 import 'package:typing_contest_mobile/component/profile_menu.dart';
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   if (showProfile) ProFileMethod(user, size, context),
-                  if (showHistory) const Text('History'),
+                  if (showHistory) ClassMethod(size, context),
                   if (showHomePage) ...[
                     buildAppbar(),
                     const SearchBox(),
@@ -134,6 +135,24 @@ class _HomePageState extends State<HomePage> {
         )
       ],
     );
+  }
+
+  // ignore: non_constant_identifier_names
+  Widget ClassMethod(Size size, BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        height: size.height * 0.01,
+      ),
+      for (var i = 0; i < contest.length; i++)
+        Column(
+          children: [
+            Class(
+              itemIndex: i,
+              ct: contest[i],
+            ),
+          ],
+        ),
+    ]);
   }
 
   // ignore: non_constant_identifier_names

@@ -127,8 +127,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           'WPM: $wpm \n Mistakes: $mistakes  \n Accuracy: ${accuracy.toStringAsFixed(2)}% \n Full time: $totalTime s / $maxTime s',
       btnOkOnPress: () {
         // resetGame();
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (_) => const RankingRoundScreen()));
       },
       btnOkText: 'Done',
     ).show();
