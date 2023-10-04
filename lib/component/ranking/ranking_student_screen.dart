@@ -1,17 +1,38 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
 
-const Color primaryColor = Colors.blue; // Màu xanh chính
-const Color secondaryColor = Colors.white; // Màu trắng
-
-class RankingStudentScreen extends StatelessWidget {
+class RankingStudentScreen extends StatefulWidget {
   const RankingStudentScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
+  _RankingStudentScreenState createState() => _RankingStudentScreenState();
+}
+
+class _RankingStudentScreenState extends State<RankingStudentScreen> {
+  final CarouselController carouselController = CarouselController();
+  final ConfettiController controller = ConfettiController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.white,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -22,18 +43,17 @@ class RankingStudentScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(
                       Icons.arrow_back,
-                      color: secondaryColor,
+                      color: Colors.blue,
                     ),
                     onPressed: () {
-                      // Xử lý khi nút "Quay lại bài thi" được nhấn
-                      // Thêm xử lý tại đây để điều hướng quay lại bài thi
+                      // Handle back button pressed
                     },
                   ),
-                  const Text(
+                  Text(
                     'Quay lại bài thi',
                     style: TextStyle(
-                      fontSize: 16,
-                      color: secondaryColor,
+                      fontSize: size.height * 0.025,
+                      color: Colors.blue,
                     ),
                   ),
                 ],
@@ -44,64 +64,73 @@ class RankingStudentScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20),
-                  const Text(
+                  SizedBox(height: size.height * 0.02),
+                  Text(
                     'Bài thi test 1',
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: size.height * 0.05,
                       fontWeight: FontWeight.bold,
-                      color: secondaryColor,
+                      color: Colors.blue,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: <Color>[
-                          primaryColor.withOpacity(0.7),
-                          secondaryColor,
-                        ],
-                      ),
-                    ),
+                  ConfettiWidget(
+                    confettiController: controller,
+                    shouldLoop: true,
+                    blastDirectionality: BlastDirectionality.explosive,
+                  ),
+                  SizedBox(height: size.height * 0.05),
+                  SizedBox(
+                    height: size.height * 0.6,
+                    width: size.height * 0.4,
                     child: Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20.0),
-                          child: Icon(
-                            Icons.emoji_events_rounded,
-                            color: Colors.yellow,
-                            size: 70,
+                        CarouselSlider(
+                          carouselController: carouselController,
+                          options: CarouselOptions(
+                            height: size.height * 0.55,
+                            aspectRatio: 16 / 9,
+                            viewportFraction: 0.8,
+                            initialPage: 0,
+                            enableInfiniteScroll: false,
+                            autoPlay: true,
+                            autoPlayInterval: const Duration(seconds: 3),
+                            autoPlayAnimationDuration:
+                                const Duration(milliseconds: 2000),
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                            enlargeCenterPage: true,
+                            scrollDirection: Axis.horizontal,
+                            onPageChanged: (index, reason) {
+                              if (index == 2) {
+                                carouselController.stopAutoPlay();
+                                controller.play();
+                              }
+                            },
                           ),
+                          items: [
+                            const PlayerCard(
+                                url: 'lib/images/actor_1.png',
+                                playerName: 'Player 1',
+                                score: 250),
+                            const PlayerCard(
+                                url: 'lib/images/actor_2.png',
+                                playerName: 'Player 2',
+                                score: 150),
+                            const PlayerCard(
+                                url: 'lib/images/actor_3.png',
+                                playerName: 'Player 3',
+                                score: 100),
+                          ].reversed.toList(),
                         ),
-                        const SizedBox(
-                            height:
-                                10), // Khoảng cách giữa biểu tượng và đoạn văn bản
-                        const Text(
-                          'Xếp hạng sinh viên',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: secondaryColor,
-                          ),
-                        ),
-                        const SizedBox(
-                            height:
-                                10), // Khoảng cách giữa đoạn văn bản và các thẻ người chơi
-                        _buildContestantCard(
-                            1, "Người chơi 1", "Điểm: 95", Colors.yellow),
-                        _buildContestantCard(
-                            2, "Người chơi 2", "Điểm: 90", Colors.grey),
-                        _buildContestantCard(
-                            3, "Người chơi 3", "Điểm: 85", Colors.brown),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      // Điều hướng đến màn hình xếp hạng đầy đủ ở đây
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RankingRoundScreen()),
+                      );
                     },
                     child: const Text('Xem Bảng Xếp Hạng'),
                   ),
@@ -113,41 +142,51 @@ class RankingStudentScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildContestantCard(
-      int rank, String name, String score, Color color) {
-    return Card(
-      margin: const EdgeInsets.all(10.0),
-      shadowColor: Colors.grey[200],
-      color: color,
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+class PlayerCard extends StatelessWidget {
+  final String? url;
+  final String playerName;
+  final int score;
+
+  const PlayerCard({
+    required this.url,
+    required this.playerName,
+    required this.score,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+      decoration: BoxDecoration(
+        color: Colors.lightBlue,
+        borderRadius: BorderRadius.circular(50.0),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              rank.toString(),
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+            Image.asset(
+              url ?? 'lib/images/actor_1.png',
+              height: 100,
+              width: 100,
+              fit: BoxFit.fill,
             ),
-            const CircleAvatar(
-              foregroundColor: Colors.green,
-            ),
+            SizedBox(height: size.height * 0.035),
             Text(
-              name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+              playerName,
+              style:
+                  TextStyle(fontSize: size.height * 0.035, color: Colors.white),
             ),
+            SizedBox(height: size.height * 0.03),
             Text(
-              score,
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+              'Score: $score',
+              style:
+                  TextStyle(fontSize: size.height * 0.035, color: Colors.white),
             ),
           ],
         ),
