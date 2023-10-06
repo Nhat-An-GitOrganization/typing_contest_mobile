@@ -26,15 +26,6 @@ class _HomePageState extends State<HomePage> {
   bool showHomePage = true;
   bool showHistory = false;
 
-  // Future<void> fectData() async {
-  //   const url =
-  //       'https://host.docker.internal:5000/api/Contest/allactivebyidorganizer/86b85ffd-95aa-427b-80a2-3690d86e6dc9';
-  //   final uri = Uri.parse(url);
-  //   final response = await http.get(uri);
-  //   print(response.statusCode);
-  //   print(response.body);
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -107,9 +98,12 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   if (showProfile) ProFileMethod(user, size, context),
-                  if (showHistory) ClassMethod(size, context),
+                  if (showHistory) ...[
+                    buildAppbar("Class"),
+                    ClassMethod(size, context),
+                  ],
                   if (showHomePage) ...[
-                    buildAppbar(),
+                    buildAppbar("Contest"),
                     const SearchBox(),
                     HomeMethod(size),
                   ],
@@ -122,11 +116,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  AppBar buildAppbar() {
+  AppBar buildAppbar(String title) {
     return AppBar(
       automaticallyImplyLeading: false,
       elevation: 0,
-      title: const Text('Contest'),
+      title: Text(title),
       centerTitle: false,
       actions: [
         IconButton(
