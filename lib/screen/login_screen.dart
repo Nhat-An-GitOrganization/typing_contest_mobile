@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              if (isLoading)
+              if (isLoading) ...[
                 Positioned.fill(
                   child: Container(
                     color: Colors.black.withOpacity(0.5),
@@ -156,6 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+              ]
             ],
           ),
         ),
