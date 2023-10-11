@@ -22,10 +22,13 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   List<Color?> correctCharacters = List.filled(paragraphs[0].length, null);
   late Timer timer;
   bool isTypingComplete = false;
-  int currentCursorPosition = -1;
+  double currentCursorPosition = -1;
+  ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     startTimer();
   }
 
@@ -112,6 +115,13 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       currentCursorPosition = typedText.length - 1;
 
       calculateStats();
+      if (currentCursorPosition > 100) {
+        _scrollController.animateTo(
+          currentCursorPosition,
+          duration: const Duration(milliseconds: 3000),
+          curve: Curves.linear,
+        );
+      }
     });
   }
 
@@ -198,8 +208,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: size.height * (20 / size.height),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -240,6 +250,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   },
                   child: Center(
                     child: SingleChildScrollView(
+                      controller: _scrollController,
                       child: RichText(
                         text: TextSpan(
                           children: [
@@ -287,5 +298,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  'New New',
+  'New New New New New New New New New New New New New New New New New New New New New New New',
 ];
