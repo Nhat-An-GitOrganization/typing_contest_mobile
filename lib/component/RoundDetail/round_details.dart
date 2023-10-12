@@ -40,8 +40,10 @@ Future<RoundContest> fetchData(String id) async{
 
 
 class DetailRound extends StatefulWidget {
+  // ignore: non_constant_identifier_names
   final String Id;
 
+  // ignore: non_constant_identifier_names
   const DetailRound({super.key, required this.Id});
 
   @override

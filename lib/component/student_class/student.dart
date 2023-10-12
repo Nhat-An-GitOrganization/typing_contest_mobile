@@ -86,7 +86,7 @@ class StudentOfClass extends StatelessWidget {
                                   right: size.height*0.02,
                                   child: CircleAvatar(
                                     radius: 30,
-                                    backgroundImage: AssetImage(st?.image??''),
+                                    backgroundImage: AssetImage(st.image??''),
                                   ),
                                 ),
                               ],
@@ -126,7 +126,7 @@ class StudentOfClass extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: size.width * 0.05, top: size.height * 0.07),
                     child: Text(
-                      st?.trainingFacility??"",
+                      st.trainingFacility??"",
                       style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class StudentOfClass extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: size.width * 0.05, top: size.height * 0.02),
                     child: Text(
-                      st?.trainingFacility??"",
+                      st.trainingFacility??"",
                       style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class StudentOfClass extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(size.width * 0.05,size.width * 0.05,size.width * 0.05,size.width * 0.05),
                     child: Text(
-                      st?.email??"",
+                      st.email??"",
                       style: TextStyle(
                           fontSize: size.width * 0.040,
                           fontFamily: 'BeVietnamPro'),
