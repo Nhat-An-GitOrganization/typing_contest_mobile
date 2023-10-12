@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
-import '../../models/User.dart';
+import 'package:typing_contest_mobile/models/round.dart';
 import 'data_result_contest.dart';
 
-Future<User> fetchData() async {
+Future<RoundContest> fetchData() async {
   // Tạo một đối tượng User với dữ liệu cố định
-  User user = User(
-    userId: 1,
-    id: 1,
-    title: "cuoc thi",
-    body:
-        "Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm,"
-        " nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, "
-        "quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng;"
-        " nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ",
+  RoundContest user = RoundContest(
+
+    id: '1',
+
   );
 
   // Đợi một khoảng thời gian như làm tác vụ mạng thường làm
@@ -33,7 +28,7 @@ class ResultContest extends StatefulWidget {
 }
 
 class _ResultContestPageState extends State<ResultContest> {
-  late Future<User> futureUser = fetchData();
+  late Future<RoundContest> futureUser = fetchData();
 
   final colorList = <Color>[
     Colors.greenAccent,
@@ -48,7 +43,7 @@ class _ResultContestPageState extends State<ResultContest> {
         title: const Text('Kết quả vòng thi của bạn '),
         automaticallyImplyLeading: false,
       ),
-      body: FutureBuilder<User>(
+      body: FutureBuilder<RoundContest>(
         future: futureUser,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

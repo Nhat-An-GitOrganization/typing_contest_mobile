@@ -1,33 +1,48 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/typing/typing.dart';
-import '../../models/User.dart';
+
+import '../../models/round.dart';
 import 'data_of_round.dart';
 
 
-Future<User> fetchData() async {
-  // Tạo một đối tượng User với dữ liệu cố định
-  User user = User(
-    userId: 1,
-    id: 1,
-    title: "cuoc thi",
-    body: "Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm,"
-        " nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, "
-        "quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng;"
-        " nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ",
-  );
-
-  // Đợi một khoảng thời gian như làm tác vụ mạng thường làm
-  await Future.delayed(const Duration(seconds: 2));
-
-  // Trả về đối tượng User đã được tạo và giữ cố định dữ liệu
-  return user;
+Future<RoundContest> fetchData(String id) async{
+  // int currentPage = 1;
+  // int pageSize = 10;
+  // List<int> pageSizeOptions = [5, 10, 20];
+  try{
+    // var url = Uri.parse(
+    // 'https://66.42.55.38:1001/api/Students/GetAllAsync?PageNumber=$currentPage&PageSize=$pageSize');
+    var url =  Uri.parse("https://66.42.55.38:4001/api/Rounds/$id");
+    var httpClient = HttpClient();
+    httpClient.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    var request = await httpClient.getUrl(url);
+    var response = await request.close();
+    if (response.statusCode == HttpStatus.ok) {
+      var jsonData = await response.transform(utf8.decoder).join();
+      var decodedData = jsonDecode(jsonData);
+      if (decodedData is Map<String, dynamic>) {
+        final Map<String, dynamic> data = json.decode(jsonData);
+        return RoundContest.fromJson(data);
+      } else {
+        throw Exception('Error: Invalid data format1');
+      }
+    } else {
+      throw Exception('Error2: ${response.statusCode}');
+    }
+  } catch (e) {
+    throw Exception('Error3: $e');
+  }
 }
 
 
 class DetailRound extends StatefulWidget {
-  final int userId;
+  final String Id;
 
-  const DetailRound({super.key, required this.userId});
+  const DetailRound({super.key, required this.Id});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -35,7 +50,13 @@ class DetailRound extends StatefulWidget {
 }
 
 class _DetailRoundState extends State<DetailRound> {
-  late Future<User> futureUser = fetchData();
+  late Future<RoundContest> futureRound;
+  @override
+  void initState() {
+    super.initState();
+    futureRound = fetchData(widget.Id);
+
+  }
 
 
   @override
@@ -83,7 +104,7 @@ class _DetailRoundState extends State<DetailRound> {
               ),
               child: Column(
                 children: <Widget>[
-                  ContestDataDisplay(futureUser: futureUser),
+                  ContestDataDisplay(futureRound: futureRound),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 10,
                     child: Stack(
@@ -110,7 +131,7 @@ class _DetailRoundState extends State<DetailRound> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const TypingSpeedTestGame(),
+                                        const TypingSpeedTestGame(),
                                       ),
                                     );
                                   },

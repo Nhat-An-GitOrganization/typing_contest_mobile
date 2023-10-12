@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-
-import '../../models/User.dart';
+import '../../models/round.dart';
 
 class ContestDataDisplay extends StatelessWidget {
-  final Future<User> futureUser;
-  const ContestDataDisplay({Key?key,required this.futureUser}): super(key:key);
+  final Future<RoundContest> futureRound;
+  const ContestDataDisplay({Key?key,required this.futureRound}): super(key:key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return FutureBuilder<User>(
-      future: futureUser,
+    return FutureBuilder<RoundContest>(
+      future: futureRound,
       builder: (context, snapshot) {
 
-        // if (snapshot.connectionState == ConnectionState.waiting) {
-        //   return const Center(child: CircularProgressIndicator());
-        // } else if (snapshot.hasError) {
-        //   return Center(child: Text('Lỗi: ${snapshot.error}'));
-        // } else {
-        //   final user = snapshot.data;
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Lỗi: ${snapshot.error}'));
+        } else {
+          final round = snapshot.data;
           return  Expanded(
             child: SingleChildScrollView(
               physics:const ClampingScrollPhysics(),
@@ -32,8 +31,8 @@ class ContestDataDisplay extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                       Text(
-                          "TypingContest 1",
+                        Text(
+                          'Vong thi ${round?.nameContest ?? ''}',
                           style: TextStyle(
                             fontSize:  size.width *0.05,
                             color: Colors.lightBlueAccent,
@@ -41,16 +40,14 @@ class ContestDataDisplay extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: size.height*0.01),
-                         Text(
-                          "Tốc độ đánh máy của bạn có nhanh không? "
-                              "Làm bài kiểm tra đánh máy của chúng tôi và "
-                              "kiểm tra tốc độ đánh máy hiện tại của bạn.",
+                        Text(
+                          round?.name ?? '',
                           style: TextStyle(
                             fontSize:  size.width *0.045,
                           ),
                         ),
                         SizedBox(height: size.height*0.02),
-                         Text(
+                        Text(
                           'Miêu tả:',
                           style: TextStyle(
                             fontSize:  size.width *0.05,
@@ -59,14 +56,14 @@ class ContestDataDisplay extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: size.height*0.01),
-                         Text(
-                          "Cuộc thi đánh máy poly",
+                        Text(
+                          round?.description ?? '',
                           style: TextStyle(
                             fontSize:  size.width *0.05,
                           ),
                         ),
                         SizedBox(height: size.height*0.02),
-                         Text(
+                        Text(
                           'Thời gian bắt đầu:',
                           style: TextStyle(
                             fontSize:  size.width *0.05,
@@ -75,14 +72,14 @@ class ContestDataDisplay extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: size.height*0.01),
-                         Text(
-                          "30/9/2023",
+                        Text(
+                          round?.startTime ??'',
                           style: TextStyle(
                             fontSize: size.width *0.045,
                           ),
                         ),
                         SizedBox(height: size.height*0.02),
-                         Text(
+                        Text(
                           'Thời gian kết thúc:',
                           style: TextStyle(
                             fontSize: size.width *0.05,
@@ -91,8 +88,8 @@ class ContestDataDisplay extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: size.height*0.01),
-                         Text(
-                          "30/10/2023",
+                        Text(
+                          round?.endTime ?? '',
                           style: TextStyle(
                             fontSize: size.width *0.045,
                           ),
@@ -105,7 +102,7 @@ class ContestDataDisplay extends StatelessWidget {
             ),
           );
         }
-    //  },
+      },
     );
   }
 }
