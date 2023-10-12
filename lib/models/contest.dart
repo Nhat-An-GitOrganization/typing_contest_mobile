@@ -45,7 +45,7 @@ List<Contest> contest = [
     orga: [
       {
         "orginalName": "James Mangold",
-        "movieName": "Director",
+        "movieName": "Directors",
         "image": "lib/images/actor_1.png",
       },
     ],
