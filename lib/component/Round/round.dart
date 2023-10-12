@@ -92,7 +92,7 @@ class Round extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => const DetailRound(
-                            userId: 1,
+                            Id: '6c740a05-0664-46e8-90ff-248a638868c1',
                           ),
                         ),
                       );
