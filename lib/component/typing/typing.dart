@@ -14,7 +14,7 @@ class TypingSpeedTestGame extends StatefulWidget {
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode inputNode = FocusNode();
-  static const maxTime = 100;
+  static const maxTime = 300;
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
@@ -22,11 +22,14 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   List<Color?> correctCharacters = List.filled(paragraphs[0].length, null);
   late Timer timer;
   bool isTypingComplete = false;
-  int currentCursorPosition = -1;
+  double currentCursorPosition = -1;
+  ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     startTimer();
+    _scrollController = ScrollController();
   }
 
   @override
@@ -110,8 +113,18 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 
       // Cập nhật vị trí hiện tại của dấu "|"
       currentCursorPosition = typedText.length - 1;
-
       calculateStats();
+      int tempLength = typedText.length; // Lưu trữ giá trị typedText.length
+
+      if (tempLength % 100 == 0) {
+        int moveCount = tempLength ~/ 100; // Số lần di chuyển
+        _scrollController.animateTo(
+          _scrollController.offset +
+              (moveCount + 50), // Khoảng cần di chuyển (30px)
+          curve: Curves.linear, // Đường cong di chuyển
+          duration: const Duration(milliseconds: 500), // Thời gian di chuyển
+        );
+      }
     });
   }
 
@@ -127,8 +140,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           'WPM: $wpm \n Mistakes: $mistakes  \n Accuracy: ${accuracy.toStringAsFixed(2)}% \n Full time: $totalTime s / $maxTime s',
       btnOkOnPress: () {
         // resetGame();
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => RankingRoundScreen()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (_) => const RankingRoundScreen()));
       },
       btnOkText: 'Done',
     ).show();
@@ -198,8 +211,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: size.height * (20 / size.height),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -230,6 +243,9 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: size.height * 0.04,
+              ),
               Expanded(
                 child: InkWell(
                   onTap: () {
@@ -240,6 +256,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   },
                   child: Center(
                     child: SingleChildScrollView(
+                      controller: _scrollController,
                       child: RichText(
                         text: TextSpan(
                           children: [
@@ -265,7 +282,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
               Opacity(
                 opacity: 0.0,
                 child: TextField(
-                  controller: textEditingController,
                   onChanged: handleInput,
                   enabled: timeLeft > 0,
                   autofocus: true,
@@ -287,5 +303,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  'New New',
+  "The sun was setting on the horizon, casting a warm golden glow across the peaceful meadows. Birds chirped happily, their melodious songs filling the air. A gentle breeze rustled the leaves of the tall oak trees, creating a soothing sound. It was a tranquil evening, perfect for reflection and contemplation. As I walked along the winding path, my mind wandered to distant memories. The laughter of childhood echoed in my ears, reminding me of carefree days spent playing in the fields. I could almost taste the sweetness of ice cream on my tongue, feel the warmth of the summer sun on my skin. The path led me to a small, secluded pond nestled among the trees. Its surface shimmered like a mirror, reflecting the vibrant colors of the surrounding flora. I sat down on a moss-covered rock, observing the dance of dragonflies and the gentle ripples caused by the occasional fish breaking the surface. Lost in my thoughts, I contemplated the passage of time. How quickly it slips through our fingers, like grains of sand in an hourglass. Memories, both joyful and painful, woven into the tapestry of our lives. Each moment a precious gift, never to be repeated. The evening sky transformed into a canvas of breathtaking hues - a masterpiece painted by nature itself. Shades of orange, pink, and purple melted together, creating a stunning panorama. I couldn't help but marvel at the beauty that surrounded me. As darkness descended, stars began to twinkle in the night sky, revealing the vastness of the universe. I pondered the mysteries of the",
 ];

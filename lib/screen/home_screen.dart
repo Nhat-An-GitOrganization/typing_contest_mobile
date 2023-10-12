@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:typing_contest_mobile/component/classPage/class.dart';
 import 'package:typing_contest_mobile/component/contest/contest_card.dart';
 import 'package:typing_contest_mobile/component/contest/contest_caroulsel.dart';
 import 'package:typing_contest_mobile/component/profile_menu.dart';
@@ -24,15 +25,6 @@ class _HomePageState extends State<HomePage> {
   bool showProfile = false;
   bool showHomePage = true;
   bool showHistory = false;
-
-  // Future<void> fectData() async {
-  //   const url =
-  //       'https://host.docker.internal:5000/api/Contest/allactivebyidorganizer/86b85ffd-95aa-427b-80a2-3690d86e6dc9';
-  //   final uri = Uri.parse(url);
-  //   final response = await http.get(uri);
-  //   print(response.statusCode);
-  //   print(response.body);
-  // }
 
   @override
   void initState() {
@@ -106,9 +98,12 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   if (showProfile) ProFileMethod(user, size, context),
-                  if (showHistory) const Text('History'),
+                  if (showHistory) ...[
+                    buildAppbar("Class"),
+                    ClassMethod(size, context),
+                  ],
                   if (showHomePage) ...[
-                    buildAppbar(),
+                    buildAppbar("Contest"),
                     const SearchBox(),
                     HomeMethod(size),
                   ],
@@ -121,11 +116,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  AppBar buildAppbar() {
+  AppBar buildAppbar(String title) {
     return AppBar(
       automaticallyImplyLeading: false,
       elevation: 0,
-      title: const Text('Contest'),
+      title: Text(title),
       centerTitle: false,
       actions: [
         IconButton(
@@ -134,6 +129,24 @@ class _HomePageState extends State<HomePage> {
         )
       ],
     );
+  }
+
+  // ignore: non_constant_identifier_names
+  Widget ClassMethod(Size size, BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        height: size.height * 0.01,
+      ),
+      for (var i = 0; i < contest.length; i++)
+        Column(
+          children: [
+            Class(
+              itemIndex: i,
+              ct: contest[i],
+            ),
+          ],
+        ),
+    ]);
   }
 
   // ignore: non_constant_identifier_names
