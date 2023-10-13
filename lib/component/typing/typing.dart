@@ -24,6 +24,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   bool isTypingComplete = false;
   double currentCursorPosition = -1;
   ScrollController _scrollController = ScrollController();
+  int tempLength = 0;
 
   @override
   void initState() {
@@ -115,16 +116,15 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       currentCursorPosition = typedText.length - 1;
       calculateStats();
       int tempLength = typedText.length; // Lưu trữ giá trị typedText.length
-
-      if (tempLength % 100 == 0) {
-        int moveCount = tempLength ~/ 100; // Số lần di chuyển
+      double currentOffset = _scrollController.offset;
+      if (tempLength % 80 == 0) {
         _scrollController.animateTo(
-          _scrollController.offset +
-              (moveCount + 50), // Khoảng cần di chuyển (30px)
+          _scrollController.offset + 60, // Khoảng cần di chuyển (30px)
           curve: Curves.linear, // Đường cong di chuyển
           duration: const Duration(milliseconds: 500), // Thời gian di chuyển
         );
       }
+      print('Current offset: $currentOffset');
     });
   }
 
