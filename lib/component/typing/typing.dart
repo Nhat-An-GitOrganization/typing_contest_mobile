@@ -14,7 +14,7 @@ class TypingSpeedTestGame extends StatefulWidget {
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode inputNode = FocusNode();
-  static const maxTime = 300;
+  static const maxTime = 5;
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
@@ -80,7 +80,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
     }
 
     double accuracy = (correctCharactersCount / typedText.length) * 100;
-    return accuracy;
+    return accuracy.isNaN ? 0 : accuracy;
   }
 
   void handleInput(String input) {
@@ -144,6 +144,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
             MaterialPageRoute(builder: (_) => const RankingRoundScreen()));
       },
       btnOkText: 'Done',
+      dismissOnTouchOutside: false,
     ).show();
   }
 
