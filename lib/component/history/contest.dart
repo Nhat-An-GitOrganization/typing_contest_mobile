@@ -8,32 +8,25 @@ class His_Contest extends StatelessWidget {
     Key? key,
     required this.itemIndex,
     required this.ct,
+    required this.ontapCallback,
   }) : super(key: key);
 
   final int itemIndex;
   final Contest ct;
-
+  final VoidCallback ontapCallback;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: size.width * 0.02,
-        vertical: size.width * 0.01,
-      ),
-      height: size.height * 0.14,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          // Background
-          GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ContestDetail(contest: ct), //Detai class
-              ),
-            ),
+        margin: EdgeInsets.symmetric(
+          horizontal: size.width * 0.02,
+          vertical: size.width * 0.01,
+        ),
+        height: size.height * 0.14,
+        child: Stack(alignment: Alignment.topCenter, children: [
+          InkWell(
+            onTap: ontapCallback,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(22),
@@ -104,8 +97,6 @@ class His_Contest extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
-    );
+        ]));
   }
 }

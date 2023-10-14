@@ -89,15 +89,19 @@ class _ContestEnteredState extends State<ContestEntered> {
               ),
             ),
             SizedBox(height: size.height * 0.01),
-            Expanded(
+            Flexible(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    for (var i = 0; i < contest.length; i++)
+                    for (var i = 0; i < contest.length; i++) ...[
                       His_Contest(
                         itemIndex: i,
                         ct: contest[i],
+                        ontapCallback: () {
+                          RoundMethod(size, context);
+                        },
                       ),
+                    ]
                   ],
                 ),
               ),
@@ -105,6 +109,31 @@ class _ContestEnteredState extends State<ContestEntered> {
           ],
         ),
       ),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  Future RoundMethod(Size size, BuildContext context) {
+    return showModalBottomSheet(
+      transitionAnimationController: AnimationController(
+        vsync: Navigator.of(context),
+        duration:
+            const Duration(milliseconds: 1000), // Thời gian hoàn thành hiệu ứng
+      ),
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 1000,
+          child: Center(
+            child: ElevatedButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ), // ElevatedButton
+          ), // Center
+        ); // SizedBox
+      },
     );
   }
 }
