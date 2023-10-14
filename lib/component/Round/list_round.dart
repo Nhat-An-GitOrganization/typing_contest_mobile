@@ -19,8 +19,7 @@ class _ListRoundState extends State<ListRound> {
         elevation: 0,
         title: const Text(
           'List Round',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontFamily: 'BeVietnamPro'),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: false,
         leading: const BackButton(),
@@ -30,7 +29,7 @@ class _ListRoundState extends State<ListRound> {
           SizedBox(
             height: size.height * 0.001,
           ),
-          Expanded(
+          SizedBox(
             child: ListView.builder(
               itemCount: contest.length,
               itemBuilder: (context, index) {

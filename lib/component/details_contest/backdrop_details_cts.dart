@@ -34,7 +34,7 @@ class BackGroundDetailCT extends StatelessWidget {
           ),
           //somthing in here
           Positioned(
-            bottom: size.width * 0.04,
+            bottom: size.width * 0.03,
             right: 0,
             child: Container(
               //cover 90% picture

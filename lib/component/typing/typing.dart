@@ -116,7 +116,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       currentCursorPosition = typedText.length - 1;
       calculateStats();
       int tempLength = typedText.length; // Lưu trữ giá trị typedText.length
-      double currentOffset = _scrollController.offset;
       if (tempLength % 80 == 0) {
         _scrollController.animateTo(
           _scrollController.offset + 60, // Khoảng cần di chuyển (30px)
@@ -124,7 +123,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           duration: const Duration(milliseconds: 500), // Thời gian di chuyển
         );
       }
-      print('Current offset: $currentOffset');
     });
   }
 
