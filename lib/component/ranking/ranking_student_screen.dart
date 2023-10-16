@@ -46,7 +46,7 @@ class _RankingStudentScreenState extends State<RankingStudentScreen> {
                       color: Colors.blue,
                     ),
                     onPressed: () {
-                      // Handle back button pressed
+                      Navigator.pop(context);
                     },
                   ),
                   Text(
@@ -110,15 +110,18 @@ class _RankingStudentScreenState extends State<RankingStudentScreen> {
                             const PlayerCard(
                                 url: 'lib/images/actor_1.png',
                                 playerName: 'Player 1',
-                                score: 250),
+                                wpm: 250,
+                                accuracy: '90%'),
                             const PlayerCard(
                                 url: 'lib/images/actor_2.png',
                                 playerName: 'Player 2',
-                                score: 150),
+                                wpm: 150,
+                                accuracy: '80%'),
                             const PlayerCard(
                                 url: 'lib/images/actor_3.png',
                                 playerName: 'Player 3',
-                                score: 100),
+                                wpm: 100,
+                                accuracy: '70%'),
                           ].reversed.toList(),
                         ),
                       ],
@@ -147,12 +150,14 @@ class _RankingStudentScreenState extends State<RankingStudentScreen> {
 class PlayerCard extends StatelessWidget {
   final String? url;
   final String playerName;
-  final int score;
+  final int wpm;
+  final String? accuracy;
 
   const PlayerCard({
     required this.url,
     required this.playerName,
-    required this.score,
+    required this.wpm,
+    required this.accuracy,
     Key? key,
   }) : super(key: key);
 
@@ -163,7 +168,24 @@ class PlayerCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
-        color: Colors.lightBlue,
+        gradient: const LinearGradient(
+          colors: [
+            Colors.lightBlue,
+            Colors.white,
+            Colors.lightBlue,
+            Colors.yellow,
+            Colors.lightBlue,
+          ],
+          stops: [
+            0.1,
+            0.4,
+            0.6,
+            0.8,
+            1,
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        ),
         borderRadius: BorderRadius.circular(50.0),
       ),
       child: Center(
@@ -184,7 +206,13 @@ class PlayerCard extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             Text(
-              'Score: $score',
+              'WPM: $wpm',
+              style:
+                  TextStyle(fontSize: size.height * 0.035, color: Colors.white),
+            ),
+            SizedBox(height: size.height * 0.03),
+            Text(
+              'Accuracy: $accuracy',
               style:
                   TextStyle(fontSize: size.height * 0.035, color: Colors.white),
             ),
