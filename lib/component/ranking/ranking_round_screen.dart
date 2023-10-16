@@ -21,7 +21,7 @@ class RankingRoundScreen extends StatelessWidget {
               color: Colors.blue,
             ),
             onPressed: () {
-              // Xử lý sự kiện khi nút được nhấn
+              Navigator.pop(context);
             },
           ),
         ),
@@ -58,7 +58,8 @@ class RankingRoundScreen extends StatelessWidget {
                         winnerName: 'Alina',
                         height: size.height * 0.16,
                         rank: '2',
-                        point: '888',
+                        wpm: '888',
+                        accuracy: '90%',
                         color: Colors.green,
                       ),
                       const WinnerContainer(
@@ -70,7 +71,8 @@ class RankingRoundScreen extends StatelessWidget {
                         url: 'lib/images/actor_3.png',
                         height: size.height * 0.15,
                         rank: '3',
-                        point: '777',
+                        wpm: '777',
+                        accuracy: '80%',
                         color: Colors.orange,
                       ),
                     ],
@@ -102,26 +104,30 @@ class RankingRoundScreen extends StatelessWidget {
                           ContestantList(
                             url: 'lib/images/actor_1.png',
                             name: 'Shona',
-                            rank: '1145',
-                            position: '4',
+                            wpm: '1145',
+                            accuracy: '65%',
+                            rank: '4',
                           ),
                           ContestantList(
                             url: 'lib/images/actor_2.png',
                             name: 'Emily',
-                            rank: '1245',
-                            position: '5',
+                            accuracy: '60%',
+                            wpm: '1245',
+                            rank: '5',
                           ),
                           ContestantList(
                             url: 'lib/images/actor_3.png',
                             name: 'Josheph',
-                            rank: '2153',
-                            position: '6',
+                            accuracy: '60%',
+                            wpm: '2153',
+                            rank: '6',
                           ),
                           ContestantList(
                             url: 'lib/images/actor_4.png',
-                            rank: '3456',
+                            accuracy: '55%',
+                            wpm: '3456',
                             name: 'Kristine',
-                            position: '7',
+                            rank: '7',
                           ),
                           ContestantList(),
                         ],
@@ -145,13 +151,15 @@ class WinnerContainer extends StatelessWidget {
   final String? url;
   final String? winnerName;
   final String? rank;
-  final String? point;
+  final String? accuracy;
+  final String? wpm;
   final double? height;
   const WinnerContainer(
       {Key? key,
       this.isFirst = false,
       this.color,
-      this.point,
+      this.accuracy,
+      this.wpm,
       this.winnerPosition,
       this.winnerName,
       this.rank,
@@ -172,7 +180,23 @@ class WinnerContainer extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                      colors: [Colors.blue, Colors.blue, Colors.blue]),
+                    colors: [
+                      Colors.lightBlue,
+                      Colors.yellow,
+                      Colors.lightBlue,
+                      Colors.yellow,
+                      Colors.lightBlue,
+                    ],
+                    stops: [
+                      0.1,
+                      0.4,
+                      0.6,
+                      0.8,
+                      1,
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                  ),
                   border: Border.all(
                     color: Colors.blue,
                   ),
@@ -186,7 +210,24 @@ class WinnerContainer extends StatelessWidget {
                     height: height ?? size.height * 0.18,
                     width: size.width * 0.26,
                     decoration: const BoxDecoration(
-                      color: Colors.white,
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.lightBlue,
+                          Colors.yellow,
+                          Colors.lightBlue,
+                          Colors.yellow,
+                          Colors.lightBlue,
+                        ],
+                        stops: [
+                          0.1,
+                          0.4,
+                          0.6,
+                          0.8,
+                          1,
+                        ],
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                      ),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(40.0),
                           topRight: Radius.circular(40.0)),
@@ -213,9 +254,25 @@ class WinnerContainer extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                            colors: [Colors.blue, Colors.blue, Colors.blue]),
+                          colors: [
+                            Colors.lightBlue,
+                            Colors.yellow,
+                            Colors.lightBlue,
+                            Colors.yellow,
+                            Colors.lightBlue,
+                          ],
+                          stops: [
+                            0.1,
+                            0.4,
+                            0.6,
+                            0.8,
+                            1,
+                          ],
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                        ),
                         border: Border.all(
-                          color: Colors.blue,
+                          color: Colors.white,
                         ),
                       ),
                       child: Padding(
@@ -263,13 +320,22 @@ class WinnerContainer extends StatelessWidget {
                     Text(
                       winnerName ?? 'Emma Aria',
                       style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.white,
                           fontSize: size.width * 0.04,
                           fontFamily: 'BeVietnamPro',
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      point ?? '999',
+                      accuracy ?? '100%',
+                      style: TextStyle(
+                        color: color ?? Colors.blue,
+                        fontSize: size.width * 0.05,
+                        fontFamily: 'BeVietnamPro',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      wpm ?? '999',
                       style: TextStyle(
                         color: color ?? Colors.blue,
                         fontSize: size.width * 0.05,
@@ -291,10 +357,11 @@ class WinnerContainer extends StatelessWidget {
 class ContestantList extends StatelessWidget {
   final String? url;
   final String? name;
+  final String? wpm;
+  final String? accuracy;
   final String? rank;
-  final String? position;
   const ContestantList(
-      {Key? key, this.url, this.name, this.rank, this.position})
+      {Key? key, this.url, this.name, this.wpm, this.accuracy, this.rank})
       : super(key: key);
 
   @override
@@ -326,25 +393,27 @@ class ContestantList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
                       Text(
-                        position ?? '8', // Hiển thị vị trí xếp hạng
+                        rank ?? '8',
                         style: const TextStyle(color: Colors.blue),
                       ),
+                      SizedBox(
+                          width: size.width *
+                              0.05), // Khoảng cách giữa rank và url
+                      Center(
+                        child: ClipOval(
+                          clipBehavior: Clip.antiAlias,
+                          child: Image.asset(
+                            url ?? 'lib/images/actor_1.png',
+                            height: size.height * 0.07,
+                            width: size.height * 0.07,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
                     ],
-                  ),
-                  Center(
-                    child: ClipOval(
-                        clipBehavior: Clip.antiAlias,
-                        child: Image.asset(
-                          url ?? 'lib/images/actor_1.png',
-                          height: size.height * 0.07,
-                          width: size.height * 0.07,
-                          fit: BoxFit.fill,
-                        )),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -354,14 +423,6 @@ class ContestantList extends StatelessWidget {
                         name ?? 'Name',
                         style: const TextStyle(color: Colors.blue),
                       ),
-                      Text(
-                        '@${name ?? 'Name'}',
-                        style: TextStyle(
-                          color: Colors.blueGrey,
-                          fontSize: size.width * 0.045,
-                          fontFamily: 'BeVietnamPro',
-                        ),
-                      ),
                     ],
                   ),
                   Column(
@@ -369,7 +430,11 @@ class ContestantList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        rank ?? '1234',
+                        accuracy ?? '85%',
+                        style: const TextStyle(color: Colors.blue),
+                      ),
+                      Text(
+                        wpm ?? '555',
                         style: const TextStyle(color: Colors.blue),
                       ),
                     ],
