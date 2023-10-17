@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
-import 'package:typing_contest_mobile/screen/contest_dts_screen.dart';
 
 // ignore: camel_case_types
 class His_Contest extends StatelessWidget {
