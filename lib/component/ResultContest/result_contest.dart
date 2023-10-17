@@ -4,17 +4,13 @@ import 'package:typing_contest_mobile/models/round.dart';
 import 'data_result_contest.dart';
 
 Future<RoundContest> fetchData() async {
-  // Tạo một đối tượng User với dữ liệu cố định
   RoundContest user = RoundContest(
-
     id: '1',
-
   );
 
-  // Đợi một khoảng thời gian như làm tác vụ mạng thường làm
   await Future.delayed(const Duration(seconds: 2));
 
-  // Trả về đối tượng User đã được tạo và giữ cố định dữ liệu
+
   return user;
 }
 
