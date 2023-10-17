@@ -27,12 +27,13 @@ class _StudentListScreenState extends State<StudentOfClass> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(size.height* 0.01,size.height* 0.03,size.height* 0.01,size.height* 0.01),
-                child:const Text(
+                child: Text(
                   'Teachers',
                   style: TextStyle(
-
+                      fontSize: size.height * 0.03,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent
+                      color: Colors.blueAccent,
+                      fontFamily: 'BeVietnamPro'
                   ),
                 ),
               ),
@@ -49,8 +50,17 @@ class _StudentListScreenState extends State<StudentOfClass> {
                 leading: CircleAvatar(
                   backgroundImage: AssetImage(students[1]?.image??''),
                 ),
-                title: Text(students[1]?.email ?? ''),
-                subtitle: Text('Name: ${students[1]?.id ?? ''}'),
+                title: Text(students[1]?.email ?? '',
+                  style: TextStyle(
+                    fontFamily: 'BeVietnamPro',
+                    fontSize: size.height*0.022
+                ),),
+                subtitle: Text('Name: ${students[1]?.id ?? ''}',
+                  style: TextStyle(
+                    fontSize: size.height*0.02,
+                    fontFamily: 'BeVietnamPro',
+                  )
+                  ,),
               ),
             ),
             Padding(
@@ -70,18 +80,22 @@ class _StudentListScreenState extends State<StudentOfClass> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                       const Text(
+                        Text(
                           'Classmates',
                           style: TextStyle(
+                            fontSize: size.height * 0.03,
                             fontWeight: FontWeight.bold,
                             color: Colors.blueAccent,
+                              fontFamily: 'BeVietnamPro'
                           ),
                         ),
                         Text(
                           '${students.length} student',
-                          style:const TextStyle(
+                          style: TextStyle(
+                            fontSize: size.height * 0.023,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.bold,
+                              fontFamily: 'BeVietnamPro'
                           ),
                         ),
                       ],
@@ -110,43 +124,50 @@ class _StudentListScreenState extends State<StudentOfClass> {
                 child: ListView.builder(
                   itemCount: students.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: size.height*0.01),
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: checkboxValues[index],
-                              onChanged: (value) {
-                                setState(() {
-                                  checkboxValues[index] = value ?? false;
-                                });
+                    return Padding(
+                      padding: EdgeInsets.only(left: size.height*0.01),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: checkboxValues[index],
+                            onChanged: (value) {
+                              setState(() {
+                                checkboxValues[index] = value ?? false;
+                              });
+                            },
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: AssetImage(students[index]?.image ?? ''),
+                              ),
+                              title: Text(students[index]?.email ?? '',
+                              style: TextStyle(
+                                fontSize: size.height*0.02,
+                                fontFamily: 'BeVietnamPro',
+                              ),),
+                              subtitle: Text('School: ${students[index]?.trainingFacility ?? ''}',
+                                  style: TextStyle(
+                                      fontSize: size.height*0.017,
+                                      fontFamily: 'BeVietnamPro',
+                                  )),
+                              trailing: SizedBox(
+                                child: IconButton(
+                                  icon: const Icon(Icons.close_sharp),
+                                  color: Colors.redAccent,
+                                  onPressed: () {
+                                    // setState(() {
+                                    //   students.removeAt(index);
+                                    // });
+                                  },
+                                ),
+                              ),
+                              onTap: () {
+                                // Handle onTap event
                               },
                             ),
-                            Expanded(
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundImage: AssetImage(students[index]?.image ?? ''),
-                                ),
-                                title: Text(students[index]?.email ?? ''),
-                                subtitle: Text('School: ${students[index]?.trainingFacility ?? ''}'),
-                                trailing: SizedBox(
-                                  child: IconButton(
-                                    icon: const Icon(Icons.delete),
-                                    onPressed: () {
-                                      // setState(() {
-                                      //   students.removeAt(index);
-                                      // });
-                                    },
-                                  ),
-                                ),
-                                onTap: () {
-                                  // Handle onTap event
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     );
                   },
