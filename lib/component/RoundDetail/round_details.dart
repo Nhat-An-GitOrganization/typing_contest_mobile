@@ -1,20 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/component/typing/typing.dart';
-
 import '../../models/round.dart';
-import 'data_of_round.dart';
+import '../typing/typing.dart';
 
 
 Future<RoundContest> fetchData(String id) async{
-  // int currentPage = 1;
-  // int pageSize = 10;
-  // List<int> pageSizeOptions = [5, 10, 20];
   try{
-    // var url = Uri.parse(
-    // 'https://66.42.55.38:1001/api/Students/GetAllAsync?PageNumber=$currentPage&PageSize=$pageSize');
+
     var url =  Uri.parse("https://66.42.55.38:4001/api/Rounds/$id");
     var httpClient = HttpClient();
     httpClient.badCertificateCallback =
@@ -31,20 +24,17 @@ Future<RoundContest> fetchData(String id) async{
         throw Exception('Error: Invalid data format1');
       }
     } else {
-      throw Exception('Error2: ${response.statusCode}');
+      throw Exception('Error: ${response.statusCode}');
     }
   } catch (e) {
-    throw Exception('Error3: $e');
+    throw Exception('Error: $e');
   }
 }
 
 
 class DetailRound extends StatefulWidget {
-  // ignore: non_constant_identifier_names
-  final String Id;
-
-  // ignore: non_constant_identifier_names
-  const DetailRound({super.key, required this.Id});
+  final String id;
+  const DetailRound({super.key, required this.id});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -53,118 +43,178 @@ class DetailRound extends StatefulWidget {
 
 class _DetailRoundState extends State<DetailRound> {
   late Future<RoundContest> futureRound;
+
   @override
   void initState() {
     super.initState();
-    futureRound = fetchData(widget.Id);
-
+    futureRound = fetchData(widget.id);
   }
-
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    EdgeInsetsGeometry padding = EdgeInsets.all(size.width * 0.05);
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('lib/images/background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            width: double.infinity,
-            height: double.infinity,
-          ),
-          Positioned(
-            top: size.height *0.02,
-            left: size.width *0.01,
-            child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.blueAccent,
-                size: 30.0,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 3 / 5,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(60.0),
-                ),
-              ),
-              child: Column(
-                children: <Widget>[
-                  ContestDataDisplay(futureRound: futureRound),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 10,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          height: MediaQuery.of(context).size.height / 9,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.black87,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(40.0),
-                                topRight: Radius.circular(40.0),
-                              ),
-                            ),
+      body: FutureBuilder<RoundContest>(
+        future: futureRound,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("Error: ${snapshot.error}"));
+          } else if (!snapshot.hasData) {
+            return const Center(child: Text("No data available"));
+          } else {
+            final round = snapshot.data!;
+            return buildRoundUI(round);
+          }
+        },
+      ),
+    );
+  }
 
-                            child: Center(
-                              child: Padding(
-                                padding: padding,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                        const TypingSpeedTestGame(),
-                                      ),
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: size.height * 0.01,
-                                      horizontal: size.width * 0.3,
-                                    ),
-                                  ),
-                                  child:  Text(
-                                    'Tham gia',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: size.width *0.045,
-                                    ),
+  Widget buildRoundUI(RoundContest round) {
+    Size size = MediaQuery.of(context).size;
+    return Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height*2 / 5,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(round.imageUrl??""),
+              fit: BoxFit.cover,
+            ),
+            border: Border.all(
+              color: Colors.white,
+              width: 0,
+              style: BorderStyle.solid,
+            ),
+            borderRadius:const BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+            ),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(1.0, 1.0),
+                blurRadius: 1.0,
+                spreadRadius: 1.0,
+              ),
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 0.0),
+                blurRadius: 0.0,
+                spreadRadius: 0.0,
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(size.height * 0.36,size.height * 0.36,0,0),
+                  alignment: Alignment.center,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.send),
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TypingSpeedTestGame(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Expanded (
+
+                  child: SingleChildScrollView(
+                    child: Column(
+
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: size.height * 0.05),
+                          child: Text(
+                            "Ngày bắt đầu  :  Ngày kết thúc",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: size.height * 0.025,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(size.height * 0.07,size.height * 0.01,size.height * 0.01,size.height * 0.01),
+                          child: Row(
+                            children: [
+                              Text(
+                                round.startTime?.substring(0, 10) ?? '',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: size.height * 0.018,
+                                ),
+                              ),
+                              SizedBox(width: size.width*0.16),
+                              Text(
+                                round.endTime?.substring(0, 10) ?? '',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize:size.height*0.018,
+                                ),
+                              ),
+                            ],
+                          ),
+
+
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(size.height * 0.07,size.height * 0.01,size.height * 0.01,size.height * 0.01),
+
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  round.name??'',
+                                  style: TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontSize:size.height*0.06,
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(size.height * 0.07,size.height * 0.01,size.height * 0.01,size.height * 0.01),
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  round.description??'',
+                                  style: TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontSize:size.height*0.025,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+                ),
+
+
+              ],
+
+            )),
+      ],
     );
   }
 }

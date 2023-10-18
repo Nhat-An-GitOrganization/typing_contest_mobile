@@ -2,169 +2,185 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/models/student.dart';
 
-class StudentOfClass extends StatelessWidget {
-  const StudentOfClass({
-    Key? key,
-    required this.itemIndex,
-    required this.st,
-  }) : super(key: key);
 
-  final int itemIndex;
-  final Student st;
+class StudentOfClass extends StatefulWidget {
+  const StudentOfClass({super.key});
+
+  @override
+  State<StudentOfClass> createState() => _StudentListScreenState();
+}
+class _StudentListScreenState extends State<StudentOfClass> {
+
+  bool selectAll = false;
+  List<bool> checkboxValues = List<bool>.filled(students.length, false);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    return Scaffold(
+        appBar: AppBar(
+          title:const Text('Danh sách học sinh'),
+        ),
+        body: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(size.height* 0.01,size.height* 0.03,size.height* 0.01,size.height* 0.01),
+                child: Text(
+                  'Teacher',
+                  style: TextStyle(
+                      fontSize: size.height * 0.03,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
 
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: size.width * 0.02,
-        vertical: size.width * 0.02,
-      ),
-      height: size.height * 0.19,
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          // Background
-          Container(
-            height: size.height * 0.19,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(22),
-              color: Colors.blue,
+                  ),
+                ),
+              ),
             ),
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: size.height * 0.095,
-                      child: Container(
-                        decoration:const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(22),
-                            topRight: Radius.circular(22),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.fromLTRB(size.height*0.02, size.width *0.1, 0, size.width*0.04),
-                              child:const Icon(
-                                Icons.email,
-                                color: Colors.black38,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(22),
-                              color: isDarkMode
-                                  ? Colors.black.withOpacity(0.3)
-                                  : Colors.white.withOpacity(0.3),
-                              border: Border.all(
-                                color: Colors.black54,
-                                width: size.height*0.002,
-                              ),
-                            ),
-                            child: Stack(
-                              alignment: Alignment.centerRight,
-                              children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.height*0.015),
+              child:const Divider(
+                color: Colors.blue,
+                thickness: 1,
+              ),
+            ),
+            Container(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage(students[1]?.image??''),
+                ),
+                title: Text(students[1]?.email ?? '',
+                  style: TextStyle(
 
-                                Positioned(
-                                  right: size.height*0.02,
-                                  child: CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage: AssetImage(st.image??''),
-                                  ),
-                                ),
-                              ],
-                            ),
+                      fontSize: size.height*0.022
+                  ),),
+                subtitle: Text('Name: ${students[1]?.id ?? ''}',
+                  style: TextStyle(
+                    fontSize: size.height*0.02,
+
+                  )
+                  ,),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(size.height* 0.01,0,size.height* 0.01,0),
+              child:const Divider(
+                color: Colors.blue,
+                thickness: 1.8,
+              ),
+            ),
+            Align(
+
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(size.height * 0.01, size.height * 0.01, size.height * 0.01, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Classmates',
+                          style: TextStyle(
+                              fontSize: size.height * 0.03,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueAccent,
+
+                          ),
+                        ),
+                        Text(
+                          '${students.length} student',
+                          style: TextStyle(
+                              fontSize: size.height * 0.023,
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold,
+
                           ),
                         ),
                       ],
                     ),
-                    Positioned(
-                      top: size.height*0.02,
-                      right: size.width*0.02,
-                      child:const Icon(
-                        Icons.more_vert,
-                        color: Colors.white,
-                      ),
+                    Column(
+                      children: [
+                        const SizedBox(width: 0),
+                        Checkbox(
+                          value: selectAll,
+                          onChanged: (value) {
+                            setState(() {
+                              selectAll = value ?? false;
+                              checkboxValues = List<bool>.filled(students.length, selectAll);
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
-          ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: ListView.builder(
+                  itemCount: students.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.only(left: size.height*0.01),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: checkboxValues[index],
+                            onChanged: (value) {
+                              setState(() {
+                                checkboxValues[index] = value ?? false;
+                              });
+                            },
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: AssetImage(students[index]?.image ?? ''),
+                              ),
+                              title: Text(students[index]?.email ?? '',
+                                style: TextStyle(
+                                  fontSize: size.height*0.02,
 
+                                ),),
+                              subtitle: Text('School: ${students[index]?.trainingFacility ?? ''}',
+                                  style: TextStyle(
+                                    fontSize: size.height*0.017,
 
-
-          // Info Contest
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: SizedBox(
-              height: size.height * 0.25,
-              width: size.width - size.height*0.2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: size.width * 0.05, top: size.height * 0.07),
-                    child: Text(
-                      st.trainingFacility??"",
-                      style: TextStyle(
-                        fontSize: size.width * 0.05,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'BeVietnamPro',
+                                  )),
+                              trailing: SizedBox(
+                                child: IconButton(
+                                  icon: const Icon(Icons.close_sharp),
+                                  color: Colors.redAccent,
+                                  onPressed: () {
+                                    // setState(() {
+                                    //   students.removeAt(index);
+                                    // });
+                                  },
+                                ),
+                              ),
+                              onTap: () {
+                                // Handle onTap event
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: size.width * 0.05, top: size.height * 0.02),
-                    child: Text(
-                      st.trainingFacility??"",
-                      style: TextStyle(
-                        fontSize: size.width * 0.05,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'BeVietnamPro',
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(size.width * 0.05,size.width * 0.05,size.width * 0.05,size.width * 0.05),
-                    child: Text(
-                      st.email??"",
-                      style: TextStyle(
-                          fontSize: size.width * 0.040,
-                          fontFamily: 'BeVietnamPro'),
-                    ),
-                  ),
-
-
-                ],
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        )
     );
   }
+}
+class CheckBoxModel{
+  String? title;
+  bool? value;
+  CheckBoxModel({@required this.title,  this.value = false});
 }
