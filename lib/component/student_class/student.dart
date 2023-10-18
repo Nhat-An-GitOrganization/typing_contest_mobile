@@ -33,7 +33,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                       fontSize: size.height * 0.03,
                       fontWeight: FontWeight.bold,
                       color: Colors.blueAccent,
-                      fontFamily: 'BeVietnamPro'
+
                   ),
                 ),
               ),
@@ -52,13 +52,13 @@ class _StudentListScreenState extends State<StudentOfClass> {
                 ),
                 title: Text(students[1]?.email ?? '',
                   style: TextStyle(
-                      fontFamily: 'BeVietnamPro',
+
                       fontSize: size.height*0.022
                   ),),
                 subtitle: Text('Name: ${students[1]?.id ?? ''}',
                   style: TextStyle(
                     fontSize: size.height*0.02,
-                    fontFamily: 'BeVietnamPro',
+
                   )
                   ,),
               ),
@@ -86,7 +86,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                               fontSize: size.height * 0.03,
                               fontWeight: FontWeight.bold,
                               color: Colors.blueAccent,
-                              fontFamily: 'BeVietnamPro'
+
                           ),
                         ),
                         Text(
@@ -95,7 +95,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                               fontSize: size.height * 0.023,
                               color: Colors.blueAccent,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'BeVietnamPro'
+
                           ),
                         ),
                       ],
@@ -144,12 +144,12 @@ class _StudentListScreenState extends State<StudentOfClass> {
                               title: Text(students[index]?.email ?? '',
                                 style: TextStyle(
                                   fontSize: size.height*0.02,
-                                  fontFamily: 'BeVietnamPro',
+
                                 ),),
                               subtitle: Text('School: ${students[index]?.trainingFacility ?? ''}',
                                   style: TextStyle(
                                     fontSize: size.height*0.017,
-                                    fontFamily: 'BeVietnamPro',
+
                                   )),
                               trailing: SizedBox(
                                 child: IconButton(
