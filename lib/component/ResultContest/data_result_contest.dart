@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
+import 'circle_widget.dart';
+
 
 class DetailRoundResult extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -22,98 +24,94 @@ class DetailRoundResult extends StatelessWidget {
 
         SizedBox(height:size.height * 0.03),
         Container(
-          padding: EdgeInsets.all(size.height*0.01),
-          child: PieChart(
-            dataMap: {
-              "Mức độ chính xác": double.parse(user!.id.toString()),
-              "Phần còn lại": 20 - double.parse(user.id.toString()),
-            },
-            chartType: ChartType.ring,
-            baseChartColor: Colors.grey[50]!.withOpacity(0.15),
-            colorList: colorList,
-            chartValuesOptions: const ChartValuesOptions(
-              showChartValuesInPercentage: true,
-            ),
-            totalValue: 20,
-            chartRadius: MediaQuery.of(context).size.width * 10,
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height/35,
-          alignment: Alignment.center,
-          child: null,
-        ),
+          padding: EdgeInsets.fromLTRB(size.height*0.1,size.height*0.01,size.height*0.01,size.height*0.01),
+           child: SizedBox(
+             width: size.width*0.6,
+             height: size.height*0.36,
+             child: CircleWidget(
+             color1: Colors.blue,
+             color2: const Color(0x97AFD9F6),
+             endPercentage: 40,
+              ),
+        ),),
          Padding(
           padding: EdgeInsets.symmetric(horizontal: size.width*0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "Kết quả",
-                style: TextStyle(
-                  fontSize: size.width *0.06,
-                  color: Colors.lightBlueAccent,
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: EdgeInsets.only(left: size.width*0.2),
+                child: Text(
+                  "Phạm Việt Hoàng",
+                  style: TextStyle(
+                      fontSize: size.width *0.06,
+                      color: Colors.black
+                  ),
                 ),
               ),
-              SizedBox(height: size.height*0.01),
-              Text(
-                "Kết quả cuộc thi Typing Contest 1. "
-                    "Chúc mừng bạn đã hoàn thành cuộc thi",
+              Padding(
+                padding: EdgeInsets.fromLTRB(size.width*0.03,size.height*0.02,0,0),
+                child: Text(
+                  "Windows Server configured with the Web Server (IIS) server role."
+                      "",
+                  style: TextStyle(
+                      fontSize: size.width *0.06,
+                      color: Colors.grey
+                  ),
+                ),
+              ),
+              SizedBox(height: size.height*0.05),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width*0.15),
+                    child: Text(
+                      "40%",
+                      style: TextStyle(
+                          fontSize: size.width *0.045,
+                          color: Colors.black
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width*0.45),
+                    child: Text(
+                      "35",
+                      style: TextStyle(
+                          fontSize: size.width *0.045,
+                          color: Colors.black
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Độ chính xác',
+                    style: TextStyle(
+                      fontSize: size.width *0.06,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width*0.28),
+                    child: Text(
+                      'WPM',
+                      style: TextStyle(
+                        fontSize: size.width *0.06,
+                        color: Colors.grey,
 
-                style: TextStyle(
-                  fontSize: size.width *0.045,
-                ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+
+
               SizedBox(height: size.height*0.01),
-              Text(
-                'Người tham gia:',
-                style: TextStyle(
-                  fontSize: size.width *0.06,
-                  color: Colors.lightBlueAccent,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: size.height*0.01),
-              Text(
-                "Phạm Việt Hoàng",
-                style: TextStyle(
-                  fontSize: size.width *0.045,
-                ),
-              ),
-              SizedBox(height: size.height*0.01),
-              Text(
-                'Độ chính xác:',
-                style: TextStyle(
-                  fontSize: size.width *0.06,
-                  color: Colors.lightBlueAccent,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: size.height*0.01),
-              Text(
-                "100%",
-                style: TextStyle(
-                  fontSize: size.width *0.045,
-                ),
-              ),
-              SizedBox(height: size.height*0.01),
-              Text(
-                'Tốc độ (WPM):',
-                style: TextStyle(
-                  fontSize: size.width *0.06,
-                  color: Colors.lightBlueAccent,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: size.height*0.01),
-              Text(
-                "35",
-                style: TextStyle(
-                  fontSize: size.width *0.045,
-                ),
-              ),
+
+
             ],
           ),
         ),

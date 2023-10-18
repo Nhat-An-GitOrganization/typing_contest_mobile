@@ -209,10 +209,7 @@ class _DetailRoundState extends State<DetailRound> {
                     ),
                   ),
                 ),
-
-
               ],
-
             )),
       ],
     );

@@ -92,7 +92,7 @@ class Round extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => const DetailRound(
-                            Id: '6c740a05-0664-46e8-90ff-248a638868c1',
+                            id: '6c740a05-0664-46e8-90ff-248a638868c1',
                           ),
                         ),
                       );
