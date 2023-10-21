@@ -1,10 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:popover/popover.dart';
-import 'package:typing_contest_mobile/component/classPage/menu_item.dart';
+import 'package:typing_contest_mobile/component/ClassDetail/class_detail.dart';
 import 'package:typing_contest_mobile/component/classPage/orga.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
-import 'package:typing_contest_mobile/screen/contest_dts_screen.dart';
 
 class Class extends StatelessWidget {
   const Class({
@@ -24,14 +22,14 @@ class Class extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: size.width * 0.02,
-        vertical: size.width * 0.01,
+        vertical: size.width * 0.03,
       ),
       height: size.height * 0.25,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(size.width * 0.05),
         border: Border.all(
-          color: Colors.grey, // Màu viền
-          width: 2.0, // Độ dày viền
+          color: const Color.fromARGB(255, 204, 204, 204), // Màu viền
+          width: 1.5, // Độ dày viền
         ),
       ),
       child: Stack(
@@ -42,7 +40,7 @@ class Class extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ContestDetail(contest: ct), //Detai class
+                builder: (context) => const ClassDetail(), //Detai class
               ),
             ),
             child: Container(
@@ -73,26 +71,6 @@ class Class extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ),
-          // Info Contest
-          Positioned(
-            top: size.height * 0.03,
-            right: size.width * 0.05,
-            child: GestureDetector(
-              onTap: () {
-                showPopover(
-                  context: context,
-                  bodyBuilder: (BuildContext context) => const MenuItem(),
-                  width: size.width * 0.14,
-                  height: size.height * 0.068,
-                  backgroundColor: Colors.blue,
-                  direction: PopoverDirection.left,
-                  arrowDxOffset: size.width * 0.87,
-                  arrowDyOffset: -size.height * 0.08,
-                );
-              },
-              child: const Icon(Icons.more_vert),
             ),
           ),
           Positioned(

@@ -9,13 +9,17 @@ class CircleWidget extends StatefulWidget {
   final Color color2;
   final double endPercentage;
 
-  CircleWidget({required this.color1, required this.color2, required this.endPercentage});
+  CircleWidget(
+      {required this.color1,
+      required this.color2,
+      required this.endPercentage});
 
   @override
   _CircleWidgetState createState() => _CircleWidgetState();
 }
 
-class _CircleWidgetState extends State<CircleWidget> with SingleTickerProviderStateMixin {
+class _CircleWidgetState extends State<CircleWidget>
+    with SingleTickerProviderStateMixin {
   double currentPercentage = 1.0;
   late AnimationController _controller;
 
@@ -24,7 +28,7 @@ class _CircleWidgetState extends State<CircleWidget> with SingleTickerProviderSt
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
     startAnimation();
   }
@@ -46,7 +50,10 @@ class _CircleWidgetState extends State<CircleWidget> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: CirclePainter(color1: widget.color1, color2: widget.color2, percentage: currentPercentage),
+      painter: CirclePainter(
+          color1: widget.color1,
+          color2: widget.color2,
+          percentage: currentPercentage),
     );
   }
 

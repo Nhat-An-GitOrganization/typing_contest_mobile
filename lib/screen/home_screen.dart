@@ -1,7 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:typing_contest_mobile/component/classPage/class.dart';
@@ -126,7 +125,10 @@ class _HomePageState extends State<HomePage> {
       actions: [
         IconButton(
           onPressed: () {},
-          icon: SvgPicture.asset('lib/svg/notification.svg'),
+          //icon: SvgPicture.asset('lib/svg/notification.svg'),
+          icon: const Icon(
+            Icons.add,
+          ),
         )
       ],
     );

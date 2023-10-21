@@ -18,7 +18,7 @@ class Contest {
 List<Contest> contest = [
   Contest(
     id: 1,
-    title: 'Typing Contest 1',
+    title: 'TypingBee Spring 2023',
     description:
         'Thời gian thành lập và đi vào hoạt động chưa nhiều, mới được một năm, nhưng nhiều Ban Chỉ đạo cấp tỉnh về phòng, chống tham nhũng, tiêu cực đã nỗ lực lớn, quyết tâm cao, có những kinh nghiệm quý, cách làm hay cần phát huy, nhân rộng; nhưng cũng có một số nơi hoạt động còn có những khó khăn, vướng mắc cần tháo gỡ.',
     dateStart: '10-02-2023',

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/history/contest.dart';
+import 'package:typing_contest_mobile/component/history/list_round.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class ContestEntered extends StatefulWidget {
@@ -121,19 +122,7 @@ class _ContestEnteredState extends State<ContestEntered> {
             const Duration(milliseconds: 1000), // Thời gian hoàn thành hiệu ứng
       ),
       context: context,
-      builder: (BuildContext context) {
-        return SizedBox(
-          height: 1000,
-          child: Center(
-            child: ElevatedButton(
-              child: const Text('Close'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ), // ElevatedButton
-          ), // Center
-        ); // SizedBox
-      },
+      builder: (BuildContext context) => const List_History_Round(),
     );
   }
 }

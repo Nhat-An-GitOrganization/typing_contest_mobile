@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 import 'package:typing_contest_mobile/screen/contest_dts_screen.dart';
 
-class ContestCard extends StatelessWidget {
-  const ContestCard({
+// ignore: camel_case_types
+class His_Round extends StatelessWidget {
+  const His_Round({
     Key? key,
     required this.itemIndex,
     required this.ct,
@@ -11,38 +13,32 @@ class ContestCard extends StatelessWidget {
 
   final int itemIndex;
   final Contest ct;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10,
+      margin: EdgeInsets.symmetric(
+        horizontal: size.width * 0.02,
+        vertical: size.width * 0.02,
       ),
-      height: size.height * (160 / size.height),
+      height: size.height * 0.2,
       child: Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.topCenter,
         children: [
-          // Background
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RankingRoundScreen(), //Detai class
+              ),
+            ),
+          ),
           Container(
-            height: size.height * (140 / size.height),
+            height: size.height * 0.3,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
-              color: itemIndex.isEven
-                  ? const Color.fromARGB(255, 10, 187, 197)
-                  : const Color.fromARGB(255, 246, 168, 59),
-            ),
-            child: Container(
-              margin: const EdgeInsets.only(right: 10),
-              decoration: BoxDecoration(
-                color: isDarkMode
-                    ? const Color.fromARGB(255, 76, 76, 76)
-                    : const Color.fromARGB(255, 215, 215, 215),
-                borderRadius: BorderRadius.circular(22),
-              ),
+              color: const Color.fromARGB(255, 239, 188, 100),
             ),
           ),
           // Contest

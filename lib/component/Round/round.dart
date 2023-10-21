@@ -22,7 +22,7 @@ class Round extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: size.width * 0.02,
-        vertical: size.width * 0.02,
+        vertical: size.width * 0.03,
       ),
       height: size.height * 0.19,
       child: Stack(
@@ -71,7 +71,6 @@ class Round extends StatelessWidget {
                       style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'BeVietnamPro',
                       ),
                     ),
                   ),
@@ -80,9 +79,7 @@ class Round extends StatelessWidget {
                     padding: EdgeInsets.only(left: size.width * 0.05),
                     child: Text(
                       '${ct.dateStart} - ${ct.dateEnd}',
-                      style: TextStyle(
-                          fontSize: size.width * 0.035,
-                          fontFamily: 'BeVietnamPro'),
+                      style: TextStyle(fontSize: size.width * 0.035),
                     ),
                   ),
                   const Spacer(),
@@ -109,11 +106,9 @@ class Round extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'Tham gia',
+                        'Chi tiết',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: size.width * 0.037,
-                            fontFamily: 'BeVietnamPro'),
+                            color: Colors.white, fontSize: size.width * 0.037),
                       ),
                     ),
                   ),

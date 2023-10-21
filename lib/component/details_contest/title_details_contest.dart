@@ -36,13 +36,6 @@ class TitleDetailsContest extends StatelessWidget {
                       style: const TextStyle(
                           color: Color.fromARGB(255, 89, 91, 118)),
                     ),
-                    SizedBox(
-                      width: size.width * 0.08,
-                    ),
-                    const Text(
-                      '15min',
-                      style: TextStyle(color: Color.fromARGB(255, 89, 91, 118)),
-                    ),
                   ],
                 ),
               ],
