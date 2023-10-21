@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import '../../models/round.dart';
 import '../typing/typing.dart';
 
-
-Future<RoundContest> fetchData(String id) async{
-  try{
-
-    var url =  Uri.parse("https://66.42.55.38:4001/api/Rounds/$id");
+Future<RoundContest> fetchData(String id) async {
+  try {
+    var url = Uri.parse("https://66.42.55.38:4001/api/Rounds/$id");
     var httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -30,7 +28,6 @@ Future<RoundContest> fetchData(String id) async{
     throw Exception('Error: $e');
   }
 }
-
 
 class DetailRound extends StatefulWidget {
   final String id;
@@ -76,11 +73,11 @@ class _DetailRoundState extends State<DetailRound> {
     return Stack(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height*2 / 5,
+          height: MediaQuery.of(context).size.height * 2 / 5,
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(round.imageUrl??""),
+              image: NetworkImage(round.imageUrl ?? ""),
               fit: BoxFit.cover,
             ),
             border: Border.all(
@@ -88,7 +85,7 @@ class _DetailRoundState extends State<DetailRound> {
               width: 0,
               style: BorderStyle.solid,
             ),
-            borderRadius:const BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.circular(10.0),
               bottomLeft: Radius.circular(20.0),
@@ -112,105 +109,113 @@ class _DetailRoundState extends State<DetailRound> {
         ),
         Positioned(
             child: Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(size.height * 0.36,size.height * 0.36,0,0),
-                  alignment: Alignment.center,
-                  child: FloatingActionButton(
-                    child: Icon(Icons.send),
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TypingSpeedTestGame(),
+          children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(
+                  size.height * 0.36, size.height * 0.36, 0, 0),
+              alignment: Alignment.center,
+              child: FloatingActionButton(
+                child: const Icon(Icons.send),
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TypingSpeedTestGame(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.05),
+                      child: Text(
+                        "Ngày bắt đầu  :  Ngày kết thúc",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: size.height * 0.025,
                         ),
-                      );
-                    },
-                  ),
-                ),
-                Expanded (
-
-                  child: SingleChildScrollView(
-                    child: Column(
-
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: size.height * 0.05),
-                          child: Text(
-                            "Ngày bắt đầu  :  Ngày kết thúc",
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          size.height * 0.07,
+                          size.height * 0.01,
+                          size.height * 0.01,
+                          size.height * 0.01),
+                      child: Row(
+                        children: [
+                          Text(
+                            round.startTime?.substring(0, 10) ?? '',
                             style: TextStyle(
                               color: Colors.grey,
-                              fontSize: size.height * 0.025,
+                              fontSize: size.height * 0.018,
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(size.height * 0.07,size.height * 0.01,size.height * 0.01,size.height * 0.01),
-                          child: Row(
-                            children: [
-                              Text(
-                                round.startTime?.substring(0, 10) ?? '',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: size.height * 0.018,
-                                ),
-                              ),
-                              SizedBox(width: size.width*0.16),
-                              Text(
-                                round.endTime?.substring(0, 10) ?? '',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize:size.height*0.018,
-                                ),
-                              ),
-                            ],
+                          SizedBox(width: size.width * 0.16),
+                          Text(
+                            round.endTime?.substring(0, 10) ?? '',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: size.height * 0.018,
+                            ),
                           ),
-
-
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(size.height * 0.07,size.height * 0.01,size.height * 0.01,size.height * 0.01),
-
-                          child: Wrap(
-                            alignment: WrapAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  round.name??'',
-                                  style: TextStyle(
-                                    color: Colors.blueAccent,
-                                    fontSize:size.height*0.06,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(size.height * 0.07,size.height * 0.01,size.height * 0.01,size.height * 0.01),
-                          child: Wrap(
-                            alignment: WrapAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  round.description??'',
-                                  style: TextStyle(
-                                    color: Colors.blueAccent,
-                                    fontSize:size.height*0.025,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          size.height * 0.07,
+                          size.height * 0.01,
+                          size.height * 0.01,
+                          size.height * 0.01),
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              round.name ?? '',
+                              style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontSize: size.height * 0.06,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          size.height * 0.07,
+                          size.height * 0.01,
+                          size.height * 0.01,
+                          size.height * 0.01),
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              round.description ?? '',
+                              style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontSize: size.height * 0.025,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            )),
+              ),
+            ),
+          ],
+        )),
       ],
     );
   }
