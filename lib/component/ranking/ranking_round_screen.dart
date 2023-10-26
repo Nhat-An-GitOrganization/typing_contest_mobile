@@ -60,7 +60,7 @@ class RankingRoundScreen extends StatelessWidget {
                         rank: '2',
                         wpm: '888',
                         accuracy: '90%',
-                        color: Colors.green,
+                        color: Colors.lightGreen,
                       ),
                       const WinnerContainer(
                         isFirst: true,
@@ -73,7 +73,7 @@ class RankingRoundScreen extends StatelessWidget {
                         rank: '3',
                         wpm: '777',
                         accuracy: '80%',
-                        color: Colors.orange,
+                        color: Colors.pink,
                       ),
                     ],
                   ),
@@ -182,9 +182,9 @@ class WinnerContainer extends StatelessWidget {
                   gradient: const LinearGradient(
                     colors: [
                       Colors.lightBlue,
-                      Colors.yellow,
                       Colors.lightBlue,
-                      Colors.yellow,
+                      Colors.lightBlue,
+                      Colors.lightBlue,
                       Colors.lightBlue,
                     ],
                     stops: [
@@ -209,16 +209,16 @@ class WinnerContainer extends StatelessWidget {
                   child: Container(
                     height: height ?? size.height * 0.18,
                     width: size.width * 0.26,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.lightBlue,
-                          Colors.yellow,
-                          Colors.lightBlue,
-                          Colors.yellow,
-                          Colors.lightBlue,
+                          Colors.lightBlue.withOpacity(0.1),
+                          Colors.lightBlue.withOpacity(0.4),
+                          Colors.lightBlue.withOpacity(0.6),
+                          Colors.lightBlue.withOpacity(0.8),
+                          Colors.lightBlue.withOpacity(1),
                         ],
-                        stops: [
+                        stops: const [
                           0.1,
                           0.4,
                           0.6,
@@ -228,9 +228,17 @@ class WinnerContainer extends StatelessWidget {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                       ),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40.0),
-                          topRight: Radius.circular(40.0)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.lightBlue.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -243,7 +251,7 @@ class WinnerContainer extends StatelessWidget {
                 if (isFirst)
                   Image.asset(
                     'lib/images/crown.png',
-                    height: size.height * 0.090,
+                    height: size.height * 0.050,
                     width: size.width * 0.27,
                   ),
                 Padding(
@@ -253,15 +261,15 @@ class WinnerContainer extends StatelessWidget {
                     clipBehavior: Clip.antiAlias,
                     child: Container(
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                           colors: [
-                            Colors.lightBlue,
-                            Colors.yellow,
-                            Colors.lightBlue,
-                            Colors.yellow,
-                            Colors.lightBlue,
+                            Colors.lightBlue.withOpacity(0.1),
+                            Colors.lightBlue.withOpacity(0.4),
+                            Colors.lightBlue.withOpacity(0.6),
+                            Colors.lightBlue.withOpacity(0.8),
+                            Colors.lightBlue.withOpacity(1),
                           ],
-                          stops: [
+                          stops: const [
                             0.1,
                             0.4,
                             0.6,
@@ -271,6 +279,14 @@ class WinnerContainer extends StatelessWidget {
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.lightBlue.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
                         border: Border.all(
                           color: Colors.white,
                         ),
@@ -311,9 +327,9 @@ class WinnerContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: size.width * 0.35,
+            top: size.height * 0.17,
             child: SizedBox(
-              width: size.width * 0.27,
+              width: size.height * 0.14,
               child: Center(
                 child: Column(
                   children: [
