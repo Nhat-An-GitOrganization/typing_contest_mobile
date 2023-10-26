@@ -115,7 +115,6 @@ class _DetailRoundState extends State<DetailRound> {
                   size.height * 0.36, size.height * 0.36, 0, 0),
               alignment: Alignment.center,
               child: FloatingActionButton(
-                child: const Icon(Icons.send),
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 onPressed: () {
@@ -126,6 +125,7 @@ class _DetailRoundState extends State<DetailRound> {
                     ),
                   );
                 },
+                child: const Icon(Icons.send),
               ),
             ),
             Expanded(
@@ -133,18 +133,8 @@ class _DetailRoundState extends State<DetailRound> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.05),
-                      child: Text(
-                        "Ngày bắt đầu  :  Ngày kết thúc",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: size.height * 0.025,
-                        ),
-                      ),
-                    ),
-                    Padding(
                       padding: EdgeInsets.fromLTRB(
-                          size.height * 0.07,
+                          size.height * 0.03,
                           size.height * 0.01,
                           size.height * 0.01,
                           size.height * 0.01),
@@ -157,7 +147,7 @@ class _DetailRoundState extends State<DetailRound> {
                               fontSize: size.height * 0.018,
                             ),
                           ),
-                          SizedBox(width: size.width * 0.16),
+                          SizedBox(width: size.width * 0.02),
                           Text(
                             round.endTime?.substring(0, 10) ?? '',
                             style: TextStyle(
@@ -170,7 +160,7 @@ class _DetailRoundState extends State<DetailRound> {
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                          size.height * 0.07,
+                          size.height * 0.03,
                           size.height * 0.01,
                           size.height * 0.01,
                           size.height * 0.01),
@@ -182,7 +172,7 @@ class _DetailRoundState extends State<DetailRound> {
                               round.name ?? '',
                               style: TextStyle(
                                 color: Colors.blueAccent,
-                                fontSize: size.height * 0.06,
+                                fontSize: size.height * 0.07,
                               ),
                             ),
                           ),
@@ -191,7 +181,7 @@ class _DetailRoundState extends State<DetailRound> {
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                          size.height * 0.07,
+                          size.height * 0.03,
                           size.height * 0.01,
                           size.height * 0.01,
                           size.height * 0.01),
@@ -206,6 +196,151 @@ class _DetailRoundState extends State<DetailRound> {
                                 fontSize: size.height * 0.025,
                               ),
                             ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(size.height * 0,
+                          size.height * 0.04, size.height * 0, size.height * 0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.05,
+                                    size.height * 0,
+                                    size.height * 0,
+                                    size.height * 0),
+                                child: Text(
+                                  "Thời gian",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: size.height * 0.025,
+                                  ),
+                                ),
+                              )),
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.03,
+                                    size.height * 0,
+                                    size.height * 0,
+                                    size.height * 0),
+                                child: Text(
+                                  "Số lần truy cập",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: size.height * 0.02,
+                                  ),
+                                ),
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        left: size.height * 0.06),
+                                    child: Text(
+                                      round.totalTime ?? '',
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: size.height * 0.022,
+                                      ),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        left: size.height * 0.09),
+                                    child: Text(
+                                      round.maxAccess.toString(),
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: size.height * 0.022,
+                                      ),
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.05,
+                                    size.height * 0.03,
+                                    size.height * 0,
+                                    size.height * 0),
+                                child: Text(
+                                  "Trạng thái",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: size.height * 0.025,
+                                  ),
+                                ),
+                              )),
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.05,
+                                    size.height * 0.03,
+                                    size.height * 0,
+                                    size.height * 0),
+                                child: Text(
+                                  "availability",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: size.height * 0.02,
+                                  ),
+                                ),
+                              )),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    padding: EdgeInsets.fromLTRB(
+                                        size.height * 0.04,
+                                        0,
+                                        0,
+                                        size.height * 0.1),
+                                    child: Text(
+                                      round.status == 0
+                                          ? 'Đang diễn ra'
+                                          : ("No"),
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: size.height * 0.022,
+                                      ),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    padding: EdgeInsets.fromLTRB(
+                                        size.height * 0.095,
+                                        0,
+                                        0,
+                                        size.height * 0.1),
+                                    child: Text(
+                                      round.availability.toString(),
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: size.height * 0.022,
+                                      ),
+                                    ),
+                                  )),
+                            ],
                           ),
                         ],
                       ),
