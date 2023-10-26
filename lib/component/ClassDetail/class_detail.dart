@@ -24,35 +24,6 @@ class ClassDetail extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.add,
-                color: Colors.blue,
-              ),
-              onPressed: () {
-                // Xử lý sự kiện khi nút "Add" được nhấn
-              },
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.blue,
-              ),
-              onPressed: () {
-                // Xử lý sự kiện khi nút "Menu" được nhấn
-              },
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.account_circle,
-                color: Colors.blue,
-              ),
-              onPressed: () {
-                // Xử lý sự kiện khi biểu tượng avatar được nhấn
-              },
-            ),
-          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
