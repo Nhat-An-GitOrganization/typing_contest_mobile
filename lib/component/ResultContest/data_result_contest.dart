@@ -11,10 +11,6 @@ class DetailRoundResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final colorList = <Color>[
-      Colors.greenAccent,
-      Colors.blue,
-    ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,9 +22,9 @@ class DetailRoundResult extends StatelessWidget {
           child: SizedBox(
             width: size.width * 0.6,
             height: size.height * 0.36,
-            child: CircleWidget(
+            child: const CircleWidget(
               color1: Colors.blue,
-              color2: const Color(0x97AFD9F6),
+              color2: Color(0x97AFD9F6),
               endPercentage: 40,
             ),
           ),

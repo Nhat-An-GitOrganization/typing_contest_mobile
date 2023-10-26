@@ -9,12 +9,14 @@ class CircleWidget extends StatefulWidget {
   final Color color2;
   final double endPercentage;
 
-  CircleWidget(
-      {required this.color1,
+  const CircleWidget(
+      {super.key,
+      required this.color1,
       required this.color2,
       required this.endPercentage});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CircleWidgetState createState() => _CircleWidgetState();
 }
 
