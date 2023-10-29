@@ -14,7 +14,7 @@ class TypingSpeedTestGame extends StatefulWidget {
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode inputNode = FocusNode();
-  static const maxTime = 5;
+  static const maxTime = 50;
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
@@ -302,5 +302,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  "The sun was setting on the horizon, casting a warm golden glow across the peaceful meadows. Birds chirped happily, their melodious songs filling the air. A gentle breeze rustled the leaves of the tall oak trees, creating a soothing sound. It was a tranquil evening, perfect for reflection and contemplation. As I walked along the winding path, my mind wandered to distant memories. The laughter of childhood echoed in my ears, reminding me of carefree days spent playing in the fields. I could almost taste the sweetness of ice cream on my tongue, feel the warmth of the summer sun on my skin. The path led me to a small, secluded pond nestled among the trees. Its surface shimmered like a mirror, reflecting the vibrant colors of the surrounding flora. I sat down on a moss-covered rock, observing the dance of dragonflies and the gentle ripples caused by the occasional fish breaking the surface. Lost in my thoughts, I contemplated the passage of time. How quickly it slips through our fingers, like grains of sand in an hourglass. Memories, both joyful and painful, woven into the tapestry of our lives. Each moment a precious gift, never to be repeated. The evening sky transformed into a canvas of breathtaking hues - a masterpiece painted by nature itself. Shades of orange, pink, and purple melted together, creating a stunning panorama. I couldn't help but marvel at the beauty that surrounded me. As darkness descended, stars began to twinkle in the night sky, revealing the vastness of the universe. I pondered the mysteries of the",
+  "The sun was setting on the horizon, casting a warm golden glow across the peaceful meadows. I pondered the mysteries of the",
 ];
