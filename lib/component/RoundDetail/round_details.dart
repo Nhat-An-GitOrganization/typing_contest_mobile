@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import '../../models/round.dart';
 import '../typing/typing.dart';
 
@@ -125,7 +127,7 @@ class _DetailRoundState extends State<DetailRound> {
                     ),
                   );
                 },
-                child: const Icon(Icons.send),
+                child: const FaIcon(FontAwesomeIcons.rightToBracket),
               ),
             ),
             Expanded(
@@ -141,18 +143,36 @@ class _DetailRoundState extends State<DetailRound> {
                       child: Row(
                         children: [
                           Text(
-                            round.startTime?.substring(0, 10) ?? '',
+                            round.name ?? '',
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          SizedBox(width: size.width * 0.02),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          size.height * 0.03,
+                          size.height * 0.01,
+                          size.height * 0.01,
+                          size.height * 0.01),
+                      child: Row(
+                        children: [
+                          Text(
+                            DateFormat('dd-MM-yyyy')
+                                .format(DateTime.parse(round.startTime ?? '')),
                             style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: size.height * 0.018,
+                              color: const Color.fromARGB(255, 89, 91, 118),
+                              fontSize: size.width * 0.045,
                             ),
                           ),
                           SizedBox(width: size.width * 0.02),
                           Text(
-                            round.endTime?.substring(0, 10) ?? '',
+                            DateFormat('dd-MM-yyyy')
+                                .format(DateTime.parse(round.endTime ?? '')),
                             style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: size.height * 0.018,
+                              color: const Color.fromARGB(255, 89, 91, 118),
+                              fontSize: size.width * 0.045,
                             ),
                           ),
                         ],
@@ -164,18 +184,13 @@ class _DetailRoundState extends State<DetailRound> {
                           size.height * 0.01,
                           size.height * 0.01,
                           size.height * 0.01),
-                      child: Wrap(
-                        alignment: WrapAlignment.start,
+                      child: Row(
                         children: [
-                          Flexible(
-                            child: Text(
-                              round.name ?? '',
-                              style: TextStyle(
-                                color: Colors.blueAccent,
-                                fontSize: size.height * 0.07,
-                              ),
-                            ),
+                          Text(
+                            'Details',
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
+                          SizedBox(width: size.width * 0.02),
                         ],
                       ),
                     ),
@@ -185,19 +200,11 @@ class _DetailRoundState extends State<DetailRound> {
                           size.height * 0.01,
                           size.height * 0.01,
                           size.height * 0.01),
-                      child: Wrap(
-                        alignment: WrapAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              round.description ?? '',
-                              style: TextStyle(
-                                color: Colors.blueAccent,
-                                fontSize: size.height * 0.025,
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: Text(
+                        round.description ?? "",
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 89, 91, 118),
+                            fontSize: size.height * (16 / size.height)),
                       ),
                     ),
                     Padding(
@@ -217,7 +224,7 @@ class _DetailRoundState extends State<DetailRound> {
                                 child: Text(
                                   "Thời gian",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.black87,
                                     fontSize: size.height * 0.025,
                                   ),
                                 ),
@@ -232,7 +239,7 @@ class _DetailRoundState extends State<DetailRound> {
                                 child: Text(
                                   "Số lần truy cập",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.black87,
                                     fontSize: size.height * 0.02,
                                   ),
                                 ),
@@ -249,7 +256,8 @@ class _DetailRoundState extends State<DetailRound> {
                                     child: Text(
                                       round.totalTime ?? '',
                                       style: TextStyle(
-                                        color: Colors.black87,
+                                        color: const Color.fromARGB(
+                                            255, 89, 91, 118),
                                         fontSize: size.height * 0.022,
                                       ),
                                     ),
@@ -262,7 +270,8 @@ class _DetailRoundState extends State<DetailRound> {
                                     child: Text(
                                       round.maxAccess.toString(),
                                       style: TextStyle(
-                                        color: Colors.black87,
+                                        color: const Color.fromARGB(
+                                            255, 89, 91, 118),
                                         fontSize: size.height * 0.022,
                                       ),
                                     ),
@@ -319,7 +328,8 @@ class _DetailRoundState extends State<DetailRound> {
                                           ? 'Đang diễn ra'
                                           : ("No"),
                                       style: TextStyle(
-                                        color: Colors.black87,
+                                        color: const Color.fromARGB(
+                                            255, 89, 91, 118),
                                         fontSize: size.height * 0.022,
                                       ),
                                     ),
@@ -335,7 +345,8 @@ class _DetailRoundState extends State<DetailRound> {
                                     child: Text(
                                       round.availability.toString(),
                                       style: TextStyle(
-                                        color: Colors.black87,
+                                        color: const Color.fromARGB(
+                                            255, 89, 91, 118),
                                         fontSize: size.height * 0.022,
                                       ),
                                     ),
