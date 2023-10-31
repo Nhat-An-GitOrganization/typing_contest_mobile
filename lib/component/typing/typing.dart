@@ -18,16 +18,20 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
-  String typedText = '';
+  late String typedText;
   List<Color?> correctCharacters = List.filled(paragraphs[0].length, null);
   late Timer timer;
   bool isTypingComplete = false;
   double currentCursorPosition = -1;
   ScrollController _scrollController = ScrollController();
   int tempLength = 0;
+  late String initialText;
+  bool isBackspace = true;
 
   @override
   void initState() {
+    typedText = '';
+    textEditingController = TextEditingController(text: typedText);
     super.initState();
     startTimer();
     _scrollController = ScrollController();
@@ -83,48 +87,47 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
     return accuracy.isNaN ? 0 : accuracy;
   }
 
-  void handleInput(String input) {
-    setState(() {
-      typedText = input;
-      mistakes = 0;
+  // void handleInput(String input) {
+  //   setState(() {
+  //     typedText = input;
+  //     mistakes = 0;
 
-      for (int i = 0; i < typedText.length; i++) {
-        if (i < paragraphs[0].length) {
-          if (typedText[i] != paragraphs[0][i]) {
-            mistakes++;
-            correctCharacters[i] = Colors.red;
-          } else {
-            correctCharacters[i] = Colors.green;
-          }
-        }
-      }
+  //     for (int i = 0; i < typedText.length; i++) {
+  //       if (i < paragraphs[0].length) {
+  //         if (typedText[i] != paragraphs[0][i]) {
+  //           mistakes++;
+  //           correctCharacters[i] = Colors.red;
+  //         } else {
+  //           correctCharacters[i] = Colors.green;
+  //         }
+  //       }
+  //     }
+  //     // Xóa các ký tự nhập sai khi người dùng xóa
+  //     if (typedText.length < paragraphs[0].length) {
+  //       for (int i = typedText.length; i < paragraphs[0].length; i++) {
+  //         correctCharacters[i] = null;
+  //       }
+  //     }
+  //     if (typedText.length == paragraphs[0].length) {
+  //       // Check if typedText matches the original paragraph
+  //       isTypingComplete = true;
+  //       timer.cancel();
+  //       _showResultDialog(); // Display the result dialog
+  //     }
 
-      // Xóa các ký tự nhập sai khi người dùng xóa
-      if (typedText.length < paragraphs[0].length) {
-        for (int i = typedText.length; i < paragraphs[0].length; i++) {
-          correctCharacters[i] = null;
-        }
-      }
-      if (typedText.length == paragraphs[0].length) {
-        // Check if typedText matches the original paragraph
-        isTypingComplete = true;
-        timer.cancel();
-        _showResultDialog(); // Display the result dialog
-      }
-
-      // Cập nhật vị trí hiện tại của dấu "|"
-      currentCursorPosition = typedText.length - 1;
-      calculateStats();
-      int tempLength = typedText.length; // Lưu trữ giá trị typedText.length
-      if (tempLength % 80 == 0) {
-        _scrollController.animateTo(
-          _scrollController.offset + 60, // Khoảng cần di chuyển (30px)
-          curve: Curves.linear, // Đường cong di chuyển
-          duration: const Duration(milliseconds: 500), // Thời gian di chuyển
-        );
-      }
-    });
-  }
+  //     // Cập nhật vị trí hiện tại của dấu "|"
+  //     currentCursorPosition = typedText.length - 1;
+  //     calculateStats();
+  //     int tempLength = typedText.length; // Lưu trữ giá trị typedText.length
+  //     if (tempLength % 80 == 0) {
+  //       _scrollController.animateTo(
+  //         _scrollController.offset + 60, // Khoảng cần di chuyển (30px)
+  //         curve: Curves.linear, // Đường cong di chuyển
+  //         duration: const Duration(milliseconds: 500), // Thời gian di chuyển
+  //       );
+  //     }
+  //   });
+  // }
 
   void _showResultDialog() {
     int totalTime = maxTime - timeLeft;
@@ -279,9 +282,60 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                 ),
               ),
               Opacity(
-                opacity: 0.0,
-                child: TextField(
-                  onChanged: handleInput,
+                opacity: 1.0,
+                child: TextFormField(
+                  controller: textEditingController,
+                  onChanged: (input) {
+                    setState(() {
+                      mistakes = 0;
+                      for (int i = 0; i < input.length; i++) {
+                        if (i < paragraphs[0].length) {
+                          if (input[i] != paragraphs[0][i]) {
+                            mistakes++;
+                            correctCharacters[i] = Colors.red;
+                          } else {
+                            correctCharacters[i] = Colors.green;
+                          }
+                        }
+                      }
+                      // Xóa các ký tự nhập sai khi người dùng xóa
+                      if (input.length < paragraphs[0].length && isBackspace == false) {
+                        for (int i = input.length;
+                            i < paragraphs[0].length;
+                            i++) {
+                          correctCharacters[i] = null;
+                        }
+                      }
+                      if (input.length == paragraphs[0].length) {
+                        // Check if typedText matches the original paragraph
+                        isTypingComplete = true;
+                        timer.cancel();
+                        _showResultDialog(); // Display the result dialog
+                      }
+
+                      // Cập nhật vị trí hiện tại của dấu "|"
+                      currentCursorPosition = input.length - 1;
+                      calculateStats();
+                      int tempLength =
+                          input.length; // Lưu trữ giá trị typedText.length
+                      if (tempLength % 80 == 0) {
+                        _scrollController.animateTo(
+                          _scrollController.offset +
+                              60, // Khoảng cần di chuyển (30px)
+                          curve: Curves.linear, // Đường cong di chuyển
+                          duration: const Duration(
+                              milliseconds: 500), // Thời gian di chuyển
+                        );
+                      }
+                    });
+                    if (textEditingController.text.length < typedText.length) {
+                      textEditingController.text = typedText;
+                    } else {
+                      setState(() {
+                        typedText = textEditingController.text;
+                      });
+                    }
+                  },
                   enabled: timeLeft > 0,
                   autofocus: true,
                   focusNode: inputNode,
