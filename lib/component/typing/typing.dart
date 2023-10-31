@@ -26,7 +26,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   ScrollController _scrollController = ScrollController();
   int tempLength = 0;
   late String initialText;
-  bool isBackspace = true;
+  bool isBackspace = false;
 
   @override
   void initState() {
@@ -86,48 +86,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
     double accuracy = (correctCharactersCount / typedText.length) * 100;
     return accuracy.isNaN ? 0 : accuracy;
   }
-
-  // void handleInput(String input) {
-  //   setState(() {
-  //     typedText = input;
-  //     mistakes = 0;
-
-  //     for (int i = 0; i < typedText.length; i++) {
-  //       if (i < paragraphs[0].length) {
-  //         if (typedText[i] != paragraphs[0][i]) {
-  //           mistakes++;
-  //           correctCharacters[i] = Colors.red;
-  //         } else {
-  //           correctCharacters[i] = Colors.green;
-  //         }
-  //       }
-  //     }
-  //     // Xóa các ký tự nhập sai khi người dùng xóa
-  //     if (typedText.length < paragraphs[0].length) {
-  //       for (int i = typedText.length; i < paragraphs[0].length; i++) {
-  //         correctCharacters[i] = null;
-  //       }
-  //     }
-  //     if (typedText.length == paragraphs[0].length) {
-  //       // Check if typedText matches the original paragraph
-  //       isTypingComplete = true;
-  //       timer.cancel();
-  //       _showResultDialog(); // Display the result dialog
-  //     }
-
-  //     // Cập nhật vị trí hiện tại của dấu "|"
-  //     currentCursorPosition = typedText.length - 1;
-  //     calculateStats();
-  //     int tempLength = typedText.length; // Lưu trữ giá trị typedText.length
-  //     if (tempLength % 80 == 0) {
-  //       _scrollController.animateTo(
-  //         _scrollController.offset + 60, // Khoảng cần di chuyển (30px)
-  //         curve: Curves.linear, // Đường cong di chuyển
-  //         duration: const Duration(milliseconds: 500), // Thời gian di chuyển
-  //       );
-  //     }
-  //   });
-  // }
 
   void _showResultDialog() {
     int totalTime = maxTime - timeLeft;
@@ -299,7 +257,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                         }
                       }
                       // Xóa các ký tự nhập sai khi người dùng xóa
-                      if (input.length < paragraphs[0].length && isBackspace == false) {
+                      if (input.length < paragraphs[0].length && !isBackspace) {
                         for (int i = input.length;
                             i < paragraphs[0].length;
                             i++) {
@@ -328,7 +286,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                         );
                       }
                     });
-                    if (textEditingController.text.length < typedText.length) {
+
+                    if (textEditingController.text.length < typedText.length && isBackspace) {
                       textEditingController.text = typedText;
                     } else {
                       setState(() {
