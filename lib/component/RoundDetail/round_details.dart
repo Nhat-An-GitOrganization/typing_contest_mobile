@@ -8,7 +8,6 @@ import 'package:typing_contest_mobile/component/RoundDetail/orga_card.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/typing_button_widget.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 import '../../models/round.dart';
-import '../typing/typing.dart';
 
 Future<RoundContest> fetchData(String id) async {
   try {
@@ -303,8 +302,8 @@ class DetailRound extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.fromLTRB(
                                         size.height * 0.05,
-                                        0,
-                                        0,
+                                        size.height * 0,
+                                        size.height * 0,
                                         size.height * 0.1),
                                     child: Text(
                                       round.status == 0
@@ -322,8 +321,8 @@ class DetailRound extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.fromLTRB(
                                         size.height * 0.1,
-                                        0,
-                                        0,
+                                        size.height * 0,
+                                        size.height * 0,
                                         size.height * 0.1),
                                     child: Text(
                                       round.availability.toString(),

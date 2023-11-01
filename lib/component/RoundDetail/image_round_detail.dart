@@ -17,7 +17,7 @@ class MyImageContainer extends StatelessWidget {
         ),
         border: Border.all(
           color: Colors.white,
-          width: 0,
+          width: MediaQuery.of(context).size.height * 0,
           style: BorderStyle.solid,
         ),
         borderRadius: const BorderRadius.only(
