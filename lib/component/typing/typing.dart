@@ -216,6 +216,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   },
                   child: Center(
                     child: SingleChildScrollView(
+                      physics: const NeverScrollableScrollPhysics(),
                       controller: _scrollController,
                       child: RichText(
                         text: TextSpan(

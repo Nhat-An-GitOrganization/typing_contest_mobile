@@ -54,7 +54,11 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-            color: Colors.white,
+            gradient: LinearGradient(
+              colors: [Color(0xFF000096), Color(0xFF0088F4)],
+              begin: Alignment.topLeft,
+              end: FractionalOffset(2, 1),
+            ),
           ),
           child: Stack(
             children: [
@@ -67,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'FPLSP',
                       style: TextStyle(
-                        color: const Color.fromARGB(255, 82, 113, 255),
+                        color: Colors.white,
                         fontSize: size.height * 0.07,
                         fontWeight: FontWeight.bold,
                       ),
@@ -80,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'Typing Contest',
                       style: TextStyle(
-                        color: const Color.fromARGB(255, 82, 113, 255),
+                        color: Colors.white,
                         fontSize: size.height * 0.05,
                         fontWeight: FontWeight.bold,
                       ),
@@ -98,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: const Color.fromARGB(255, 56, 182, 255),
+                            color: const Color(0xFFFF7F3F),
                           ),
                           child: MaterialButton(
                             minWidth: double.infinity,

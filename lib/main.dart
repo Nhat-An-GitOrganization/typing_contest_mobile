@@ -20,12 +20,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+
     final bool isDarkMode = context.watch<ThemeProvider>().isDarkMode;
     final textTheme =
         isDarkMode ? ThemeData.dark().textTheme : ThemeData.light().textTheme;
     final newTextStyle = textTheme.apply(
       fontFamily: 'BeVietnamPro',
     );
+    
     return MaterialApp(
       theme: ThemeData(
         brightness: isDarkMode ? Brightness.dark : Brightness.light,
