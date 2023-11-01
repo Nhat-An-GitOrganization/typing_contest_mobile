@@ -13,99 +13,103 @@ class His_Contest extends StatelessWidget {
   final int itemIndex;
   final Contest ct;
   final VoidCallback ontapCallback;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+      ),
       margin: EdgeInsets.symmetric(
         horizontal: size.width * 0.02,
-        vertical: size.width * 0.01,
+        vertical: size.width * 0.025,
       ),
-      height: size.height * 0.12,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          InkWell(
-            onTap: ontapCallback,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(22),
-                  color: const Color.fromARGB(255, 141, 205, 213)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                    child: Align(
+      height: size.height * 0.13,
+      child: InkWell(
+        onTap: ontapCallback,
+        child: Container(
+          color: const Color.fromARGB(255, 216, 237, 255),
+          // Mà
+          child: Stack(
+            children: [
+              Positioned(
+                left: -size.width * 0.11, // Điều chỉnh vị trí đường chéo
+                top: -size.height * 0.1,
+                child: Transform.rotate(
+                  angle: -0.25, // Góc xoay của đường chéo
+                  child: Container(
+                    width: size.width * 0.72,
+                    height: size.height * 0.3,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Color.fromARGB(255, 52, 164, 255),
+                          Color.fromARGB(255, 26, 115, 232),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'TypingBee Spring 2023',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 238, 238, 238),
+                            fontSize: size.width * 0.045,
+                          ),
+                        ),
+                        Text(
+                          '20/12/2022 - 10/02/2023',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 238, 238, 238),
+                            fontSize: size.width * 0.035,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(size.width * 0.02),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'TypingBee Spring 2023',
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 40, 40, 40),
-                              fontSize: size.width * 0.045,
-                            ),
-                          ),
-                          Text(
-                            'Ngày kết thúc: 10-02-2023',
+                            'Vòng 5/6',
                             style: TextStyle(
                               color: const Color.fromARGB(255, 58, 69, 75),
-                              fontSize: size.width * 0.035,
+                              fontSize: size.width * 0.036,
+                            ),
+                          ),
+                          Text(
+                            'Rank: 999999',
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 58, 69, 75),
+                              fontSize: size.width * 0.032,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Container(
-                    width: size.width * 0.3,
-                    //margin: const EdgeInsets.only(left: 0),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 215, 215, 215),
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(22),
-                          bottomRight: Radius.circular(22)),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(size.width * 0.02),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Vòng 5/6',
-                                style: TextStyle(
-                                  color: const Color.fromARGB(255, 58, 69, 75),
-                                  fontSize: size.width * 0.032,
-                                ),
-                              ),
-                              Text(
-                                'Rank: 999999',
-                                style: TextStyle(
-                                  color: const Color.fromARGB(255, 58, 69, 75),
-                                  fontSize: size.width * 0.032,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

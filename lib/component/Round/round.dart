@@ -103,7 +103,7 @@ class Round extends StatelessWidget {
                         vertical: size.width * 0.01,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: const Color.fromARGB(255, 26, 115, 232),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(

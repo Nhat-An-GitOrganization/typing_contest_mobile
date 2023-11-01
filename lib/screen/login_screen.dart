@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -51,120 +53,120 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
-        body: Container(
+        child: Scaffold(
+      body: Stack(children: [
+        Container(
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF000096), Color(0xFF0088F4)],
-              begin: Alignment.topLeft,
-              end: FractionalOffset(2, 1),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+            ),
+            image: DecorationImage(
+              image: AssetImage('lib/images/history_background.jpg'),
+              fit: BoxFit.cover,
             ),
           ),
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  SizedBox(
-                    height: size.height * 0.16,
-                  ),
-                  Center(
-                    child: Text(
-                      'FPLSP',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: size.height * 0.07,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.016,
-                  ),
-                  Center(
-                    child: Text(
-                      'Typing Contest',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: size.height * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.16,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: const Color(0xFFFF7F3F),
-                          ),
-                          child: MaterialButton(
-                            minWidth: double.infinity,
-                            onPressed: () async {
-                              //implement google sign in func
-                              await signInWithGoogle();
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  child: Image.asset(
-                                    'lib/images/logogg.png',
-                                    width: size.width * 0.12,
-                                    height: size.height * 0.08,
-                                  ),
-                                ),
-                                Text(
-                                  'Đăng nhập với Google',
-                                  style: TextStyle(
-                                    fontSize: size.width * 0.05,
-                                    fontWeight: FontWeight.bold,
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.10,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.10,
-                  ),
-                  Image.asset(
-                    'lib/images/fpoly.png',
-                    width: size.height * 0.18,
-                    height: size.height * 0.10,
-                  ),
-                ],
+        ),
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.37),
               ),
-              if (isLoading) ...[
-                Positioned.fill(
-                  child: Container(
-                    color: Colors.black.withOpacity(0.5),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
+            ),
+          ),
+        ),
+        Stack(
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  height: size.height * 0.15,
+                ),
+                Image.asset(
+                  'lib/images/fpoly.png',
+                  width: size.height * 0.4,
+                  height: size.height * 0.3,
+                ),
+                SizedBox(
+                  height: size.height * 0.001,
+                ),
+                Center(
+                  child: Text(
+                    'FPLSP Typing',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: size.height * 0.04,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-              ]
-            ],
-          ),
+                SizedBox(
+                  height: size.height * 0.2,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(255, 238, 179, 13),
+                        ),
+                        child: MaterialButton(
+                          minWidth: double.infinity,
+                          onPressed: () async {
+                            //implement google sign in func
+                            await signInWithGoogle();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: Image.asset(
+                                  'lib/images/logogg.png',
+                                  width: size.width * 0.12,
+                                  height: size.height * 0.08,
+                                ),
+                              ),
+                              Text(
+                                'Đăng nhập với Google',
+                                style: TextStyle(
+                                  fontSize: size.width * 0.05,
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.10,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            if (isLoading) ...[
+              Positioned.fill(
+                child: Container(
+                  color: Colors.black.withOpacity(0.5),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+            ]
+          ],
         ),
-      ),
-    );
+      ]),
+    ));
   }
 }

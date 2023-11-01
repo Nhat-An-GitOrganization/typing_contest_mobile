@@ -41,10 +41,9 @@ class ContestCardCarou extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: size.width * 0.02),
               child: Text(
                 ct.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.w400),
+                style: TextStyle(
+                  fontSize: size.height * 0.025,
+                ),
               ),
             )
           ],
