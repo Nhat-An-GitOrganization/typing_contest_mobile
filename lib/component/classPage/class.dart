@@ -29,7 +29,7 @@ class Class extends StatelessWidget {
         borderRadius: BorderRadius.circular(size.width * 0.05),
         border: Border.all(
           color: const Color.fromARGB(255, 204, 204, 204), // Màu viền
-          width: 1.5, // Độ dày viền
+          width: 0.7, // Độ dày viền
         ),
       ),
       child: Stack(

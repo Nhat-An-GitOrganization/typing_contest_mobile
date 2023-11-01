@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           index: 1,
-          color: const Color.fromARGB(255, 25, 145, 243),
+          color: const Color.fromARGB(255, 26, 115, 232),
           backgroundColor: Colors.transparent,
           animationDuration: const Duration(milliseconds: 300),
           onTap: (index) {
@@ -120,6 +120,7 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       automaticallyImplyLeading: false,
       elevation: 0,
+      backgroundColor: const Color.fromARGB(255, 26, 115, 232),
       title: Text(title),
       centerTitle: false,
       actions: [
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {},
           //icon: SvgPicture.asset('lib/svg/notification.svg'),
           icon: const Icon(
-            Icons.add,
+            Icons.notifications,
           ),
         )
       ],
@@ -165,16 +166,16 @@ class _HomePageState extends State<HomePage> {
           ),
           const ContestCarousel(),
           SizedBox(
-            height: size.height * 0.08,
+            height: size.height * 0.065,
           ),
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.09),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
               child: Text(
                 'Contest List',
                 style: TextStyle(
-                    fontSize: size.height * 0.034, fontWeight: FontWeight.w600),
+                    fontSize: size.height * 0.025, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -233,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(height: size.height * 0.02),
                 ProfileMenu(
-                  icon: Icons.settings,
+                  icon: Icons.timer,
                   onPress: () {
                     Navigator.push(
                         context,
@@ -249,11 +250,12 @@ class _HomePageState extends State<HomePage> {
                     height: size.height * 0.046,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Colors.blue.withOpacity(0.1),
+                      color: const Color.fromARGB(255, 26, 115, 232)
+                          .withOpacity(0.1),
                     ),
                     child: const Icon(
                       Icons.dark_mode,
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 26, 115, 232),
                     ),
                   ),
                   title: Text(
@@ -264,6 +266,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   trailing: Consumer<ThemeProvider>(
                     builder: (context, themeProvider, _) => Switch(
+                      inactiveTrackColor:
+                          const Color.fromARGB(255, 216, 237, 255),
+                      inactiveThumbColor:
+                          const Color.fromARGB(255, 26, 115, 232)
+                              .withOpacity(0.7),
+                      activeColor: const Color.fromARGB(255, 26, 115, 232),
                       value: themeProvider.isDarkMode,
                       onChanged: (value) {
                         themeProvider.toggleDarkMode();
