@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:typing_contest_mobile/component/RoundDetail/image_round_detail.dart';
+import 'package:typing_contest_mobile/component/RoundDetail/orga_card.dart';
+import 'package:typing_contest_mobile/component/RoundDetail/typing_button_widget.dart';
+import 'package:typing_contest_mobile/models/contest.dart';
 import '../../models/round.dart';
 import '../typing/typing.dart';
 
@@ -31,29 +35,18 @@ Future<RoundContest> fetchData(String id) async {
   }
 }
 
-class DetailRound extends StatefulWidget {
+class DetailRound extends StatelessWidget {
   final String id;
-  const DetailRound({super.key, required this.id});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _DetailRoundState createState() => _DetailRoundState();
-}
-
-class _DetailRoundState extends State<DetailRound> {
-  late Future<RoundContest> futureRound;
-
-  @override
-  void initState() {
-    super.initState();
-    futureRound = fetchData(widget.id);
-  }
+  final Contest ct;
+  const DetailRound({Key? key, required this.id, required this.ct})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: FutureBuilder<RoundContest>(
-        future: futureRound,
+        future: fetchData(id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -63,72 +56,24 @@ class _DetailRoundState extends State<DetailRound> {
             return const Center(child: Text("No data available"));
           } else {
             final round = snapshot.data!;
-            return buildRoundUI(round);
+            return buildRoundUI(round, size, context);
           }
         },
       ),
     );
   }
 
-  Widget buildRoundUI(RoundContest round) {
-    Size size = MediaQuery.of(context).size;
+  Widget buildRoundUI(RoundContest round, Size size, BuildContext context) {
     return Stack(
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 2 / 5,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(round.imageUrl ?? ""),
-              fit: BoxFit.cover,
-            ),
-            border: Border.all(
-              color: Colors.white,
-              width: 0,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
-              bottomLeft: Radius.circular(20.0),
-              bottomRight: Radius.circular(20.0),
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(1.0, 1.0),
-                blurRadius: 1.0,
-                spreadRadius: 1.0,
-              ),
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0.0, 0.0),
-                blurRadius: 0.0,
-                spreadRadius: 0.0,
-              ),
-            ],
-          ),
+        MyImageContainer(
+          imageUrl: round.imageUrl ?? '',
         ),
         Positioned(
             child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(
-                  size.height * 0.36, size.height * 0.36, 0, 0),
-              alignment: Alignment.center,
-              child: FloatingActionButton(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TypingSpeedTestGame(),
-                    ),
-                  );
-                },
-                child: const FaIcon(FontAwesomeIcons.rightToBracket),
-              ),
+            OragCards(
+              ct: ct,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -137,7 +82,7 @@ class _DetailRoundState extends State<DetailRound> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                           size.height * 0.03,
-                          size.height * 0.01,
+                          size.height * 0.03,
                           size.height * 0.01,
                           size.height * 0.01),
                       child: Row(
@@ -146,7 +91,7 @@ class _DetailRoundState extends State<DetailRound> {
                             round.name ?? '',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          SizedBox(width: size.width * 0.02),
+                          TypingButtonWidget(size),
                         ],
                       ),
                     ),
@@ -240,7 +185,7 @@ class _DetailRoundState extends State<DetailRound> {
                                   "Số lần truy cập",
                                   style: TextStyle(
                                     color: Colors.black87,
-                                    fontSize: size.height * 0.02,
+                                    fontSize: size.height * 0.025,
                                   ),
                                 ),
                               )),
@@ -266,7 +211,7 @@ class _DetailRoundState extends State<DetailRound> {
                                   flex: 2,
                                   child: Container(
                                     padding: EdgeInsets.only(
-                                        left: size.height * 0.09),
+                                        left: size.height * 0.1),
                                     child: Text(
                                       round.maxAccess.toString(),
                                       style: TextStyle(
@@ -276,6 +221,44 @@ class _DetailRoundState extends State<DetailRound> {
                                       ),
                                     ),
                                   )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.052,
+                                    size.height * 0.03,
+                                    size.height * 0,
+                                    size.height * 0),
+                                child: round.isDisableBackspace == true
+                                    ? Text(
+                                        "Khoảng trắng",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: size.height * 0.025,
+                                        ),
+                                      )
+                                    : const SizedBox(),
+                              )),
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.052,
+                                    size.height * 0.03,
+                                    size.height * 0,
+                                    size.height * 0),
+                                child: round.isHavingSpecialChar == true
+                                    ? Text(
+                                        "Ký tự đặc biệt",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: size.height * 0.025,
+                                        ),
+                                      )
+                                    : const SizedBox(),
+                              )),
                             ],
                           ),
                           Row(
@@ -306,7 +289,7 @@ class _DetailRoundState extends State<DetailRound> {
                                   "availability",
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: size.height * 0.02,
+                                    fontSize: size.height * 0.025,
                                   ),
                                 ),
                               )),
@@ -319,7 +302,7 @@ class _DetailRoundState extends State<DetailRound> {
                                   flex: 2,
                                   child: Container(
                                     padding: EdgeInsets.fromLTRB(
-                                        size.height * 0.04,
+                                        size.height * 0.05,
                                         0,
                                         0,
                                         size.height * 0.1),
@@ -338,7 +321,7 @@ class _DetailRoundState extends State<DetailRound> {
                                   flex: 2,
                                   child: Container(
                                     padding: EdgeInsets.fromLTRB(
-                                        size.height * 0.095,
+                                        size.height * 0.1,
                                         0,
                                         0,
                                         size.height * 0.1),
