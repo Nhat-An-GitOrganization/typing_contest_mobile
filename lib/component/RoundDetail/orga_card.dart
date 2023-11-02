@@ -23,14 +23,14 @@ class OragCards extends StatelessWidget {
         height: size.height * 0.085,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(50),
-            topLeft: Radius.circular(50),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(size.height * 0.05),
+            topLeft: Radius.circular(size.height * 0.05),
           ),
           boxShadow: [
             BoxShadow(
               offset: const Offset(0, 5),
-              blurRadius: 40,
+              blurRadius: size.height * 0.02,
               color: const Color(0xFF12153D).withOpacity(0.2),
             ),
           ],
@@ -40,9 +40,7 @@ class OragCards extends StatelessWidget {
             SizedBox(
               height: size.height * 0.006,
             ),
-            OrgaCard(
-                orga: ct.orga[
-                    0]), // Đảm bảo có đối tượng OrgaCard và ct đã được khai báo ở đây.
+            OrgaCard(orga: ct.orga[0]),
           ],
         ),
       ),

@@ -12,9 +12,9 @@ class TypingButtonWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(
         size.width * 0.3,
-        0.02,
-        0,
-        0,
+        size.height * 0.01,
+        size.height * 0,
+        size.height * 0,
       ),
       alignment: Alignment.center,
       child: SizedBox(

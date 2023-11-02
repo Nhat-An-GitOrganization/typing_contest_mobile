@@ -301,8 +301,8 @@ class DetailRound extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.fromLTRB(
                                         size.height * 0.05,
-                                        0,
-                                        0,
+                                        size.height * 0,
+                                        size.height * 0,
                                         size.height * 0.1),
                                     child: Text(
                                       round.status == 0
@@ -320,8 +320,8 @@ class DetailRound extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.fromLTRB(
                                         size.height * 0.1,
-                                        0,
-                                        0,
+                                        size.height * 0,
+                                        size.height * 0,
                                         size.height * 0.1),
                                     child: Text(
                                       round.availability.toString(),
