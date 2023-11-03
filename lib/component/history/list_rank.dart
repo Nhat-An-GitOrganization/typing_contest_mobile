@@ -6,14 +6,16 @@ import 'package:typing_contest_mobile/component/history/contest.dart';
 import 'package:typing_contest_mobile/component/history/list_round.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
-class ContestEntered extends StatefulWidget {
-  const ContestEntered({super.key});
+// ignore: camel_case_types
+class List_Rank extends StatefulWidget {
+  const List_Rank({super.key});
 
   @override
-  State<ContestEntered> createState() => _ContestEnteredState();
+  State<List_Rank> createState() => _List_RankState();
 }
 
-class _ContestEnteredState extends State<ContestEntered> {
+// ignore: camel_case_types
+class _List_RankState extends State<List_Rank> {
   final user = FirebaseAuth.instance.currentUser!;
   bool isLoading = false;
 
@@ -81,36 +83,6 @@ class _ContestEnteredState extends State<ContestEntered> {
                         ],
                       ),
                       SizedBox(height: size.height * 0.02),
-                      Center(
-                        child: Column(
-                          children: [
-                            Container(
-                              width: size.width * (130 / size.width),
-                              height: size.height * (130 / size.height),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: size.width * (4 / size.width),
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    spreadRadius: 2,
-                                    blurRadius: 10,
-                                    color: Colors.black.withOpacity(0.1),
-                                    offset: const Offset(0, 10),
-                                  ),
-                                ],
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(user.photoURL!),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ],

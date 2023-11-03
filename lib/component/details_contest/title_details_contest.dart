@@ -53,6 +53,7 @@ class TitleDetailsContest extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 26, 115, 232),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),

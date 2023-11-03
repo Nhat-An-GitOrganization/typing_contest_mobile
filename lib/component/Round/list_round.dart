@@ -17,6 +17,7 @@ class _ListRoundState extends State<ListRound> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 26, 115, 232),
         title: const Text(
           'List Round',
           style: TextStyle(fontWeight: FontWeight.bold),

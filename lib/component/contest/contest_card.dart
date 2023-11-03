@@ -33,14 +33,14 @@ class ContestCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(22),
               color: itemIndex.isEven
                   ? const Color.fromARGB(255, 10, 187, 197)
-                  : const Color.fromARGB(255, 246, 168, 59),
+                  : const Color.fromARGB(255, 238, 179, 13),
             ),
             child: Container(
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 color: isDarkMode
                     ? const Color.fromARGB(255, 76, 76, 76)
-                    : const Color.fromARGB(255, 215, 215, 215),
+                    : const Color.fromARGB(255, 216, 237, 255),
                 borderRadius: BorderRadius.circular(22),
               ),
             ),
@@ -100,7 +100,7 @@ class ContestCard extends StatelessWidget {
                         vertical: 20 / 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: const Color.fromARGB(255, 26, 115, 232),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(

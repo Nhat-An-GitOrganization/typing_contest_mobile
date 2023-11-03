@@ -24,10 +24,10 @@ class ProfileMenu extends StatelessWidget {
         height: size.height * 0.046,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Colors.blue.withOpacity(0.1)),
+            color: const Color.fromARGB(255, 26, 115, 232).withOpacity(0.1)),
         child: Icon(
           icon,
-          color: Colors.blue,
+          color: const Color.fromARGB(255, 26, 115, 232),
         ),
       ),
       title: Text(

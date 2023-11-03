@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:popover/popover.dart';
 import 'package:typing_contest_mobile/component/history/menu.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
@@ -21,9 +20,9 @@ class His_Round extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: size.width * 0.02,
-        vertical: size.width * 0.02,
+        vertical: size.width * 0.025,
       ),
-      height: size.height * 0.2,
+      height: size.height * 0.19,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -31,16 +30,15 @@ class His_Round extends StatelessWidget {
             height: size.height * 0.27,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
-              color: const Color.fromARGB(255, 235, 202, 156),
+              color: const Color.fromARGB(255, 216, 237, 255),
             ),
           ),
-          // Contest
           Positioned(
             top: 0,
             left: 0,
             bottom: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
               height: size.height * 0.4,
               width: size.width * 0.3,
               child: ClipRRect(
@@ -52,10 +50,9 @@ class His_Round extends StatelessWidget {
               ),
             ),
           ),
-          // Info Contest
           Positioned(
-            right: size.width * 0.025,
-            top: size.height * 0.001,
+            left: size.width * 0.33,
+            top: size.width * 0.03,
             child: SizedBox(
               height: size.height * 0.18,
               width: size.width - 150,
@@ -72,36 +69,27 @@ class His_Round extends StatelessWidget {
                               child: Text(
                                 ct.title,
                                 style: TextStyle(
-                                  fontSize: size.height * (19 / size.height),
+                                  fontSize: size.height * (15 / size.height),
                                 ),
                               ),
                             ),
                           ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: Text(
-                            '19-02-2021',
-                            style: TextStyle(
-                              fontSize: size.height * (16 / size.height),
-                            ),
-                          ),
                         ),
                         Row(
                           children: [
                             Container(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.01,
-                                    vertical: size.height * 0.02),
-                                child: ThongTin(size, 'User', '2000')),
+                                    vertical: size.height * 0.05),
+                                child: ThongTin(size, 'User', '200000')),
                             Container(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.015),
-                                child: ThongTin(size, 'Accesss', '3')),
+                                child: ThongTin(size, 'User', '3')),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: size.width * 0.015),
-                              child: ThongTin(size, 'Available', '2'),
+                              child: ThongTin(size, 'User', '2'),
                             ),
                           ],
                         )
@@ -114,43 +102,29 @@ class His_Round extends StatelessWidget {
           ),
           Column(
             children: [
-              GestureDetector(
-                onTap: () => showPopover(
-                  context: context,
-                  bodyBuilder: (context) => const MenuItems(),
-                  width: size.width * 0.15,
-                  height: size.height * 0.06,
-                  contentDyOffset: -size.width * 0.4,
-                  backgroundColor: const Color.fromARGB(255, 129, 192, 243),
+              Container(
+                margin: EdgeInsets.only(
+                  left: size.width * 0.8,
+                  top: size.width * 0.05,
                 ),
-                child: Container(
-                  margin: EdgeInsets.only(
-                      left: size.width * 0.8, top: size.width * 0.06),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Icon(
-                    Icons.menu,
-                    color: Color.fromARGB(255, 52, 52, 52),
-                  ),
-                ),
+                child: const MenuItems(),
               ),
               Container(
                 padding: EdgeInsets.only(
-                    left: size.width * 0.75, top: size.width * 0.06),
+                    left: size.width * 0.7, top: size.width * 0.04),
                 child: Column(
                   children: [
                     Text(
-                      '100',
+                      '100222',
                       style: TextStyle(
-                        color: const Color.fromARGB(255, 182, 16, 41),
-                        fontSize: size.width * 0.06,
+                        color: const Color.fromARGB(255, 229, 91, 0),
+                        fontSize: size.width * 0.055,
                       ),
                     ),
                     Text(
                       'Rank',
                       style: TextStyle(
-                        color: const Color.fromARGB(255, 172, 19, 40),
+                        color: const Color.fromARGB(255, 187, 75, 0),
                         fontSize: size.width * 0.04,
                       ),
                     ),
