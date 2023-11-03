@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/image_round_detail.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/orga_card.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/typing_button_widget.dart';
+import 'package:typing_contest_mobile/component/contest_join/category_list_join.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 import '../../models/round.dart';
 
@@ -71,8 +72,16 @@ class DetailRound extends StatelessWidget {
         Positioned(
             child: Column(
           children: [
-            OragCards(
-              ct: ct,
+            // OragCards(
+            //   ct: ct,
+            // ),
+            Container(
+              margin: EdgeInsets.fromLTRB(
+                0,
+                size.height * 0.4,
+                0,
+                0,
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -83,7 +92,7 @@ class DetailRound extends StatelessWidget {
                           size.height * 0.03,
                           size.height * 0.03,
                           size.height * 0.01,
-                          size.height * 0.01),
+                          size.height * 0),
                       child: Row(
                         children: [
                           Text(
@@ -97,7 +106,7 @@ class DetailRound extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                           size.height * 0.03,
-                          size.height * 0.01,
+                          size.height * 0,
                           size.height * 0.01,
                           size.height * 0.01),
                       child: Row(
@@ -125,7 +134,7 @@ class DetailRound extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                           size.height * 0.03,
-                          size.height * 0.01,
+                          size.height * 0.005,
                           size.height * 0.01,
                           size.height * 0.01),
                       child: Row(
@@ -156,6 +165,76 @@ class DetailRound extends StatelessWidget {
                           size.height * 0.04, size.height * 0, size.height * 0),
                       child: Column(
                         children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: round.isHavingSpecialChar == false
+                                    ? Container(
+                                        alignment: Alignment.center,
+                                        margin: EdgeInsets.fromLTRB(
+                                            size.width * 0.06,
+                                            0,
+                                            size.width * 0.06,
+                                            size.width * 0.03),
+                                        padding: EdgeInsets.fromLTRB(
+                                          size.height * 0,
+                                          size.height * 0.015,
+                                          size.height * 0,
+                                          size.height * 0.015,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.withOpacity(0.7),
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Khoảng trắng",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: size.height * 0.02,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : const SizedBox.shrink(),
+                              ),
+                              Expanded(
+                                child: round.isHavingSpecialChar == false
+                                    ? Container(
+                                        alignment: Alignment.center,
+                                        margin: EdgeInsets.fromLTRB(
+                                            size.width * 0.06,
+                                            0,
+                                            size.width * 0.06,
+                                            size.width * 0.03),
+                                        padding: EdgeInsets.fromLTRB(
+                                          size.height * 0,
+                                          size.height * 0.015,
+                                          size.height * 0,
+                                          size.height * 0.015,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.withOpacity(0.7),
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Ký tự đặc biệt",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: size.height * 0.02,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : const SizedBox.shrink(),
+                              ),
+                            ],
+                          ),
                           Row(
                             children: [
                               Expanded(
@@ -193,70 +272,30 @@ class DetailRound extends StatelessWidget {
                           Row(
                             children: [
                               Expanded(
-                                  flex: 2,
                                   child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: size.height * 0.06),
-                                    child: Text(
-                                      round.totalTime ?? '',
-                                      style: TextStyle(
-                                        color: const Color.fromARGB(
-                                            255, 89, 91, 118),
-                                        fontSize: size.height * 0.022,
-                                      ),
-                                    ),
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: size.height * 0.1),
-                                    child: Text(
-                                      round.maxAccess.toString(),
-                                      style: TextStyle(
-                                        color: const Color.fromARGB(
-                                            255, 89, 91, 118),
-                                        fontSize: size.height * 0.022,
-                                      ),
-                                    ),
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    size.height * 0.052,
-                                    size.height * 0.03,
-                                    size.height * 0,
-                                    size.height * 0),
-                                child: round.isDisableBackspace == true
-                                    ? Text(
-                                        "Khoảng trắng",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: size.height * 0.025,
-                                        ),
-                                      )
-                                    : const SizedBox(),
+                                padding:
+                                    EdgeInsets.only(left: size.height * 0.06),
+                                child: Text(
+                                  round.totalTime ?? '',
+                                  style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 89, 91, 118),
+                                    fontSize: size.height * 0.022,
+                                  ),
+                                ),
                               )),
                               Expanded(
                                   child: Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    size.height * 0.052,
-                                    size.height * 0.03,
-                                    size.height * 0,
-                                    size.height * 0),
-                                child: round.isHavingSpecialChar == true
-                                    ? Text(
-                                        "Ký tự đặc biệt",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: size.height * 0.025,
-                                        ),
-                                      )
-                                    : const SizedBox(),
+                                padding:
+                                    EdgeInsets.only(left: size.height * 0.1),
+                                child: Text(
+                                  round.maxAccess.toString(),
+                                  style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 89, 91, 118),
+                                    fontSize: size.height * 0.022,
+                                  ),
+                                ),
                               )),
                             ],
                           ),
@@ -298,41 +337,37 @@ class DetailRound extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Expanded(
-                                  flex: 2,
                                   child: Container(
-                                    padding: EdgeInsets.fromLTRB(
-                                        size.height * 0.05,
-                                        size.height * 0,
-                                        size.height * 0,
-                                        size.height * 0.1),
-                                    child: Text(
-                                      round.status == 0
-                                          ? 'Đang diễn ra'
-                                          : ("No"),
-                                      style: TextStyle(
-                                        color: const Color.fromARGB(
-                                            255, 89, 91, 118),
-                                        fontSize: size.height * 0.022,
-                                      ),
-                                    ),
-                                  )),
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.05,
+                                    size.height * 0,
+                                    size.height * 0,
+                                    size.height * 0.04),
+                                child: Text(
+                                  round.status == 0 ? 'Đang diễn ra' : ("No"),
+                                  style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 89, 91, 118),
+                                    fontSize: size.height * 0.022,
+                                  ),
+                                ),
+                              )),
                               Expanded(
-                                  flex: 2,
                                   child: Container(
-                                    padding: EdgeInsets.fromLTRB(
-                                        size.height * 0.1,
-                                        size.height * 0,
-                                        size.height * 0,
-                                        size.height * 0.1),
-                                    child: Text(
-                                      round.availability.toString(),
-                                      style: TextStyle(
-                                        color: const Color.fromARGB(
-                                            255, 89, 91, 118),
-                                        fontSize: size.height * 0.022,
-                                      ),
-                                    ),
-                                  )),
+                                padding: EdgeInsets.fromLTRB(
+                                    size.height * 0.1,
+                                    size.height * 0,
+                                    size.height * 0,
+                                    size.height * 0.04),
+                                child: Text(
+                                  round.availability.toString(),
+                                  style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 89, 91, 118),
+                                    fontSize: size.height * 0.022,
+                                  ),
+                                ),
+                              )),
                             ],
                           ),
                         ],

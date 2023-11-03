@@ -12,7 +12,7 @@ class OragCards extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.fromLTRB(
-        size.height * 0.25,
+        size.height * 0.22,
         size.height * 0.35,
         0,
         0,
@@ -20,7 +20,7 @@ class OragCards extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         width: size.width * 0.55,
-        height: size.height * 0.085,
+        height: size.height * 0.09,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(

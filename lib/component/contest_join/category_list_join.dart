@@ -9,7 +9,7 @@ class CategoryJoinList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryJoinList> {
   int selectedIndex = 0;
-  List categories = ['All', 'Contest', 'Highlight', 'Something news'];
+  List categories = ['All', 'Contest'];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +32,7 @@ class _CategoryListState extends State<CategoryJoinList> {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-              color: index == selectedIndex
-                  ? Colors.blue.withOpacity(0.4)
-                  : const Color.fromARGB(255, 51, 51, 51).withOpacity(0.4),
+              color: Colors.grey.withOpacity(0.5),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
