@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/image_round_detail.dart';
-import 'package:typing_contest_mobile/component/RoundDetail/orga_card.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/typing_button_widget.dart';
-import 'package:typing_contest_mobile/component/contest_join/category_list_join.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 import '../../models/round.dart';
 
