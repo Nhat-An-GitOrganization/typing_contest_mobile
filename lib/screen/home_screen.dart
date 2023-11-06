@@ -280,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const Divider(
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 228, 242, 254),
                 ),
                 SizedBox(
                   height: size.height * 0.018,

@@ -1,23 +1,19 @@
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/history/contest.dart';
 import 'package:typing_contest_mobile/component/history/list_round.dart';
+import 'package:typing_contest_mobile/component/history/rank.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 // ignore: camel_case_types
-class List_Rank extends StatefulWidget {
-  const List_Rank({super.key});
+class List_Rank extends StatelessWidget {
+  const List_Rank({
+    super.key,
+    required this.ct,
+  });
 
-  @override
-  State<List_Rank> createState() => _List_RankState();
-}
-
-// ignore: camel_case_types
-class _List_RankState extends State<List_Rank> {
-  final user = FirebaseAuth.instance.currentUser!;
-  bool isLoading = false;
+  final Contest ct;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +26,14 @@ class _List_RankState extends State<List_Rank> {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 10),
-              height: size.height * 0.27,
+              height: size.height * 0.31,
               child: Stack(
                 children: [
                   Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
                       ),
                       image: DecorationImage(
                         image: AssetImage('lib/images/history_background.jpg'),
@@ -70,7 +67,7 @@ class _List_RankState extends State<List_Rank> {
                               padding: const EdgeInsets.only(
                                   top: 40), // Điều chỉnh giá trị top tùy ý
                               child: Text(
-                                user.displayName!,
+                                ct.title,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: size.width * 0.055,
@@ -79,6 +76,43 @@ class _List_RankState extends State<List_Rank> {
                                 ),
                               ),
                             ),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                      top: size.width * 0.02,
+                                      left: size.width * 0.05),
+                                  padding:
+                                      EdgeInsets.only(top: size.width * 0.2),
+                                  child: ThongTin(
+                                      size, 'UserUserUser:', 'UserUserUser:')),
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    top: size.width * 0.02,
+                                    left: size.width * 0.012,
+                                  ),
+                                  padding:
+                                      EdgeInsets.only(top: size.width * 0.2),
+                                  child: ThongTin(size, '3224', '3')),
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    top: size.width * 0.02,
+                                    left: size.width * 0.06,
+                                  ),
+                                  padding:
+                                      EdgeInsets.only(top: size.width * 0.2),
+                                  child: ThongTin(
+                                      size, 'UserUserUser:', 'UserUserUser:')),
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    top: size.width * 0.02,
+                                    left: size.width * 0.012,
+                                  ),
+                                  padding:
+                                      EdgeInsets.only(top: size.width * 0.2),
+                                  child: ThongTin(size, '3224', '3')),
+                            ],
                           )
                         ],
                       ),
@@ -94,12 +128,9 @@ class _List_RankState extends State<List_Rank> {
                 child: Column(
                   children: [
                     for (var i = 0; i < contest.length; i++) ...[
-                      His_Contest(
+                      His_Rank(
                         itemIndex: i,
                         ct: contest[i],
-                        ontapCallback: () {
-                          RoundMethod(size, context);
-                        },
                       ),
                     ]
                   ],
@@ -113,29 +144,42 @@ class _List_RankState extends State<List_Rank> {
   }
 
   // ignore: non_constant_identifier_names
-  // ignore: non_constant_identifier_names
-  Future RoundMethod(Size size, BuildContext context) {
-    final animationController = AnimationController(
-      vsync: Navigator.of(context),
-      duration: const Duration(
-          milliseconds:
-              1000), // Chỉnh thời gian hoàn thành hiệu ứng (500 milliseconds)
-    );
-
-    return showModalBottomSheet(
-      transitionAnimationController: animationController,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      context: context,
-      builder: (BuildContext context) {
-        return SizedBox(
-          width: size.width * 0.9, // Chỉnh kích thước width của modal
-          height: size.height * 0.73, // Chỉnh kích thước height của modal
-          child: const List_History_Round(),
-        );
-      },
+  Column ThongTin(Size size, String name, String int) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(top: 20),
+          child: Text(
+            name,
+            style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0),
+              fontSize: size.width * 0.04,
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 30),
+          child: Text(
+            int,
+            style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0),
+              fontSize: size.width * 0.04,
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 30),
+          child: Text(
+            int,
+            style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0),
+              fontSize: size.width * 0.04,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
