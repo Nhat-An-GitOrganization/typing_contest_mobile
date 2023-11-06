@@ -160,7 +160,7 @@ class His_Round extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: Color.fromARGB(255, 150, 150, 150),
+            color: const Color.fromARGB(255, 150, 150, 150),
             fontSize: size.width * 0.03,
           ),
         ),

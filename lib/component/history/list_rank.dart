@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/component/history/contest.dart';
-import 'package:typing_contest_mobile/component/history/list_round.dart';
 import 'package:typing_contest_mobile/component/history/rank.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
