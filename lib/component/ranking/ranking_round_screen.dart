@@ -56,9 +56,10 @@ class RankingRoundScreen extends StatelessWidget {
                       WinnerContainer(
                         url: 'lib/images/actor_2.png',
                         winnerName: 'Alina',
-                        height: size.height * 0.16,
+                        height: size.height * 0.18,
                         rank: '2',
                         wpm: '888',
+                        speed: '888',
                         accuracy: '90%',
                         color: Colors.lightGreen,
                       ),
@@ -69,9 +70,10 @@ class RankingRoundScreen extends StatelessWidget {
                       WinnerContainer(
                         winnerName: 'Sofiya',
                         url: 'lib/images/actor_3.png',
-                        height: size.height * 0.15,
+                        height: size.height * 0.18,
                         rank: '3',
                         wpm: '777',
+                        speed: '888',
                         accuracy: '80%',
                         color: Colors.pink,
                       ),
@@ -106,6 +108,7 @@ class RankingRoundScreen extends StatelessWidget {
                             name: 'Shona',
                             wpm: '1145',
                             accuracy: '65%',
+                            speed: '1145',
                             rank: '4',
                           ),
                           ContestantList(
@@ -113,12 +116,14 @@ class RankingRoundScreen extends StatelessWidget {
                             name: 'Emily',
                             accuracy: '60%',
                             wpm: '1245',
+                            speed: '1145',
                             rank: '5',
                           ),
                           ContestantList(
                             url: 'lib/images/actor_3.png',
                             name: 'Josheph',
                             accuracy: '60%',
+                            speed: '1145',
                             wpm: '2153',
                             rank: '6',
                           ),
@@ -127,6 +132,7 @@ class RankingRoundScreen extends StatelessWidget {
                             accuracy: '55%',
                             wpm: '3456',
                             name: 'Kristine',
+                            speed: '1145',
                             rank: '7',
                           ),
                           ContestantList(),
@@ -153,6 +159,7 @@ class WinnerContainer extends StatelessWidget {
   final String? rank;
   final String? accuracy;
   final String? wpm;
+  final String? speed;
   final double? height;
   const WinnerContainer(
       {Key? key,
@@ -163,6 +170,7 @@ class WinnerContainer extends StatelessWidget {
       this.winnerPosition,
       this.winnerName,
       this.rank,
+      this.speed,
       this.height,
       this.url})
       : super(key: key);
@@ -256,7 +264,7 @@ class WinnerContainer extends StatelessWidget {
                   ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: size.height * 0.06, left: size.height * 0.02),
+                      top: size.width * 0.12, left: size.width * 0.04),
                   child: ClipOval(
                     clipBehavior: Clip.antiAlias,
                     child: Container(
@@ -308,7 +316,7 @@ class WinnerContainer extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: size.height * 0.145, left: size.height * 0.055),
+                      top: size.width * 0.28, left: size.width * 0.11),
                   child: Container(
                     height: size.height * 0.025,
                     width: size.height * 0.025,
@@ -327,9 +335,9 @@ class WinnerContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: size.height * 0.17,
+            top: size.width * 0.34,
             child: SizedBox(
-              width: size.height * 0.14,
+              width: size.width * 0.27,
               child: Center(
                 child: Column(
                   children: [
@@ -359,6 +367,15 @@ class WinnerContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Text(
+                      speed ?? '999',
+                      style: TextStyle(
+                        color: color ?? Colors.blue,
+                        fontSize: size.width * 0.05,
+                        fontFamily: 'BeVietnamPro',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -375,9 +392,16 @@ class ContestantList extends StatelessWidget {
   final String? name;
   final String? wpm;
   final String? accuracy;
+  final String? speed;
   final String? rank;
   const ContestantList(
-      {Key? key, this.url, this.name, this.wpm, this.accuracy, this.rank})
+      {Key? key,
+      this.url,
+      this.name,
+      this.wpm,
+      this.accuracy,
+      this.speed,
+      this.rank})
       : super(key: key);
 
   @override
@@ -451,6 +475,10 @@ class ContestantList extends StatelessWidget {
                       ),
                       Text(
                         wpm ?? '555',
+                        style: const TextStyle(color: Colors.blue),
+                      ),
+                      Text(
+                        speed ?? '555',
                         style: const TextStyle(color: Colors.blue),
                       ),
                     ],
