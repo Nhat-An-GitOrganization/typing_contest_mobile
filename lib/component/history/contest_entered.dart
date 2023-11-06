@@ -28,7 +28,7 @@ class _ContestEnteredState extends State<ContestEntered> {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 10),
-              height: size.height * 0.27,
+              height: size.height * 0.3,
               child: Stack(
                 children: [
                   Container(
@@ -114,6 +114,16 @@ class _ContestEnteredState extends State<ContestEntered> {
                     ],
                   ),
                 ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.09),
+                child: Text(
+                  'Contest',
+                  style: TextStyle(fontSize: size.height * 0.03),
+                ),
               ),
             ),
             SizedBox(height: size.height * 0.01),

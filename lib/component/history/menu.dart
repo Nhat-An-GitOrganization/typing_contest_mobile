@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/history/list_rank.dart';
 import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
+import 'package:typing_contest_mobile/models/contest.dart';
 
 class MenuItems extends StatelessWidget {
-  const MenuItems({super.key});
+  const MenuItems({
+    super.key,
+    required this.ct,
+  });
+  final Contest ct;
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -28,12 +34,15 @@ class MenuItems extends StatelessWidget {
             break;
           case 'item2':
             // Xử lý khi chọn menu item 2
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const List_Rank()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => List_Rank(ct: ct),
+              ),
+            );
             break;
         }
       },
-      child: const Icon(Icons.more_vert),
     );
   }
 }

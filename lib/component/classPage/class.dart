@@ -21,7 +21,7 @@ class Class extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: size.width * 0.02,
+        horizontal: size.width * 0.01,
         vertical: size.width * 0.03,
       ),
       height: size.height * 0.25,
