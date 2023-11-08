@@ -13,14 +13,15 @@ class MenuItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      icon: const Icon(Icons.menu),
       itemBuilder: (context) => [
         const PopupMenuItem(
           value: 'item1',
-          child: Text('Item 1'),
+          child: Text('Bảng xếp hạng'),
         ),
         const PopupMenuItem(
           value: 'item2',
-          child: Text('Item 2'),
+          child: Text('Kết quả thi'),
         ),
       ],
       onSelected: (value) {

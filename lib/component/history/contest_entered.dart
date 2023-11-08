@@ -28,7 +28,7 @@ class _ContestEnteredState extends State<ContestEntered> {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 10),
-              height: size.height * 0.3,
+              height: size.height * 0.33,
               child: Stack(
                 children: [
                   Container(
@@ -66,7 +66,7 @@ class _ContestEnteredState extends State<ContestEntered> {
                             alignment: Alignment.center,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 40), // Điều chỉnh giá trị top tùy ý
+                                  top: 50), // Điều chỉnh giá trị top tùy ý
                               child: Text(
                                 user.displayName!,
                                 textAlign: TextAlign.center,
@@ -80,7 +80,7 @@ class _ContestEnteredState extends State<ContestEntered> {
                           )
                         ],
                       ),
-                      SizedBox(height: size.height * 0.02),
+                      SizedBox(height: size.height * 0.04),
                       Center(
                         child: Column(
                           children: [

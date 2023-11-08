@@ -24,17 +24,17 @@ class List_Rank extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 10),
-              height: size.height * 0.31,
+              height: size.height * 0.35,
               child: Stack(
                 children: [
                   Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                       ),
                       image: DecorationImage(
-                        image: AssetImage('lib/images/history_background.jpg'),
+                        image: AssetImage(ct.image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -46,7 +46,7 @@ class List_Rank extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: isDarkMode
                               ? Colors.black.withOpacity(0.3)
-                              : Colors.white.withOpacity(0.6),
+                              : Colors.white.withOpacity(0.3),
                         ),
                       ),
                     ),
@@ -152,27 +152,27 @@ class List_Rank extends StatelessWidget {
           child: Text(
             name,
             style: TextStyle(
-              color: const Color.fromARGB(255, 0, 0, 0),
+              //color: const Color.fromARGB(255, 0, 0, 0),
               fontSize: size.width * 0.04,
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 35),
           child: Text(
             int,
             style: TextStyle(
-              color: const Color.fromARGB(255, 0, 0, 0),
+              //color: const Color.fromARGB(255, 0, 0, 0),
               fontSize: size.width * 0.04,
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 35),
           child: Text(
             int,
             style: TextStyle(
-              color: const Color.fromARGB(255, 0, 0, 0),
+              //color: const Color.fromARGB(255, 0, 0, 0),
               fontSize: size.width * 0.04,
             ),
           ),
