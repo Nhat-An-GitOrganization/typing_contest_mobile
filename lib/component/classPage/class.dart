@@ -57,7 +57,7 @@ class Class extends StatelessWidget {
               ),
               child: ClipRect(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                  filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(

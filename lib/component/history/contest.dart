@@ -17,6 +17,7 @@ class His_Contest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       decoration: BoxDecoration(
@@ -30,8 +31,9 @@ class His_Contest extends StatelessWidget {
       child: InkWell(
         onTap: ontapCallback,
         child: Container(
-          color: const Color.fromARGB(255, 216, 237, 255),
-          // Mà
+          color: isDarkMode
+              ? const Color.fromARGB(255, 111, 111, 111)
+              : const Color.fromARGB(255, 216, 237, 255),
           child: Stack(
             children: [
               Positioned(
@@ -90,14 +92,18 @@ class His_Contest extends StatelessWidget {
                           Text(
                             'Vòng 5/6',
                             style: TextStyle(
-                              color: const Color.fromARGB(255, 58, 69, 75),
+                              color: isDarkMode
+                                  ? const Color.fromARGB(255, 255, 255, 255)
+                                  : const Color.fromARGB(255, 58, 69, 75),
                               fontSize: size.width * 0.036,
                             ),
                           ),
                           Text(
                             'Rank: 999999',
                             style: TextStyle(
-                              color: const Color.fromARGB(255, 58, 69, 75),
+                              color: isDarkMode
+                                  ? const Color.fromARGB(255, 255, 255, 255)
+                                  : const Color.fromARGB(255, 58, 69, 75),
                               fontSize: size.width * 0.032,
                             ),
                           ),

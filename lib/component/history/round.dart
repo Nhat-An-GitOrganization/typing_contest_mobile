@@ -112,7 +112,7 @@ class His_Round extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.only(
-                  left: size.width * 0.8,
+                  left: size.width * 0.75,
                   top: size.width * 0.04,
                 ),
                 child: MenuItems(
