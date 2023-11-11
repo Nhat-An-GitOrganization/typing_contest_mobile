@@ -82,22 +82,18 @@ class His_Round extends StatelessWidget {
                           children: [
                             Container(
                               padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.01,
+                                horizontal: size.width * 0.04,
                                 vertical: size.height * 0.045,
                               ),
-                              child: ThongTin(size, Icons.person, '200000'),
+                              child: ThongTin(size, Icons.person_add_alt,
+                                  '200000', context),
                             ),
                             Container(
                               padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.045,
+                                horizontal: size.width * 0.015,
                               ),
-                              child: ThongTin(size, Icons.person, '3'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.045,
-                              ),
-                              child: ThongTin(size, Icons.person, '2'),
+                              child: ThongTin(size, Icons.lock_outlined,
+                                  'Không giới hạn', context),
                             ),
                           ],
                         ),
@@ -149,7 +145,9 @@ class His_Round extends StatelessWidget {
   }
 
   // ignore: non_constant_identifier_names
-  Column ThongTin(Size size, IconData iconData, String text) {
+  Column ThongTin(
+      Size size, IconData iconData, String text, BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -160,7 +158,9 @@ class His_Round extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: const Color.fromARGB(255, 150, 150, 150),
+            color: isDarkMode
+                ? const Color.fromARGB(255, 176, 176, 176)
+                : const Color.fromARGB(255, 105, 105, 105),
             fontSize: size.width * 0.03,
           ),
         ),

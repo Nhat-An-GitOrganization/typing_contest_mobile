@@ -23,32 +23,18 @@ class _UserInforState extends State<UserInfor> {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 1,
           leading: BackButton(color: isDarkMode ? Colors.white : Colors.blue),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.settings),
-              color: Colors.blue,
-              onPressed: () {},
-            ),
-          ],
         ),
         body: Container(
-          padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
+          padding: const EdgeInsets.only(left: 16, top: 45, right: 16),
           child: ListView(
             children: [
-              Text(
-                'My Profile',
-                style: TextStyle(
-                  fontSize: size.height * 0.032,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
               SizedBox(height: size.height * 0.02),
               Center(
                 child: Stack(
                   children: [
                     Container(
-                      width: size.width * (130 / size.width),
-                      height: size.height * (130 / size.height),
+                      width: size.width * (150 / size.width),
+                      height: size.height * (150 / size.height),
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: size.width * (4 / size.width),
