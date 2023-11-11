@@ -51,6 +51,7 @@ dependencies:
   http: ^1.1.0
   popover: ^0.2.8+2
   confetti: ^0.6.0
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:
