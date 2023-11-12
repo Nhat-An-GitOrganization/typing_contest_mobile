@@ -17,6 +17,7 @@ class ProfileMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ListTile(
       onTap: onPress,
       leading: Container(
@@ -42,10 +43,12 @@ class ProfileMenu extends StatelessWidget {
               height: size.height * 0.04,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey.withOpacity(0.1)),
+                  color: isDarkMode
+                      ? const Color.fromARGB(255, 46, 55, 67)
+                      : const Color.fromARGB(255, 232, 245, 255)),
               child: Icon(
                 Icons.chevron_right,
-                color: Colors.grey,
+                color: const Color.fromARGB(255, 26, 115, 232),
                 size: size.height * 0.02,
               ),
             )

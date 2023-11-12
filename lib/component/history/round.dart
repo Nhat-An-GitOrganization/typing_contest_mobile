@@ -16,13 +16,14 @@ class His_Round extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: size.width * 0.02,
         vertical: size.width * 0.025,
       ),
-      height: size.height * 0.19,
+      height: size.height * 0.18,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -30,7 +31,9 @@ class His_Round extends StatelessWidget {
             height: size.height * 0.27,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
-              color: const Color.fromARGB(255, 216, 237, 255),
+              color: isDarkMode
+                  ? const Color.fromARGB(255, 76, 76, 76)
+                  : const Color.fromARGB(255, 216, 237, 255),
             ),
           ),
           Positioned(
@@ -38,11 +41,11 @@ class His_Round extends StatelessWidget {
             left: 0,
             bottom: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
               height: size.height * 0.4,
-              width: size.width * 0.3,
+              width: size.width * 0.28,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(22),
+                borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
                   ct.image,
                   fit: BoxFit.cover,
@@ -51,11 +54,11 @@ class His_Round extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: size.width * 0.33,
-            top: size.width * 0.03,
+            left: size.width * 0.27,
+            top: size.width * 0.035,
             child: SizedBox(
               height: size.height * 0.18,
-              width: size.width - 150,
+              width: size.width,
               child: Row(
                 children: [
                   Expanded(
@@ -78,21 +81,22 @@ class His_Round extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.01,
-                                    vertical: size.height * 0.05),
-                                child: ThongTin(size, 'User', '200000')),
-                            Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.015),
-                                child: ThongTin(size, 'User', '3')),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.04,
+                                vertical: size.height * 0.045,
+                              ),
+                              child: ThongTin(size, Icons.person_add_alt,
+                                  '200000', context),
+                            ),
                             Container(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.015),
-                              child: ThongTin(size, 'User', '2'),
+                                horizontal: size.width * 0.015,
+                              ),
+                              child: ThongTin(size, Icons.lock_outlined,
+                                  'Không giới hạn', context),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -104,14 +108,16 @@ class His_Round extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.only(
-                  left: size.width * 0.8,
-                  top: size.width * 0.05,
+                  left: size.width * 0.75,
+                  top: size.width * 0.04,
                 ),
-                child: const MenuItems(),
+                child: MenuItems(
+                  ct: ct,
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(
-                    left: size.width * 0.7, top: size.width * 0.04),
+                    left: size.width * 0.7, top: size.width * 0.01),
                 child: Column(
                   children: [
                     Text(
@@ -139,22 +145,22 @@ class His_Round extends StatelessWidget {
   }
 
   // ignore: non_constant_identifier_names
-  Column ThongTin(Size size, String name, String int) {
+  Column ThongTin(
+      Size size, IconData iconData, String text, BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          name,
-          style: TextStyle(
-            color: const Color.fromARGB(255, 40, 40, 40),
-            fontSize: size.width * 0.035,
-          ),
+        Icon(
+          iconData,
         ),
         Text(
-          int,
+          text,
           style: TextStyle(
-            color: const Color.fromARGB(255, 58, 69, 75),
+            color: isDarkMode
+                ? const Color.fromARGB(255, 176, 176, 176)
+                : const Color.fromARGB(255, 105, 105, 105),
             fontSize: size.width * 0.03,
           ),
         ),

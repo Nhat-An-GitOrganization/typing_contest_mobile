@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.2,
+                  height: size.height * 0.16,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        height: size.height * 0.10,
+                        height: size.height * 0.08,
                       ),
                     ],
                   ),

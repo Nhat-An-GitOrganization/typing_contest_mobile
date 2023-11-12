@@ -8,6 +8,7 @@ class DetailsPageContest extends StatelessWidget {
   final Contest contest;
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     // it width provide us total height and width
     Size size = MediaQuery.of(context).size;
     return Column(
@@ -33,7 +34,7 @@ class DetailsPageContest extends StatelessWidget {
             contest.description,
             style: TextStyle(
               fontSize: size.height * (16 / size.height),
-              color: const Color.fromARGB(255, 89, 91, 118),
+              color: isDarkMode ? const Color.fromARGB(255, 209, 209, 214) :  const Color.fromARGB(255, 89, 91, 118),              
             ),
           ),
         ),

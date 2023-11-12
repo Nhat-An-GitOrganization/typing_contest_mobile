@@ -13,6 +13,7 @@ class TitleDetailsContest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.all(size.width * 0.042),
@@ -33,8 +34,8 @@ class TitleDetailsContest extends StatelessWidget {
                   children: [
                     Text(
                       '${contest.dateStart} - ${contest.dateEnd}',
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 89, 91, 118)),
+                      style: TextStyle(
+                          color: isDarkMode ? const Color.fromARGB(255, 209, 209, 214) : const Color.fromARGB(255, 89, 91, 118),),
                     ),
                   ],
                 ),
