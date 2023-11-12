@@ -7,29 +7,67 @@ import 'package:typing_contest_mobile/component/RoundDetail/typing_button_widget
 import 'package:typing_contest_mobile/models/contest.dart';
 import '../../models/round.dart';
 
-Future<RoundContest> fetchData(String id) async {
-  try {
-    var url = Uri.parse("https://66.42.55.38:4001/api/Rounds/$id");
-    var httpClient = HttpClient();
-    httpClient.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    var request = await httpClient.getUrl(url);
-    var response = await request.close();
-    if (response.statusCode == HttpStatus.ok) {
-      var jsonData = await response.transform(utf8.decoder).join();
-      var decodedData = jsonDecode(jsonData);
-      if (decodedData is Map<String, dynamic>) {
-        final Map<String, dynamic> data = json.decode(jsonData);
-        return RoundContest.fromJson(data);
-      } else {
-        throw Exception('Error: Invalid data format1');
-      }
-    } else {
-      throw Exception('Error: ${response.statusCode}');
-    }
-  } catch (e) {
-    throw Exception('Error: $e');
-  }
+// Future<RoundContest> fetchData(String id) async {
+//   try {
+//     var url = Uri.parse("https://66.42.55.38:4001/api/Rounds/$id");
+//     var httpClient = HttpClient();
+//     httpClient.badCertificateCallback =
+//         (X509Certificate cert, String host, int port) => true;
+//     var request = await httpClient.getUrl(url);
+//     var response = await request.close();
+//     if (response.statusCode == HttpStatus.ok) {
+//       var jsonData = await response.transform(utf8.decoder).join();
+//       var decodedData = jsonDecode(jsonData);
+//       if (decodedData is Map<String, dynamic>) {
+//         final Map<String, dynamic> data = json.decode(jsonData);
+//         return RoundContest.fromJson(data);
+//       } else {
+//         throw Exception('Error: Invalid data format1');
+//       }
+//     } else {
+//       throw Exception('Error: ${response.statusCode}');
+//     }
+//   } catch (e) {
+//     throw Exception('Error: $e');
+//   }
+// }
+
+Future<RoundContest> fetchMockData(String id) async {
+  await Future.delayed(const Duration(
+      seconds: 2)); // Simulating a delay as if fetching from an API
+
+  Map<String, dynamic> mockData = {
+    'id': '123',
+    'idContest': '456',
+    'name': 'Mock Round',
+    'nameContest': 'Mock Contest',
+    'description':
+        'This is a mock description This is a mock description This is a mock description This is a mock description This is a mock description This is a mock description  ',
+    'imageUrl':
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fnhatrangclub.vn%2Fthreads%2Fhinh-nen-anh-dep-thien-nhien.1045190%2F&psig=AOvVaw2YfnVBFZGx_iKoC5C6qpT4&ust=1699778754900000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMCN58XHu4IDFQAAAAAdAAAAABAE',
+    'timeLimit': 60,
+    'maxAccess': 100,
+    'availability': 50,
+    'isDisableBackspace': false,
+    'isHavingSpecialChar': true,
+    'totalTime': '2 hours',
+    'startTime': '2023-11-11 09:00:00',
+    'startTimeContest': '2023-11-10 10:00:00',
+    'endTime': '2023-11-11 11:00:00',
+    'endTimeContest': '2023-11-12 12:00:00',
+    'createdDate': '2023-11-10 08:00:00',
+    'createdBy': 'Admin',
+    'modifiedDate': '2023-11-10 12:00:00',
+    'modifiedBy': 'Editor',
+    'deletedDate': '2023-11-12 15:00:00',
+    'deletedBy': 'Supervisor',
+    'status': 1,
+    'isFinal': true,
+  };
+
+  RoundContest mockRound = RoundContest.fromJson(mockData);
+
+  return mockRound;
 }
 
 class DetailRound extends StatelessWidget {
@@ -43,7 +81,7 @@ class DetailRound extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: FutureBuilder<RoundContest>(
-        future: fetchData(id),
+        future: fetchMockData(id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
