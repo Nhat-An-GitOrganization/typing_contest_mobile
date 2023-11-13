@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/image_round_detail.dart';
@@ -49,7 +47,7 @@ Future<RoundContest> fetchMockData(String id) async {
     'maxAccess': 100,
     'availability': 50,
     'isDisableBackspace': false,
-    'isHavingSpecialChar': true,
+    'isHavingSpecialChar': false,
     'totalTime': '2 hours',
     'startTime': '2023-11-11 09:00:00',
     'startTimeContest': '2023-11-10 10:00:00',
@@ -175,7 +173,7 @@ class DetailRound extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Details',
+                            'Chi tiết',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(width: size.width * 0.02),
@@ -359,7 +357,7 @@ class DetailRound extends StatelessWidget {
                                     size.height * 0,
                                     size.height * 0),
                                 child: Text(
-                                  "availability",
+                                  "Khả dụng",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: size.height * 0.025,
@@ -379,7 +377,9 @@ class DetailRound extends StatelessWidget {
                                     size.height * 0,
                                     size.height * 0.04),
                                 child: Text(
-                                  round.status == 0 ? 'Đang diễn ra' : ("No"),
+                                  round.status == 0
+                                      ? 'Đang diễn ra'
+                                      : ("Không hoạt động"),
                                   style: TextStyle(
                                     color:
                                         const Color.fromARGB(255, 89, 91, 118),
