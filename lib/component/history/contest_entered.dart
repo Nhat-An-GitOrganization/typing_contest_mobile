@@ -121,7 +121,7 @@ class _ContestEnteredState extends State<ContestEntered> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.09),
                 child: Text(
-                  'Contest',
+                  'Cuộc thi',
                   style: TextStyle(fontSize: size.height * 0.03),
                 ),
               ),

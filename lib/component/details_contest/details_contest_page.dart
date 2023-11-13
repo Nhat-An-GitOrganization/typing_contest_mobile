@@ -24,7 +24,7 @@ class DetailsPageContest extends StatelessWidget {
             horizontal: size.width * 0.047,
           ),
           child: Text(
-            'Details',
+            'Chi Tiết',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),

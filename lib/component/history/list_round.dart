@@ -26,7 +26,7 @@ class _ContestEnteredState extends State<List_History_Round> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.09),
               child: Text(
-                'Round',
+                'Vòng thi',
                 style: TextStyle(fontSize: size.height * 0.03),
               ),
             ),
