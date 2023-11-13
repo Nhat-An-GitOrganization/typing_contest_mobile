@@ -116,7 +116,7 @@ class Class extends StatelessWidget {
                         top: size.height * 0.02,
                         bottom: size.height * 0.01),
                     child: Text(
-                      'Name',
+                      'Tên Lớp',
                       style: TextStyle(fontSize: size.width * 0.04),
                     ),
                   ),
@@ -124,7 +124,7 @@ class Class extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: size.width * 0.06, top: size.height * 0.06),
                     child: Text(
-                      'Create date: ${ct.dateStart}',
+                      'Ngày Tạo: ${ct.dateStart}',
                       style: TextStyle(
                         fontSize: size.width * 0.036,
                       ),

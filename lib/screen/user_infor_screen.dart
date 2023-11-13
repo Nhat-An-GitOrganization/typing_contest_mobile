@@ -79,7 +79,7 @@ class _UserInforState extends State<UserInfor> {
                 ),
               ),
               SizedBox(height: size.height * 0.08),
-              texfieldMethod('Full Name', size, user.displayName!, isDarkMode),
+              texfieldMethod('Họ Tên', size, user.displayName!, isDarkMode),
               texfieldMethod('E-mail', size, user.email!, isDarkMode),
             ],
           ),

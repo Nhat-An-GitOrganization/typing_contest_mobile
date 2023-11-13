@@ -99,11 +99,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   if (showProfile) ProFileMethod(user, size, context),
                   if (showHistory) ...[
-                    buildAppbar("Class"),
+                    buildAppbar("Lớp học"),
                     ClassMethod(size, context),
                   ],
                   if (showHomePage) ...[
-                    buildAppbar("Contest"),
+                    buildAppbar("Cuộc thi"),
                     const SearchBox(),
                     HomeMethod(size),
                   ],
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
               child: Text(
-                'Contest List',
+                'Cuộc thi',
                 style: TextStyle(
                     fontSize: size.height * 0.025, fontWeight: FontWeight.w600),
               ),
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: size.height * 0.035),
             Text(
-              'Profile',
+              'Thông tin cá nhân',
               style: TextStyle(fontSize: size.height * 0.029),
             ),
             SizedBox(height: size.height * 0.05),
@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (_) => const UserInfor()));
                   },
-                  title: 'My Profile',
+                  title: 'Thông tin cá nhân',
                 ),
                 SizedBox(height: size.height * 0.02),
                 ProfileMenu(
@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                             builder: (_) => const ContestEntered()));
                   },
-                  title: 'History',
+                  title: 'Lịch Sử',
                 ),
                 SizedBox(height: size.height * 0.02),
                 ListTile(
@@ -259,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   title: Text(
-                    'Dark Mode',
+                    'Chế độ tối',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: size.height * 0.017),
@@ -286,7 +286,7 @@ class _HomePageState extends State<HomePage> {
                   height: size.height * 0.018,
                 ),
                 ProfileMenu(
-                  title: 'Logout',
+                  title: 'Đăng xuất',
                   icon: Icons.logout,
                   onPress: () async {
                     await logout();
