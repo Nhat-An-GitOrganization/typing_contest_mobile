@@ -27,7 +27,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                 padding: EdgeInsets.fromLTRB(size.height * 0.01,
                     size.height * 0.03, size.height * 0.01, size.height * 0.01),
                 child: Text(
-                  'Teacher',
+                  'Giáo viên',
                   style: TextStyle(
                     fontSize: size.height * 0.03,
                     fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                 style: TextStyle(fontSize: size.height * 0.022),
               ),
               subtitle: Text(
-                'Name: ${students[1].id ?? ''}',
+                'Tên: ${students[1].id ?? ''}',
                 style: TextStyle(
                   fontSize: size.height * 0.02,
                 ),
@@ -77,7 +77,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Classmates',
+                          'Lớp học',
                           style: TextStyle(
                             fontSize: size.height * 0.03,
                             fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                           ),
                         ),
                         Text(
-                          '${students.length} student',
+                          '${students.length} Sinh viên',
                           style: TextStyle(
                             fontSize: size.height * 0.023,
                             color: Colors.blueAccent,
@@ -144,7 +144,7 @@ class _StudentListScreenState extends State<StudentOfClass> {
                                 ),
                               ),
                               subtitle: Text(
-                                  'School: ${students[index].trainingFacility ?? ''}',
+                                  'Trường: ${students[index].trainingFacility ?? ''}',
                                   style: TextStyle(
                                     fontSize: size.height * 0.017,
                                   )),

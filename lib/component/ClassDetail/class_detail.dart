@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/component/student_class/student.dart';
 
 class ClassDetail extends StatelessWidget {
   const ClassDetail({Key? key}) : super(key: key);
@@ -41,7 +42,12 @@ class ClassDetail extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Xử lý sự kiện khi biểu tượng avatar được nhấn
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const StudentOfClass(),
+                          ),
+                        );
                       },
                       child: const Text('Sinh viên'),
                     ),
