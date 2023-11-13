@@ -60,7 +60,7 @@ buildTypes
             signingConfig signingConfigs.debug
             applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "typing_contest.apk"
+                    outputFileName = "fplsp_typing.apk"
                 }
             }
         }

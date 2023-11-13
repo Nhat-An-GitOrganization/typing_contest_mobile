@@ -26,7 +26,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   ScrollController _scrollController = ScrollController();
   int tempLength = 0;
   late String initialText;
-  bool isBackspace = false;
+  bool isBackspace = true;
 
   @override
   void initState() {
@@ -241,7 +241,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                 ),
               ),
               Opacity(
-                opacity: 1.0,
+                opacity: 0.0,
                 child: TextFormField(
                   controller: textEditingController,
                   onChanged: (input) {
@@ -302,8 +302,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                   style: const TextStyle(fontSize: 18),
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Start typing here...',
-                    hintStyle: TextStyle(color: Colors.grey),
                   ),
                 ),
               ),
@@ -316,5 +314,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  "The sun was setting on the horizon, casting a warm golden glow across the peaceful meadows. I pondered the mysteries of the",
+  "Dĩ nhiên, tôi có thể viết một đoạn văn tiếng Việt cho bạn.",
 ];
