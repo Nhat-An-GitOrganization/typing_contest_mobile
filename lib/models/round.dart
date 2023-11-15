@@ -1,3 +1,5 @@
+import 'package:typing_contest_mobile/component/Round/round.dart';
+
 class RoundContest {
   String? id;
   String? idContest;
@@ -26,29 +28,29 @@ class RoundContest {
 
   RoundContest(
       {this.id,
-        this.idContest,
-        this.name,
-        this.nameContest,
-        this.description,
-        this.imageUrl,
-        this.timeLimit,
-        this.maxAccess,
-        this.availability,
-        this.isDisableBackspace,
-        this.isHavingSpecialChar,
-        this.totalTime,
-        this.startTime,
-        this.startTimeContest,
-        this.endTime,
-        this.endTimeContest,
-        this.createdDate,
-        this.createdBy,
-        this.modifiedDate,
-        this.modifiedBy,
-        this.deletedDate,
-        this.deletedBy,
-        this.status,
-        this.isFinal});
+      this.idContest,
+      this.name,
+      this.nameContest,
+      this.description,
+      this.imageUrl,
+      this.timeLimit,
+      this.maxAccess,
+      this.availability,
+      this.isDisableBackspace,
+      this.isHavingSpecialChar,
+      this.totalTime,
+      this.startTime,
+      this.startTimeContest,
+      this.endTime,
+      this.endTimeContest,
+      this.createdDate,
+      this.createdBy,
+      this.modifiedDate,
+      this.modifiedBy,
+      this.deletedDate,
+      this.deletedBy,
+      this.status,
+      this.isFinal});
 
   RoundContest.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -80,7 +82,7 @@ class RoundContest {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['idContest'] =idContest;
+    data['idContest'] = idContest;
     data['name'] = name;
     data['nameContest'] = nameContest;
     data['description'] = description;
@@ -106,3 +108,46 @@ class RoundContest {
     return data;
   }
 }
+
+List<RoundContest> Rounds = [
+  RoundContest(
+    id: '1',
+    imageUrl: 'lib/images/round.png',
+    name: 'Bài thi test 1',
+    startTime: '2023-10-11',
+    endTime: '2023-10-12',
+    totalTime: '23h 24m 30s',
+  ),
+  RoundContest(
+    id: '2',
+    imageUrl: 'lib/images/round.png',
+    name: 'Bài thi test 2',
+    startTime: '2023-10-11',
+    endTime: '2023-10-12',
+    totalTime: '23h 24m 30s',
+  ),
+  RoundContest(
+    id: '3',
+    imageUrl: 'lib/images/round.png',
+    name: 'Bài thi test 3',
+    startTime: '2023-10-11',
+    endTime: '2023-10-12',
+    totalTime: '23h 24m 30s',
+  ),
+  RoundContest(
+    id: '4',
+    imageUrl: 'lib/images/round.png',
+    name: 'Bài thi test 4',
+    startTime: '2023-10-11',
+    endTime: '2023-10-12',
+    totalTime: '23h 24m 30s',
+  ),
+  RoundContest(
+    id: '5',
+    imageUrl: 'lib/images/round.png',
+    name: 'Bài thi test 5',
+    startTime: '2023-10-11',
+    endTime: '2023-10-12',
+    totalTime: '23h 24m 30s',
+  ),
+];
