@@ -1,5 +1,3 @@
-import 'package:typing_contest_mobile/component/Round/round.dart';
-
 class RoundContest {
   String? id;
   String? idContest;
@@ -109,6 +107,7 @@ class RoundContest {
   }
 }
 
+// ignore: non_constant_identifier_names
 List<RoundContest> Rounds = [
   RoundContest(
     id: '1',
