@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/ranking/ranking_finish.dart';
 import 'dart:async';
 
-import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
-
 class TypingSpeedTestGame extends StatefulWidget {
   const TypingSpeedTestGame({super.key});
 
@@ -27,7 +25,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   ScrollController _scrollController = ScrollController();
   int tempLength = 0;
   late String initialText;
-  bool isBackspace = true;
+  bool isBackspace = false;
 
   @override
   void initState() {
