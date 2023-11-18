@@ -8,9 +8,13 @@ class ClassDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: isDarkMode
+            ? const Color.fromARGB(255, 58, 69, 75)
+            : const Color.fromARGB(255, 255, 255, 255),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -18,9 +22,11 @@ class ClassDetail extends StatelessWidget {
           backgroundColor: Colors.blue,
           elevation: 0.0,
           leading: IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
-              color: Colors.white,
+              color: isDarkMode
+                  ? const Color.fromARGB(255, 58, 69, 75)
+                  : const Color.fromARGB(255, 255, 255, 255),
             ),
             onPressed: () {
               Navigator.pop(context);
@@ -31,7 +37,9 @@ class ClassDetail extends StatelessWidget {
             style: TextStyle(
               fontSize: size.height * 0.03,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: isDarkMode
+                  ? const Color.fromARGB(255, 58, 69, 75)
+                  : const Color.fromARGB(255, 255, 255, 255),
             ),
           ),
         ),
@@ -57,7 +65,9 @@ class ClassDetail extends StatelessWidget {
                             Text(
                               'NET101',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: isDarkMode
+                                    ? const Color.fromARGB(255, 58, 69, 75)
+                                    : const Color.fromARGB(255, 255, 255, 255),
                                 fontSize: size.width * 0.05,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -65,7 +75,9 @@ class ClassDetail extends StatelessWidget {
                             Text(
                               'Phạm Gia Khánh',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: isDarkMode
+                                    ? const Color.fromARGB(255, 58, 69, 75)
+                                    : const Color.fromARGB(255, 255, 255, 255),
                                 fontSize: size.width * 0.05,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -73,7 +85,9 @@ class ClassDetail extends StatelessWidget {
                             Text(
                               'Mô tả: Đây là lớp học vui nhộn',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: isDarkMode
+                                    ? const Color.fromARGB(255, 58, 69, 75)
+                                    : const Color.fromARGB(255, 255, 255, 255),
                                 fontSize: size.width * 0.05,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -95,8 +109,10 @@ class ClassDetail extends StatelessWidget {
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors
-                                    .white), // Màu nền khi trạng thái bình thường
+                              isDarkMode
+                                  ? const Color.fromARGB(255, 58, 69, 75)
+                                  : const Color.fromARGB(255, 255, 255, 255),
+                            ), // Màu nền khi trạng thái bình thường
                             foregroundColor: MaterialStateProperty.all<Color>(
                                 Colors
                                     .blue), // Màu chữ khi trạng thái bình thường

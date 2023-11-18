@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/component/ranking/ranking_finish.dart';
 import 'dart:async';
 
 import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
@@ -99,8 +100,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           'WPM: $wpm \n Mistakes: $mistakes  \n Accuracy: ${accuracy.toStringAsFixed(2)}% \n Full time: $totalTime s / $maxTime s',
       btnOkOnPress: () {
         // resetGame();
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (_) => const RankingRoundScreen()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => const RankingFinish()));
       },
       btnOkText: 'Done',
       dismissOnTouchOutside: false,
@@ -288,7 +289,8 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
                       }
                     });
 
-                    if (textEditingController.text.length < typedText.length && isBackspace) {
+                    if (textEditingController.text.length < typedText.length &&
+                        isBackspace) {
                       textEditingController.text = typedText;
                     } else {
                       setState(() {
