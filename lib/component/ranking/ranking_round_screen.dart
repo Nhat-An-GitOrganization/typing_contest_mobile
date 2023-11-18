@@ -1,146 +1,327 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:typing_contest_mobile/screen/home_screen.dart';
 
-class RankingRoundScreen extends StatelessWidget {
-  const RankingRoundScreen({super.key});
+class RankingRoundScreen extends StatefulWidget {
+  const RankingRoundScreen({Key? key}) : super(key: key);
 
+  @override
+  // ignore: library_private_types_in_public_api
+  _RankingRoundScreenState createState() => _RankingRoundScreenState();
+}
+
+class _RankingRoundScreenState extends State<RankingRoundScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: isDarkMode
+            ? const Color.fromARGB(255, 58, 69, 75)
+            : const Color.fromARGB(255, 255, 255, 255),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.blue,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(30), // Đặt chiều cao tùy ý
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.blue,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
           ),
         ),
         body: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.all(size.height * 0.008),
+            padding: EdgeInsets.all(size.height * 0.00),
             child: Column(
               children: [
                 Text(
-                  'BẢNG XẾP HẠNG VÒNG THI',
+                  'BẢNG XẾP HẠNG',
                   style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: size.width * 0.07,
+                      color: Colors.lightBlue,
+                      fontSize: size.width * 0.065,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'BeVietnamPro'),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      gradient: const LinearGradient(
-                          colors: [Colors.blue, Colors.blue, Colors.blue])),
+                Text(
+                  'VÒNG THI TYPING BEE - VÒNG 1',
+                  style: TextStyle(
+                      color: Colors.lightBlue,
+                      fontSize: size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'BeVietnamPro'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    WinnerContainer(
+                      height: size.height * 0.2,
+                      rank: '2',
+                      cardIndex: 2,
+                      value: size.height * 0.0003,
+                      value2: size.height * 0.001,
+                    ),
+                    WinnerContainer(
+                      isFirst: true,
+                      value: size.height * 0.00001,
+                      value2: size.height * 0.001,
+                      cardIndex: 1,
+                    ),
+                    WinnerContainer(
+                      rank: '3',
+                      height: size.height * 0.18,
+                      value: size.height * 0.0005,
+                      cardIndex: 3,
+                      value2: size.height * 0.001,
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  height: size.height * 0.02,
+                  height: size.height * 0.01,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      WinnerContainer(
-                        url: 'lib/images/actor_2.png',
-                        winnerName: 'Alina',
-                        height: size.height * 0.18,
-                        rank: '2',
-                        wpm: '888',
-                        speed: '888',
-                        accuracy: '90%',
-                        color: Colors.lightGreen,
-                      ),
-                      const WinnerContainer(
-                        isFirst: true,
-                        color: Colors.yellow,
-                      ),
-                      WinnerContainer(
-                        winnerName: 'Sofiya',
-                        url: 'lib/images/actor_3.png',
-                        height: size.height * 0.18,
-                        rank: '3',
-                        wpm: '777',
-                        speed: '888',
-                        accuracy: '80%',
-                        color: Colors.pink,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20.0),
-                          topRight: Radius.circular(20.0)),
-                      gradient: LinearGradient(
-                          colors: [Colors.blue, Colors.blue, Colors.blue])),
-                  child: Padding(
-                    padding: EdgeInsets.all(size.width * 0.002),
-                    child: Container(
-                      height: size.height * 0.47,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0)),
-                          color: Colors.white),
-                      child: GridView.count(
-                        crossAxisCount: 1,
-                        childAspectRatio: 3.5,
-                        children: const [
-                          ContestantList(
-                            url: 'lib/images/actor_1.png',
-                            name: 'Shona',
-                            wpm: '1145',
-                            accuracy: '65%',
-                            speed: '1145',
-                            rank: '4',
-                          ),
-                          ContestantList(
-                            url: 'lib/images/actor_2.png',
-                            name: 'Emily',
-                            accuracy: '60%',
-                            wpm: '1245',
-                            speed: '1145',
-                            rank: '5',
-                          ),
-                          ContestantList(
-                            url: 'lib/images/actor_3.png',
-                            name: 'Josheph',
-                            accuracy: '60%',
-                            speed: '1145',
-                            wpm: '2153',
-                            rank: '6',
-                          ),
-                          ContestantList(
-                            url: 'lib/images/actor_4.png',
-                            accuracy: '55%',
-                            wpm: '3456',
-                            name: 'Kristine',
-                            speed: '1145',
-                            rank: '7',
-                          ),
-                          ContestantList(),
-                        ],
-                      ),
+                  padding: EdgeInsets.all(size.width * 0.00),
+                  child: SizedBox(
+                    height: size.height * 0.34,
+                    child: GridView.count(
+                      crossAxisCount: 1,
+                      childAspectRatio: 5.9,
+                      children: const [
+                        ContestantList(
+                          url: 'lib/images/actor_1.png',
+                          name: 'giangnlhph26511@fpt.edu.vn',
+                          wpm: '999WPM',
+                          accuracy: '100%',
+                          score: '9999',
+                          rank: '1',
+                        ),
+                        ContestantList(
+                          url: 'lib/images/actor_1.png',
+                          name: 'giangnlhph26511@fpt.edu.vn',
+                          wpm: '888WPM',
+                          accuracy: '100%',
+                          score: '8888',
+                          rank: '2',
+                        ),
+                        ContestantList(
+                          url: 'lib/images/actor_1.png',
+                          name: 'giangnlhph26511@fpt.edu.vn',
+                          wpm: '777WPM',
+                          accuracy: '100%',
+                          score: '7777',
+                          rank: '3',
+                        ),
+                        ContestantList(
+                          url: 'lib/images/actor_1.png',
+                          name: 'giangnlhph26511@fpt.edu.vn',
+                          wpm: '666WPM',
+                          accuracy: '100%',
+                          score: '6666',
+                          rank: '4',
+                        ),
+                      ],
                     ),
                   ),
                 ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ContestantList extends StatelessWidget {
+  final String? url;
+  final String? name;
+  final String? wpm;
+  final String? score;
+  final String? accuracy;
+  final String? rank;
+  const ContestantList(
+      {Key? key,
+      this.url,
+      this.score,
+      this.name,
+      this.wpm,
+      this.accuracy,
+      this.rank})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.0,
+        vertical: size.height * 0.0,
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(size.width * 0.01),
+        child: Container(
+          decoration: BoxDecoration(
+            color: isDarkMode
+                ? const Color.fromARGB(255, 58, 69, 75)
+                : const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2), // Màu của đổ bóng
+                spreadRadius: 0.5, // Kích thước đổ bóng
+                blurRadius: 1, // Độ mờ của đổ bóng
+                offset: const Offset(0, 1), // Vị trí của đổ bóng
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.00, vertical: size.height * 0.01),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: size.width * 0.05), // Adjust spacing
+
+                    if (rank != '1' && rank != '2' && rank != '3')
+                      const FaIcon(
+                        FontAwesomeIcons.hashtag,
+                        color: Colors.lightGreen,
+                      ),
+                    if (rank == '1')
+                      const FaIcon(
+                        FontAwesomeIcons.trophy,
+                        color: Colors.yellow,
+                      ),
+                    if (rank == '2')
+                      const FaIcon(
+                        FontAwesomeIcons.medal,
+                        color: Colors.grey,
+                      ),
+                    if (rank == '3')
+                      const FaIcon(
+                        FontAwesomeIcons.medal,
+                        color: Colors.orange,
+                      ),
+                    SizedBox(width: size.width * 0.01), // Adjust spacing
+                    Text(
+                      rank ?? '6',
+                      style: TextStyle(
+                        color: rank == '1'
+                            ? Colors.yellow
+                            : rank == '2'
+                                ? Colors.grey
+                                : rank == '3'
+                                    ? Colors.orange
+                                    : Colors.lightGreen,
+                      ),
+                    ),
+                    SizedBox(width: size.width * 0.02), // Adjust spacing
+                    // Khoảng cách giữa rank và url
+                    Center(
+                      child: ClipOval(
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          url ?? 'lib/images/actor_4.png',
+                          height: size.height * 0.06,
+                          width: size.height * 0.06,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(width: size.width * 0.01), // Adjust spacing
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      name ?? 'giangnlhph26511@fpt.edu.vn',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(width: size.width * 0.01), // Adjust spacing
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        accuracy ?? '100%',
+                        style: TextStyle(
+                          color: rank == '1'
+                              ? const Color.fromRGBO(255, 215, 0, 1)
+                              : rank == '2'
+                                  ? Colors.grey
+                                  : rank == '3'
+                                      ? Colors.orange
+                                      : Colors.green,
+                          fontSize: size.height * 0.015,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.005), // Adjust spacing
+                    Expanded(
+                      child: Text(
+                        wpm ?? '999WPM',
+                        style: TextStyle(
+                          color: rank == '1'
+                              ? const Color.fromRGBO(255, 215, 0, 1)
+                              : rank == '2'
+                                  ? Colors.grey
+                                  : rank == '3'
+                                      ? Colors.orange
+                                      : Colors.green,
+                          fontSize: size.height * 0.015,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    SizedBox(height: size.height * 0.005), // Adjust spacing
+                    Expanded(
+                      child: Text(
+                        score ?? '9999',
+                        style: TextStyle(
+                          color: rank == '1'
+                              ? const Color.fromRGBO(255, 215, 0, 1)
+                              : rank == '2'
+                                  ? Colors.grey
+                                  : rank == '3'
+                                      ? Colors.orange
+                                      : Colors.green,
+                          fontSize: size.height * 0.015,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(width: size.width * 0.05), // Adjust spacing
               ],
             ),
           ),
@@ -151,344 +332,153 @@ class RankingRoundScreen extends StatelessWidget {
 }
 
 class WinnerContainer extends StatelessWidget {
-  final bool isFirst;
-  final Color? color;
-  final String? winnerPosition;
-  final String? url;
-  final String? winnerName;
-  final String? rank;
-  final String? accuracy;
-  final String? wpm;
-  final String? speed;
   final double? height;
-  const WinnerContainer(
-      {Key? key,
-      this.isFirst = false,
-      this.color,
-      this.accuracy,
-      this.wpm,
-      this.winnerPosition,
-      this.winnerName,
-      this.rank,
-      this.speed,
-      this.height,
-      this.url})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.all(size.width * 0.002),
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: size.height * 0.11),
-            child: Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Colors.lightBlue,
-                      Colors.lightBlue,
-                      Colors.lightBlue,
-                      Colors.lightBlue,
-                      Colors.lightBlue,
-                    ],
-                    stops: [
-                      0.1,
-                      0.4,
-                      0.6,
-                      0.8,
-                      1,
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                  ),
-                  border: Border.all(
-                    color: Colors.blue,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(40.0),
-                      topRight: Radius.circular(40.0)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(size.width * 0.002),
-                  child: Container(
-                    height: height ?? size.height * 0.18,
-                    width: size.width * 0.26,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.lightBlue.withOpacity(0.1),
-                          Colors.lightBlue.withOpacity(0.4),
-                          Colors.lightBlue.withOpacity(0.6),
-                          Colors.lightBlue.withOpacity(0.8),
-                          Colors.lightBlue.withOpacity(1),
-                        ],
-                        stops: const [
-                          0.1,
-                          0.4,
-                          0.6,
-                          0.8,
-                          1,
-                        ],
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.lightBlue.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                      border: Border.all(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Center(
-            child: Stack(
-              children: [
-                if (isFirst)
-                  Image.asset(
-                    'lib/images/crown.png',
-                    height: size.height * 0.050,
-                    width: size.width * 0.27,
-                  ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.width * 0.12, left: size.width * 0.04),
-                  child: ClipOval(
-                    clipBehavior: Clip.antiAlias,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.lightBlue.withOpacity(0.1),
-                            Colors.lightBlue.withOpacity(0.4),
-                            Colors.lightBlue.withOpacity(0.6),
-                            Colors.lightBlue.withOpacity(0.8),
-                            Colors.lightBlue.withOpacity(1),
-                          ],
-                          stops: const [
-                            0.1,
-                            0.4,
-                            0.6,
-                            0.8,
-                            1,
-                          ],
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.lightBlue.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                        border: Border.all(
-                          color: Colors.white,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(size.width * 0.005),
-                        child: ClipOval(
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            url ?? 'lib/images/actor_1.png',
-                            height: size.height * 0.09,
-                            width: size.height * 0.09,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.width * 0.28, left: size.width * 0.11),
-                  child: Container(
-                    height: size.height * 0.025,
-                    width: size.height * 0.025,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: color ?? Colors.white,
-                    ),
-                    child: Center(
-                        child: Text(
-                      rank ?? '1',
-                      style: const TextStyle(color: Colors.white),
-                    )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            top: size.width * 0.34,
-            child: SizedBox(
-              width: size.width * 0.27,
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(
-                      winnerName ?? 'Emma Aria',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: size.width * 0.04,
-                          fontFamily: 'BeVietnamPro',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      accuracy ?? '100%',
-                      style: TextStyle(
-                        color: color ?? Colors.blue,
-                        fontSize: size.width * 0.05,
-                        fontFamily: 'BeVietnamPro',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      wpm ?? '999',
-                      style: TextStyle(
-                        color: color ?? Colors.blue,
-                        fontSize: size.width * 0.05,
-                        fontFamily: 'BeVietnamPro',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      speed ?? '999',
-                      style: TextStyle(
-                        color: color ?? Colors.blue,
-                        fontSize: size.width * 0.05,
-                        fontFamily: 'BeVietnamPro',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class ContestantList extends StatelessWidget {
+  final String? rank;
   final String? url;
   final String? name;
   final String? wpm;
   final String? accuracy;
-  final String? speed;
-  final String? rank;
-  const ContestantList(
-      {Key? key,
-      this.url,
-      this.name,
-      this.wpm,
-      this.accuracy,
-      this.speed,
-      this.rank})
-      : super(key: key);
+  final String? score;
+  final double? value;
+  final int cardIndex;
+
+  final double? value2;
+  final bool isFirst;
+  Color getBorderColor() {
+    if (cardIndex == 1) {
+      return const Color.fromRGBO(255, 215, 0, 1);
+    } else if (cardIndex == 2) {
+      return Colors.grey;
+    } else if (cardIndex == 3) {
+      return Colors.orange;
+    } else {
+      return Colors.transparent; // Mặc định không có viền
+    }
+  }
+
+  const WinnerContainer({
+    Key? key,
+    this.isFirst = false,
+    this.rank,
+    this.url,
+    this.name,
+    this.wpm,
+    required this.cardIndex,
+    this.value,
+    this.value2,
+    this.score,
+    this.accuracy,
+    this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.only(
-          left: size.width * 0.06,
-          right: size.width * 0.06,
-          bottom: size.width * 0.03,
-          top: size.width * 0.03),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-              colors: [Colors.blue, Colors.blue, Colors.blue]),
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(size.width * 0.005),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15.0),
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    return Column(
+      children: [
+        if (isFirst)
+          Image.asset(
+            'lib/images/crown.png',
+            height: size.height * 0.04,
+            width: size.width * 0.1,
+          ),
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: getBorderColor(),
+              width: 3.0, // Độ rộng của đường viền
             ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.05, vertical: size.width * 0.01),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        rank ?? '8',
-                        style: const TextStyle(color: Colors.blue),
-                      ),
-                      SizedBox(
-                          width: size.width *
-                              0.05), // Khoảng cách giữa rank và url
-                      Center(
-                        child: ClipOval(
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            url ?? 'lib/images/actor_1.png',
-                            height: size.height * 0.07,
-                            width: size.height * 0.07,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name ?? 'Name',
-                        style: const TextStyle(color: Colors.blue),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        accuracy ?? '85%',
-                        style: const TextStyle(color: Colors.blue),
-                      ),
-                      Text(
-                        wpm ?? '555',
-                        style: const TextStyle(color: Colors.blue),
-                      ),
-                      Text(
-                        speed ?? '555',
-                        style: const TextStyle(color: Colors.blue),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+          ),
+          padding: const EdgeInsets.all(
+              0.0), // Khoảng cách từ đường viền đến hình ảnh
+          child: ClipOval(
+            child: Image.asset(
+              url ?? 'lib/images/actor_1.png',
+              fit: BoxFit.fill,
             ),
           ),
         ),
-      ),
+        if (cardIndex == 1)
+          FaIcon(
+            FontAwesomeIcons.medal,
+            color: getBorderColor(),
+            size: size.height * 0.05,
+          ),
+        if (cardIndex == 2 || cardIndex == 3)
+          FaIcon(
+            FontAwesomeIcons.medal,
+            color: getBorderColor(),
+            size: size.height * 0.05,
+          ),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        Container(
+          constraints: const BoxConstraints(maxWidth: 100),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              name ?? 'giangnlhph26511@fpt.edu.vn',
+              style: TextStyle(
+                color: isDarkMode ? Colors.white : Colors.black,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.center,
+              softWrap: true,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0),
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.blue.withOpacity(value ?? size.height * 0.000),
+                        Colors.blue.withOpacity(value2 ?? size.height * 0.000),
+                      ],
+                      stops: const [0.2, 0.5],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(size.width * 0.000),
+                    child: SizedBox(
+                      height: height ?? size.height * 0.25,
+                      width: size.width * 0.333,
+                      child: Center(
+                        child: Text(
+                          rank ?? '1',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: size.width * 0.25,
+                            fontFamily: 'BeVietnamPro',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
