@@ -95,9 +95,9 @@ class _RankingRoundScreenState extends State<RankingRoundScreen> {
                   height: size.height * 0.01,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(size.width * 0.00),
+                  padding: const EdgeInsets.all(0.00),
                   child: SizedBox(
-                    height: size.height * 0.34,
+                    height: size.height * 0.3,
                     child: GridView.count(
                       crossAxisCount: 1,
                       childAspectRatio: 5.9,
@@ -169,10 +169,7 @@ class ContestantList extends StatelessWidget {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.0,
-        vertical: size.height * 0.0,
-      ),
+      padding: const EdgeInsets.all(0.0),
       child: Padding(
         padding: EdgeInsets.all(size.width * 0.01),
         child: Container(
@@ -241,8 +238,8 @@ class ContestantList extends StatelessWidget {
                         clipBehavior: Clip.antiAlias,
                         child: Image.asset(
                           url ?? 'lib/images/actor_4.png',
-                          height: size.height * 0.06,
-                          width: size.height * 0.06,
+                          height: size.height * 0.07,
+                          width: size.height * 0.07,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -285,7 +282,6 @@ class ContestantList extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.005), // Adjust spacing
                     Expanded(
                       child: Text(
                         wpm ?? '999WPM',
@@ -302,7 +298,6 @@ class ContestantList extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.005), // Adjust spacing
                     Expanded(
                       child: Text(
                         score ?? '9999',
