@@ -1,10 +1,14 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/component/ranking/ranking_finish.dart';
 import 'dart:async';
 
+import '../ranking/ranking_finish.dart';
+import 'components/progress_percent.dart';
+import 'components/score_showing.dart';
+import 'components/showing_text.dart';
+
 class TypingSpeedTestGame extends StatefulWidget {
-  const TypingSpeedTestGame({super.key});
+  const TypingSpeedTestGame({Key? key}) : super(key: key);
 
   @override
   State<TypingSpeedTestGame> createState() => _TypingSpeedTestGameState();
@@ -23,7 +27,6 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   bool isTypingComplete = false;
   double currentCursorPosition = -1;
   ScrollController _scrollController = ScrollController();
-  int tempLength = 0;
   late String initialText;
   bool isBackspace = false;
 
@@ -97,9 +100,10 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       desc:
           'WPM: $wpm \n Mistakes: $mistakes  \n Accuracy: ${accuracy.toStringAsFixed(2)}% \n Full time: $totalTime s / $maxTime s',
       btnOkOnPress: () {
-        // resetGame();
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const RankingFinish()));
+          context,
+          MaterialPageRoute(builder: (_) => const RankingFinish()),
+        );
       },
       btnOkText: 'Done',
       dismissOnTouchOutside: false,
@@ -139,174 +143,84 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(backgroundOpacity),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  LinearProgressIndicator(
-                    value: progressPercentage / 100,
-                    backgroundColor: Colors.transparent,
-                    valueColor:
-                        const AlwaysStoppedAnimation<Color>(Colors.green),
-                    minHeight: 25,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '${progressPercentage.toStringAsFixed(0)}%',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              ProgressPercentage(
+                backgroundOpacity: backgroundOpacity,
+                progressPercentage: progressPercentage,
               ),
-              SizedBox(
-                height: size.height * (20 / size.height),
+              SizedBox(height: size.height * (20 / size.height)),
+              ScoreShowing(mistakes: mistakes, wpm: wpm, timeLeft: timeLeft),
+              SizedBox(height: size.height * 0.04),
+              ShowingText(
+                paragraphs: paragraphs,
+                inputNode: inputNode,
+                scrollController: _scrollController,
+                currentCursorPosition: currentCursorPosition,
+                correctCharacters: correctCharacters,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Mistakes: $mistakes',
-                    style: const TextStyle(
-                      color: Colors.red,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'WPM: $wpm',
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Time: $timeLeft',
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: size.height * 0.04,
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Xử lý sự kiện nhấp vào ở đây
-                    if (!inputNode.hasFocus) {
-                      FocusScope.of(context).requestFocus(inputNode);
-                    }
-                  },
-                  child: Center(
-                    child: SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: _scrollController,
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            for (int i = 0; i < paragraphs[0].length; i++)
-                              WidgetSpan(
-                                child: Text(
-                                  paragraphs[0][i] +
-                                      (i == currentCursorPosition ? '|' : ''),
-                                  style: TextStyle(
-                                    fontSize: 21,
-                                    letterSpacing: 1,
-                                    color: correctCharacters[i] ?? Colors.grey,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Opacity(
-                opacity: 0.0,
-                child: TextFormField(
-                  controller: textEditingController,
-                  onChanged: (input) {
-                    setState(() {
-                      mistakes = 0;
-                      for (int i = 0; i < input.length; i++) {
-                        if (i < paragraphs[0].length) {
-                          if (input[i] != paragraphs[0][i]) {
-                            mistakes++;
-                            correctCharacters[i] = Colors.red;
-                          } else {
-                            correctCharacters[i] = Colors.green;
-                          }
-                        }
-                      }
-                      // Xóa các ký tự nhập sai khi người dùng xóa
-                      if (input.length < paragraphs[0].length && !isBackspace) {
-                        for (int i = input.length;
-                            i < paragraphs[0].length;
-                            i++) {
-                          correctCharacters[i] = null;
-                        }
-                      }
-                      if (input.length == paragraphs[0].length) {
-                        // Check if typedText matches the original paragraph
-                        isTypingComplete = true;
-                        timer.cancel();
-                        _showResultDialog(); // Display the result dialog
-                      }
-
-                      // Cập nhật vị trí hiện tại của dấu "|"
-                      currentCursorPosition = input.length - 1;
-                      calculateStats();
-                      int tempLength =
-                          input.length; // Lưu trữ giá trị typedText.length
-                      if (tempLength % 80 == 0) {
-                        _scrollController.animateTo(
-                          _scrollController.offset +
-                              60, // Khoảng cần di chuyển (30px)
-                          curve: Curves.linear, // Đường cong di chuyển
-                          duration: const Duration(
-                              milliseconds: 500), // Thời gian di chuyển
-                        );
-                      }
-                    });
-
-                    if (textEditingController.text.length < typedText.length &&
-                        isBackspace) {
-                      textEditingController.text = typedText;
-                    } else {
-                      setState(() {
-                        typedText = textEditingController.text;
-                      });
-                    }
-                  },
-                  enabled: timeLeft > 0,
-                  autofocus: true,
-                  focusNode: inputNode,
-                  style: const TextStyle(fontSize: 18),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
+              textTyping(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Opacity textTyping() {
+    return Opacity(
+      opacity: 0.0,
+      child: TextFormField(
+        controller: textEditingController,
+        onChanged: (input) {
+          setState(() {
+            mistakes = 0;
+            for (int i = 0; i < input.length; i++) {
+              if (i < paragraphs[0].length) {
+                if (input[i] != paragraphs[0][i]) {
+                  mistakes++;
+                  correctCharacters[i] = Colors.red;
+                } else {
+                  correctCharacters[i] = Colors.green;
+                }
+              }
+            }
+            if (input.length < paragraphs[0].length && !isBackspace) {
+              for (int i = input.length; i < paragraphs[0].length; i++) {
+                correctCharacters[i] = null;
+              }
+            }
+            if (input.length == paragraphs[0].length) {
+              isTypingComplete = true;
+              timer.cancel();
+              _showResultDialog();
+            }
+
+            currentCursorPosition = input.length - 1;
+            calculateStats();
+            int tempLength = input.length;
+            if (tempLength % 80 == 0) {
+              _scrollController.animateTo(
+                _scrollController.offset + 60,
+                curve: Curves.linear,
+                duration: const Duration(milliseconds: 500),
+              );
+            }
+          });
+
+          if (textEditingController.text.length < typedText.length &&
+              isBackspace) {
+            textEditingController.text = typedText;
+          } else {
+            setState(() {
+              typedText = textEditingController.text;
+            });
+          }
+        },
+        enabled: timeLeft > 0,
+        autofocus: true,
+        focusNode: inputNode,
+        style: const TextStyle(fontSize: 18),
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
         ),
       ),
     );
