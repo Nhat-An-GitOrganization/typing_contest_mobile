@@ -14,7 +14,6 @@ class RankingStudentScreen extends StatefulWidget {
 
 class _RankingStudentScreenState extends State<RankingStudentScreen> {
   final CarouselController carouselController = CarouselController();
-  final ConfettiController controller = ConfettiController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +39,6 @@ class _RankingStudentScreenState extends State<RankingStudentScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ConfettiWidget(
-                        confettiController: controller,
-                        shouldLoop: true,
-                        blastDirectionality: BlastDirectionality.explosive,
-                      ),
                       SizedBox(
                         height: size.height * 0.8,
                         width: size.height * 0.42,
@@ -68,7 +62,6 @@ class _RankingStudentScreenState extends State<RankingStudentScreen> {
                                 onPageChanged: (index, reason) {
                                   if (index == 2) {
                                     carouselController.stopAutoPlay();
-                                    controller.play();
                                   }
                                 },
                               ),
@@ -139,7 +132,7 @@ class _RankingStudentScreenState extends State<RankingStudentScreen> {
   }
 }
 
-class PlayerCard extends StatelessWidget {
+class PlayerCard extends StatefulWidget {
   final String? url;
   final String playerName;
   final int wpm;
@@ -156,12 +149,28 @@ class PlayerCard extends StatelessWidget {
     required this.cardIndex,
     Key? key,
   }) : super(key: key);
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _PlayerCardState createState() => _PlayerCardState();
+}
+
+class _PlayerCardState extends State<PlayerCard> {
+  late final ConfettiController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = ConfettiController(duration: const Duration(seconds: 8));
+    controller.play();
+  }
+
   Color getBorderColor() {
-    if (cardIndex == 1) {
+    if (widget.cardIndex == 1) {
       return const Color.fromRGBO(255, 215, 0, 1);
-    } else if (cardIndex == 2) {
+    } else if (widget.cardIndex == 2) {
       return Colors.grey;
-    } else if (cardIndex == 3) {
+    } else if (widget.cardIndex == 3) {
       return Colors.orange;
     } else {
       return Colors.transparent; // Mặc định không có viền
@@ -186,7 +195,12 @@ class PlayerCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (cardIndex == 1)
+            if (widget.cardIndex == 1)
+              ConfettiWidget(
+                confettiController: controller,
+                blastDirectionality: BlastDirectionality.explosive,
+              ),
+            if (widget.cardIndex == 1)
               Image.asset(
                 'lib/images/crown.png',
                 height: size.height * 0.04,
@@ -198,31 +212,42 @@ class PlayerCard extends StatelessWidget {
               children: [
                 Container(
                   width: size.width *
-                      0.30, // Kích thước mong muốn cho hình tròn và viền
+                      0.25, // Kích thước mong muốn cho hình tròn và viền
                   height: size.height * 0.15,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: getBorderColor(),
-                      width: 4.0, // Độ rộng của đường viền
+                      width: size.height * 0.005, // Độ rộng của đường viền
                     ),
                   ),
+
                   padding: const EdgeInsets.all(
                       0.0), // Khoảng cách từ đường viền đến hình ảnh
                   child: ClipOval(
+                    clipBehavior: Clip.antiAlias,
                     child: Image.asset(
-                      url ?? 'lib/images/actor_1.png',
+                      widget.url ?? 'lib/images/actor_4.png',
+                      height: size.height * 0.07,
+                      width: size.height * 0.07,
                       fit: BoxFit.fill,
                     ),
                   ),
                 ),
-                if (cardIndex == 1)
-                  FaIcon(
-                    FontAwesomeIcons.medal,
-                    color: getBorderColor(),
-                    size: size.height * 0.05,
+                if (widget.cardIndex == 1)
+                  Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.medal,
+                          color: getBorderColor(),
+                          size: size.height * 0.05,
+                        ),
+                      ],
+                    ),
                   ),
-                if (cardIndex == 2 || cardIndex == 3)
+                if (widget.cardIndex == 2 || widget.cardIndex == 3)
                   FaIcon(
                     FontAwesomeIcons.medal,
                     color: getBorderColor(),
@@ -232,9 +257,9 @@ class PlayerCard extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.035),
             Text(
-              playerName,
+              widget.playerName,
               style: TextStyle(
-                fontSize: size.height * 0.03,
+                fontSize: size.height * 0.025,
                 color: isDarkMode
                     ? const Color.fromARGB(255, 255, 255, 255)
                     : const Color.fromARGB(255, 58, 69, 75),
@@ -243,10 +268,10 @@ class PlayerCard extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.02),
             Text(
-              '$wpm' 'WPM' ' | $accuracy',
+              '${widget.wpm} WPM | ${widget.accuracy}',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: size.height * 0.045,
+                fontSize: size.height * 0.025,
                 color: isDarkMode
                     ? const Color.fromARGB(255, 255, 255, 255)
                     : const Color.fromARGB(255, 58, 69, 75),
@@ -254,9 +279,9 @@ class PlayerCard extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.02),
             Text(
-              '$score',
+              '${widget.score}',
               style: TextStyle(
-                fontSize: size.height * 0.045,
+                fontSize: size.height * 0.025,
                 color: isDarkMode
                     ? const Color.fromARGB(255, 255, 255, 255)
                     : const Color.fromARGB(255, 58, 69, 75),
