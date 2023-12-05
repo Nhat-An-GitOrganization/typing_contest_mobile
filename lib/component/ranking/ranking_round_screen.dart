@@ -58,12 +58,11 @@ class _RankingRoundScreenState extends State<RankingRoundScreen> {
                       fontFamily: 'BeVietnamPro'),
                 ),
                 Text(
-                  'VÒNG THI TYPING BEE - VÒNG 1',
+                  'TYPING BEE SPRING 2023 - VÒNG 1',
                   style: TextStyle(
                       color: Colors.lightBlue,
                       fontSize: size.width * 0.05,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'BeVietnamPro'),
+                      fontWeight: FontWeight.bold,),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -164,7 +164,7 @@ class ClassDetail extends StatelessWidget {
                     itemCount: Rounds.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.only(left: size.height * 0.01),
+                        padding: EdgeInsets.only(left: size.height * 0.01, bottom: size.height * 0.03),
                         child: ListTile(
                           leading: CircleAvatar(
                             backgroundImage:

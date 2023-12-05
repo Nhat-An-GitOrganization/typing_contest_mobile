@@ -94,21 +94,21 @@ class _StudentListScreenState extends State<StudentOfClass> {
                         ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        const SizedBox(width: 0),
-                        Checkbox(
-                          value: selectAll,
-                          onChanged: (value) {
-                            setState(() {
-                              selectAll = value ?? false;
-                              checkboxValues =
-                                  List<bool>.filled(students.length, selectAll);
-                            });
-                          },
-                        ),
-                      ],
-                    ),
+                    // Column(
+                    //   children: [
+                    //     const SizedBox(width: 0),
+                    //     Checkbox(
+                    //       value: selectAll,
+                    //       onChanged: (value) {
+                    //         setState(() {
+                    //           selectAll = value ?? false;
+                    //           checkboxValues =
+                    //               List<bool>.filled(students.length, selectAll);
+                    //         });
+                    //       },
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
@@ -123,14 +123,14 @@ class _StudentListScreenState extends State<StudentOfClass> {
                       padding: EdgeInsets.only(left: size.height * 0.01),
                       child: Row(
                         children: [
-                          Checkbox(
-                            value: checkboxValues[index],
-                            onChanged: (value) {
-                              setState(() {
-                                checkboxValues[index] = value ?? false;
-                              });
-                            },
-                          ),
+                          // Checkbox(
+                          //   value: checkboxValues[index],
+                          //   onChanged: (value) {
+                          //     setState(() {
+                          //       checkboxValues[index] = value ?? false;
+                          //     });
+                          //   },
+                          // ),
                           Expanded(
                             child: ListTile(
                               leading: CircleAvatar(
@@ -148,20 +148,20 @@ class _StudentListScreenState extends State<StudentOfClass> {
                                   style: TextStyle(
                                     fontSize: size.height * 0.017,
                                   )),
-                              trailing: SizedBox(
-                                child: IconButton(
-                                  icon: const Icon(Icons.close_sharp),
-                                  color: Colors.redAccent,
-                                  onPressed: () {
-                                    // setState(() {
-                                    //   students.removeAt(index);
-                                    // });
-                                  },
-                                ),
-                              ),
-                              onTap: () {
-                                // Handle onTap event
-                              },
+                              // trailing: SizedBox(
+                              //   child: IconButton(
+                              //     icon: const Icon(Icons.close_sharp),
+                              //     color: Colors.redAccent,
+                              //     onPressed: () {
+                              //       // setState(() {
+                              //       //   students.removeAt(index);
+                              //       // });
+                              //     },
+                              //   ),
+                              // ),
+                              // onTap: () {
+                              //   // Handle onTap event
+                              // },
                             ),
                           ),
                         ],
