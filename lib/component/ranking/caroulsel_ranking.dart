@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -22,13 +24,13 @@ class _CaroulselRankState extends State<CaroulselRank> {
     {
       'title': 'The Amazing Spiderman 2',
       'image':
-          'https://wallpapers.moviemania.io/phone/movie/102382/bee9ae/the-amazing-spider-man-2-phone-wallpaper.jpg?w=820&h=1459',
+          'https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/405346930_669002545394862_41869691701001373_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=c42490&_nc_ohc=btztr1XoqWwAX9DXZBd&_nc_ht=scontent.fhan18-1.fna&oh=00_AfBiOMk6a_PDE4-RcBIE3BYzfI0ybNUszvhup6wH0vvB-g&oe=65750695',
       'description': 'The Amazing Spider-Man 2'
     },
     {
       'title': 'Spider-Man No Way Home',
       'image':
-          'https://9mmwallpapers.com/wp-content/uploads/Spider-Man-No-Way-Home-iPhone-Wallpaper-4k.jpg',
+          'https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/406899320_377699627969249_4017628346548516817_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=Pqtmrpj29R0AX_1AUw7&_nc_ht=scontent.fhan18-1.fna&oh=00_AfBJbZswMyrs_-Vla5E_NRQc8Cp4hjc5rElUCSh7N9JEcg&oe=6575F94D',
       'description': 'Spider-Man No Way Home'
     }
   ];
@@ -74,6 +76,10 @@ class _CaroulselRankState extends State<CaroulselRank> {
               width: MediaQuery.of(context).size.width,
               child: CarouselSlider(
                 options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                     height: 500.0,
                     aspectRatio: 16 / 9,
                     viewportFraction: 0.70,
