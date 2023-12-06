@@ -50,7 +50,7 @@ dependencies:
   intl: ^0.18.1
   http: ^1.1.0
   popover: ^0.2.8+2
-  confetti: ^0.6.0
+  confetti: ^0.7.0
   timeline_tile: ^2.0.0
   flutter_animate: ^4.3.0
 

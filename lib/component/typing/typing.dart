@@ -1,8 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:typing_contest_mobile/component/ranking/caroulsel_Ranking.dart';
 import 'dart:async';
 
-import '../ranking/ranking_finish.dart';
 import 'components/progress_percent.dart';
 import 'components/score_showing.dart';
 import 'components/showing_text.dart';
@@ -102,7 +102,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       btnOkOnPress: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const RankingFinish()),
+          MaterialPageRoute(builder: (_) => const CaroulselRank()),
         );
       },
       btnOkText: 'Done',
