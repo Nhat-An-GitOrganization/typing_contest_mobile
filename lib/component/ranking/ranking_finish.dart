@@ -43,7 +43,7 @@ class _RankingStudentScreenState extends State<RankingFinish> {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor:  Color.fromARGB(255, 26, 115, 232),
       ),
     );
   }

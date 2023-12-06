@@ -14,7 +14,7 @@ class MyImageContainer extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(imageUrl),
+              image: AssetImage(imageUrl),
               fit: BoxFit.cover,
             ),
             border: Border.all(

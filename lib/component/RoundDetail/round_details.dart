@@ -99,8 +99,8 @@ class DetailRound extends StatelessWidget {
   Widget buildRoundUI(RoundContest round, Size size, BuildContext context) {
     return Stack(
       children: [
-        MyImageContainer(
-          imageUrl: round.imageUrl ?? '',
+        const MyImageContainer(
+          imageUrl: 'lib/images/background.png',
         ),
         Positioned(
             child: Column(
