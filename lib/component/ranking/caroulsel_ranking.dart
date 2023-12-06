@@ -78,7 +78,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
               child: CarouselSlider(
                 options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayInterval: const Duration(seconds: 4),
                     autoPlayAnimationDuration:
                         const Duration(milliseconds: 800),
                     height: 500.0,
@@ -120,7 +120,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
                                   style: const TextStyle(
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
-                                ).animate().fade(delay: 500.ms).slideY(),
+                                ),
                                 // rating
                                 const SizedBox(height: 20),
                                 Text(
@@ -129,7 +129,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
                                       fontSize: 14.0,
                                       color: Colors.grey.shade600),
                                   textAlign: TextAlign.center,
-                                ).animate().fade(delay: 700.ms).slideY(),
+                                ),
                                 const SizedBox(height: 20),
                                 AnimatedOpacity(
                                   duration: const Duration(milliseconds: 500),
@@ -157,9 +157,6 @@ class _CaroulselRankState extends State<CaroulselRank> {
                                                   fontSize: 14.0,
                                                   color: Colors.grey.shade600),
                                             )
-                                                .animate()
-                                                .fade(delay: 900.ms)
-                                                .slideY()
                                           ],
                                         ),
                                         Row(
@@ -176,9 +173,6 @@ class _CaroulselRankState extends State<CaroulselRank> {
                                                   fontSize: 14.0,
                                                   color: Colors.grey.shade600),
                                             )
-                                                .animate()
-                                                .fade(delay: 900.ms)
-                                                .slideY()
                                           ],
                                         ),
                                         SizedBox(
@@ -201,9 +195,6 @@ class _CaroulselRankState extends State<CaroulselRank> {
                                                     color:
                                                         Colors.grey.shade600),
                                               )
-                                                  .animate()
-                                                  .fade(delay: 900.ms)
-                                                  .slideY()
                                             ],
                                           ),
                                         ),
