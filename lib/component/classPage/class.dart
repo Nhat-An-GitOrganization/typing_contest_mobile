@@ -66,7 +66,8 @@ class Class extends StatelessWidget {
                       ),
                       color: isDarkMode
                           ? Colors.black.withOpacity(0.5)
-                          : Colors.white.withOpacity(0.5),
+                          : const Color.fromARGB(255, 227, 227, 227)
+                              .withOpacity(0.5),
                     ),
                   ),
                 ),
@@ -105,9 +106,9 @@ class Class extends StatelessWidget {
                     child: Text(
                       ct.title,
                       style: TextStyle(
-                        fontSize: size.width * 0.055,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: size.width * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 13, 27, 46)),
                     ),
                   ),
                   Padding(
@@ -116,7 +117,7 @@ class Class extends StatelessWidget {
                         top: size.height * 0.02,
                         bottom: size.height * 0.01),
                     child: Text(
-                      'Tên Lớp',
+                      'Người tạo',
                       style: TextStyle(fontSize: size.width * 0.04),
                     ),
                   ),
