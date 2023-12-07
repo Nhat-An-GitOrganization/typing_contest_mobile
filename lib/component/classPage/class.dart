@@ -65,8 +65,8 @@ class Class extends StatelessWidget {
                         topRight: Radius.circular(size.width * 0.05),
                       ),
                       color: isDarkMode
-                          ? Colors.black.withOpacity(0.3)
-                          : Colors.white.withOpacity(0.3),
+                          ? Colors.black.withOpacity(0.5)
+                          : Colors.white.withOpacity(0.5),
                     ),
                   ),
                 ),
