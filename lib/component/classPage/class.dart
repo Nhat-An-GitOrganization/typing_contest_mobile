@@ -108,7 +108,7 @@ class Class extends StatelessWidget {
                       style: TextStyle(
                           fontSize: size.width * 0.055,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 13, 27, 46)),
+                          color: const Color.fromARGB(255, 13, 27, 46)),
                     ),
                   ),
                   Padding(
