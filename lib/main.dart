@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:typing_contest_mobile/screen/home_screen.dart';
-import 'package:typing_contest_mobile/screen/login_screen.dart';
+// import 'package:typing_contest_mobile/screen/login_screen.dart';
+
+import 'component/ranking/caroulsel_ranking.dart';
 
 
 Future<void> main() async {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         textTheme: newTextStyle,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: const CaroulselRank(),
     );
   }
 }
