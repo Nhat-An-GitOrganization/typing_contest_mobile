@@ -20,12 +20,12 @@ class _CaroulselRankState extends State<CaroulselRank> {
 
   final List<dynamic> _movies = [
     {
-      'title': 'Nguyễn Lê Nhật An',
+      'title': 'Cute Otter',
       'stand': 'lib/images/crown.png',
       'image':
-          'https://m.media-amazon.com/images/I/71hvoqd-X3L._AC_SL1357_.jpg',
-      'description': 'Chúc mừng bạn đã đứng vị trí thứ 1',
-      'color': Colors.yellow
+          'https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/406899320_377699627969249_4017628346548516817_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=Pqtmrpj29R0AX_1AUw7&_nc_ht=scontent.fhan18-1.fna&oh=00_AfBJbZswMyrs_-Vla5E_NRQc8Cp4hjc5rElUCSh7N9JEcg&oe=6575F94D',
+      'description': 'Chúc mừng bạn đã đứng vị trí thứ 3',
+      'color': Colors.brown
     },
     {
       'title': 'Sooo nè',
@@ -36,13 +36,13 @@ class _CaroulselRankState extends State<CaroulselRank> {
       'color': Colors.grey,
     },
     {
-      'title': 'Cute Otter',
+      'title': 'Nguyễn Lê Nhật An',
       'stand': 'lib/images/crown.png',
       'image':
-          'https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/406899320_377699627969249_4017628346548516817_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=Pqtmrpj29R0AX_1AUw7&_nc_ht=scontent.fhan18-1.fna&oh=00_AfBJbZswMyrs_-Vla5E_NRQc8Cp4hjc5rElUCSh7N9JEcg&oe=6575F94D',
-      'description': 'Chúc mừng bạn đã đứng vị trí thứ 3',
-      'color': Colors.brown
-    }
+          'https://m.media-amazon.com/images/I/71hvoqd-X3L._AC_SL1357_.jpg',
+      'description': 'Chúc mừng bạn đã đứng vị trí thứ 1',
+      'color': Colors.yellow
+    },
   ];
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
 
   @override
   Widget build(BuildContext context) {
-    // bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
         body: SizedBox(
@@ -95,19 +95,32 @@ class _CaroulselRankState extends State<CaroulselRank> {
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.3,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          colors: [
-                        Colors.grey.shade50.withOpacity(1),
-                        Colors.grey.shade50.withOpacity(1),
-                        Colors.grey.shade50.withOpacity(1),
-                        Colors.grey.shade50.withOpacity(1),
-                        Colors.grey.shade50.withOpacity(0.0),
-                        Colors.grey.shade50.withOpacity(0.0),
-                        Colors.grey.shade50.withOpacity(0.0),
-                        Colors.grey.shade50.withOpacity(0.0),
-                      ])),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: isDarkMode
+                          ? [
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(1),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(1),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(1),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(1),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(0.0),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(0.0),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(0.0),
+                              const Color.fromARGB(255, 46, 55, 67).withOpacity(0.0),
+                            ]
+                          : [
+                              Colors.grey.shade50.withOpacity(1),
+                              Colors.grey.shade50.withOpacity(1),
+                              Colors.grey.shade50.withOpacity(1),
+                              Colors.grey.shade50.withOpacity(1),
+                              Colors.grey.shade50.withOpacity(0.0),
+                              Colors.grey.shade50.withOpacity(0.0),
+                              Colors.grey.shade50.withOpacity(0.0),
+                              Colors.grey.shade50.withOpacity(0.0),
+                            ],
+                    ),
+                  ),
                 ),
               ),
               Positioned(
@@ -120,7 +133,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
                       autoPlayInterval: const Duration(seconds: 3),
                       autoPlayAnimationDuration:
                           const Duration(milliseconds: 800),
-                      height: 500.0,
+                      height: 600.0,
                       aspectRatio: 16 / 9,
                       viewportFraction: 0.70,
                       enlargeCenterPage: true,
@@ -147,148 +160,172 @@ class _CaroulselRankState extends State<CaroulselRank> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: SingleChildScrollView(
-                                child: AnimatedOpacity(
-                                  duration: const Duration(milliseconds: 500),
-                                  opacity: _current == _movies.indexOf(movie)
-                                      ? 1.0
-                                      : 0.0,
-                                  child: AnimatedContainer(
-                                    margin: EdgeInsets.only(
-                                      top: _current == _movies.indexOf(movie)
-                                          ? 0.0
-                                          : 100.0,
-                                    ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: isDarkMode
+                                          ? const Color.fromARGB(255, 16, 16, 20)
+                                          : Colors.white),
+                                  child: AnimatedOpacity(
                                     duration: const Duration(milliseconds: 500),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20.0),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                height: 320,
-                                                margin: const EdgeInsets.only(
-                                                    top: 30),
-                                                clipBehavior: Clip.hardEdge,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Image.network(
-                                                  movie['image'],
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 20),
-                                              Text(
-                                                movie['title'],
-                                                style: const TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              // rating
-                                              const SizedBox(height: 20),
-                                              Text(
-                                                movie['description'],
-                                                style: TextStyle(
-                                                    fontSize: 14.0,
-                                                    color:
-                                                        Colors.grey.shade600),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              const SizedBox(height: 20),
-                                              AnimatedOpacity(
-                                                duration: const Duration(
-                                                    milliseconds: 500),
-                                                opacity: _current ==
-                                                        _movies.indexOf(movie)
-                                                    ? 1.0
-                                                    : 0.0,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        const Icon(
-                                                          Icons.star,
-                                                          color: Colors.yellow,
-                                                          size: 20,
-                                                        ),
-                                                        const SizedBox(
-                                                            width: 5),
-                                                        Text(
-                                                          '12000',
-                                                          style: TextStyle(
-                                                              fontSize: 14.0,
-                                                              color: Colors.grey
-                                                                  .shade600),
-                                                        )
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          'WPM: ',
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 14.0,
-                                                            color: Colors
-                                                                .blue.shade600,
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                            width: 5),
-                                                        Text(
-                                                          '41',
-                                                          style: TextStyle(
-                                                              fontSize: 14.0,
-                                                              color: Colors.grey
-                                                                  .shade600),
-                                                        )
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          'Acc',
-                                                          style: TextStyle(
-                                                              fontSize: 14.0,
-                                                              color: Colors
-                                                                  .green
-                                                                  .shade600),
-                                                        ),
-                                                        const SizedBox(
-                                                            width: 5),
-                                                        Text(
-                                                          '89%',
-                                                          style: TextStyle(
-                                                              fontSize: 14.0,
-                                                              color: Colors.grey
-                                                                  .shade600),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                    opacity: _current == _movies.indexOf(movie)
+                                        ? 1.0
+                                        : 0.0,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: AnimatedContainer(
+                                        margin: EdgeInsets.only(
+                                          top: _current == _movies.indexOf(movie)
+                                              ? 0.0
+                                              : 100.0,
                                         ),
-                                        Positioned(
-                                          child: Center(
-                                            child: Image.asset(
-                                              movie['stand'],
-                                              width: 70,
-                                              color: movie['color'],
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 20.0),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    height: 320,
+                                                    margin: const EdgeInsets.only(
+                                                        top: 30),
+                                                    clipBehavior: Clip.hardEdge,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                    ),
+                                                    child: Image.network(
+                                                      movie['image'],
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 20),
+                                                  Text(
+                                                    movie['title'],
+                                                    style: TextStyle(
+                                                        color: isDarkMode
+                                                            ? Colors.white
+                                                            : Colors.black,
+                                                        fontSize: 16.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  // rating
+                                                  const SizedBox(height: 20),
+                                                  Text(
+                                                    movie['description'],
+                                                    style: TextStyle(
+                                                        fontSize: 14.0,
+                                                        color: isDarkMode
+                                                            ? const Color
+                                                                .fromARGB(255,
+                                                                234, 232, 232)
+                                                            : Colors
+                                                                .grey.shade600),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                  const SizedBox(height: 20),
+                                                  AnimatedOpacity(
+                                                    duration: const Duration(
+                                                        milliseconds: 500),
+                                                    opacity: _current ==
+                                                            _movies.indexOf(movie)
+                                                        ? 1.0
+                                                        : 0.0,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            const Icon(
+                                                              Icons.star,
+                                                              color:
+                                                                  Colors.yellow,
+                                                              size: 20,
+                                                            ),
+                                                            const SizedBox(
+                                                                width: 5),
+                                                            Text(
+                                                              '12000',
+                                                              style: TextStyle(
+                                                                  fontSize: 14.0,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade600),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              'WPM: ',
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 14.0,
+                                                                color: Colors.blue
+                                                                    .shade600,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                width: 5),
+                                                            Text(
+                                                              '41',
+                                                              style: TextStyle(
+                                                                  fontSize: 14.0,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade600),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              'Acc',
+                                                              style: TextStyle(
+                                                                  fontSize: 14.0,
+                                                                  color: Colors
+                                                                      .green
+                                                                      .shade600),
+                                                            ),
+                                                            const SizedBox(
+                                                                width: 5),
+                                                            Text(
+                                                              '89%',
+                                                              style: TextStyle(
+                                                                  fontSize: 14.0,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade600),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
+                                            Positioned(
+                                              child: Center(
+                                                child: Image.asset(
+                                                  movie['stand'],
+                                                  width: 70,
+                                                  color: movie['color'],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -303,7 +340,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
               ),
               Positioned(
                 right: 20,
-                bottom: 30,
+                bottom: 20,
                 child: TextButton.icon(
                   onPressed: () {
                     Navigator.push(
@@ -312,13 +349,15 @@ class _CaroulselRankState extends State<CaroulselRank> {
                           builder: (context) => const RankingRoundScreen()),
                     );
                   },
-                  label: const Text(
+                  label: Text(
                     'Bỏ Qua',
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: isDarkMode ? Colors.white : Colors.black),
                   ),
-                  icon: const Icon(
+                  icon: Icon(
                     FontAwesomeIcons.arrowRightLong,
-                    color: Colors.black,
+                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
               )

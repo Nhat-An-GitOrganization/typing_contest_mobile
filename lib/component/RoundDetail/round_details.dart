@@ -77,6 +77,7 @@ class DetailRound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: FutureBuilder<RoundContest>(
         future: fetchMockData(id),
@@ -97,6 +98,7 @@ class DetailRound extends StatelessWidget {
   }
 
   Widget buildRoundUI(RoundContest round, Size size, BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Stack(
       children: [
         const MyImageContainer(
@@ -194,8 +196,7 @@ class DetailRound extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(size.height * 0,
-                          size.height * 0.04, size.height * 0, size.height * 0),
+                      padding: EdgeInsets.only(top: size.height * 0.01),
                       child: Column(
                         children: [
                           Row(
@@ -268,6 +269,7 @@ class DetailRound extends StatelessWidget {
                               ),
                             ],
                           ),
+                          SizedBox(height: size.height * 0.03),
                           Row(
                             children: [
                               Expanded(
@@ -280,7 +282,9 @@ class DetailRound extends StatelessWidget {
                                 child: Text(
                                   "Thời gian",
                                   style: TextStyle(
-                                    color: Colors.black87,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontSize: size.height * 0.025,
                                   ),
                                 ),
@@ -295,7 +299,9 @@ class DetailRound extends StatelessWidget {
                                 child: Text(
                                   "Số lần truy cập",
                                   style: TextStyle(
-                                    color: Colors.black87,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontSize: size.height * 0.025,
                                   ),
                                 ),
@@ -344,7 +350,9 @@ class DetailRound extends StatelessWidget {
                                 child: Text(
                                   "Trạng thái",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontSize: size.height * 0.025,
                                   ),
                                 ),
@@ -359,7 +367,9 @@ class DetailRound extends StatelessWidget {
                                 child: Text(
                                   "Khả dụng",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontSize: size.height * 0.025,
                                   ),
                                 ),

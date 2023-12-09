@@ -123,14 +123,16 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
     Size size = MediaQuery.of(context).size;
     double progressPercentage = (typedText.length / paragraphs[0].length) * 100;
     double backgroundOpacity = 0.3;
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xFF17A2B8),
         body: Container(
           height: size.height,
           padding: const EdgeInsets.all(35),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isDarkMode
+            ? const Color.fromARGB(255, 58, 69, 75)
+            : const Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(

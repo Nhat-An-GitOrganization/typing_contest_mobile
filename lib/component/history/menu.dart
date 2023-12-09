@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/history/list_rank.dart';
-import 'package:typing_contest_mobile/component/ranking/ranking_round_screen.dart';
+import 'package:typing_contest_mobile/component/ranking/only_ranking.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class MenuItems extends StatelessWidget {
@@ -31,7 +31,7 @@ class MenuItems extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const RankingRoundScreen()));
+                    builder: (context) => const OnlyRanking()));
             break;
           case 'item2':
             // Xử lý khi chọn menu item 2
