@@ -23,7 +23,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
       'title': 'Cute Otter',
       'stand': 'lib/images/crown.png',
       'image':
-          'https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/406899320_377699627969249_4017628346548516817_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=Pqtmrpj29R0AX_1AUw7&_nc_ht=scontent.fhan18-1.fna&oh=00_AfBJbZswMyrs_-Vla5E_NRQc8Cp4hjc5rElUCSh7N9JEcg&oe=6575F94D',
+          'https://cdn.analyticsvidhya.com/wp-content/uploads/2023/08/Magic-AI-.png',
       'description': 'Chúc mừng bạn đã đứng vị trí thứ 3',
       'color': Colors.brown
     },
@@ -31,7 +31,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
       'title': 'Sooo nè',
       'stand': 'lib/images/crown.png',
       'image':
-          'https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/405346930_669002545394862_41869691701001373_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=c42490&_nc_ohc=btztr1XoqWwAX9DXZBd&_nc_ht=scontent.fhan18-1.fna&oh=00_AfBiOMk6a_PDE4-RcBIE3BYzfI0ybNUszvhup6wH0vvB-g&oe=65750695',
+          'https://www.aipromptsgalaxy.com/wp-content/uploads/2023/06/subrat_female_avatar_proud_face_Aurora_a_25-year-old_girl_with__fd0e4c59-bb7e-4636-9258-6690ec6a71e7.png',
       'description': 'Chúc mừng bạn đã đứng vị trí thứ 2',
       'color': Colors.grey,
     },

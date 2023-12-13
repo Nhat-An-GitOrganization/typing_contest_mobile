@@ -100,10 +100,7 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
       desc:
           'WPM: $wpm \n Mistakes: $mistakes  \n Accuracy: ${accuracy.toStringAsFixed(2)}% \n Full time: $totalTime s / $maxTime s',
       btnOkOnPress: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const CaroulselRank()),
-        );
+        Navigator.pop(context);
       },
       btnOkText: 'Done',
       dismissOnTouchOutside: false,

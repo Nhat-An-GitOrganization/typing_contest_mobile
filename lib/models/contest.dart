@@ -29,7 +29,7 @@ List<Contest> contest = [
       {
         "orginalName": "Christian Bale",
         "movieName": "Ken Miles",
-        "image": "lib/images/actor_3.png",
+        "image": "lib/images/ava_2.png",
       },
     ],
   ),
@@ -46,7 +46,7 @@ List<Contest> contest = [
       {
         "orginalName": "James Mangold",
         "movieName": "Directors",
-        "image": "lib/images/actor_1.png",
+        "image": "lib/images/ava_3.png",
       },
     ],
   ),
@@ -63,7 +63,7 @@ List<Contest> contest = [
       {
         "orginalName": "Matt Damon",
         "movieName": "Carroll",
-        "image": "lib/images/actor_2.png",
+        "image": "lib/images/ava_1.jpg",
       },
     ],
   ),
@@ -80,7 +80,7 @@ List<Contest> contest = [
       {
         "orginalName": "James Mangold",
         "movieName": "Directors",
-        "image": "lib/images/actor_1.png",
+        "image": "lib/images/ava_4.png",
       },
     ],
   ),
@@ -97,7 +97,7 @@ List<Contest> contest = [
       {
         "orginalName": "James Mangold",
         "movieName": "Directors",
-        "image": "lib/images/actor_1.png",
+        "image": "lib/images/ava_5.png",
       },
     ],
   ),
@@ -114,7 +114,7 @@ List<Contest> contest = [
       {
         "orginalName": "James Mangold",
         "movieName": "Directors",
-        "image": "lib/images/actor_1.png",
+        "image": "lib/images/ava_6.png",
       },
     ],
   ),
@@ -131,7 +131,7 @@ List<Contest> contest = [
       {
         "orginalName": "Christian Bale",
         "movieName": "Ken Miles",
-        "image": "lib/images/actor_3.png",
+        "image": "lib/images/ava_7.png",
       },
     ],
   ),

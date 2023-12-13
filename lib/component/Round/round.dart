@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/round_details.dart';
+import 'package:typing_contest_mobile/component/ranking/caroulsel_ranking.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 class Round extends StatelessWidget {
@@ -83,36 +84,71 @@ class Round extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailRound(
-                            id: '6c740a05-0664-46e8-90ff-248a638868c1',
-                            ct: ct,
+                  Row(
+                    children: [
+                                            GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailRound(
+                                id: '6c740a05-0664-46e8-90ff-248a638868c1',
+                                ct: ct,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: size.height * 0.03,
+                              bottom: size.width * 0.05),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.width * 0.01,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 26, 115, 232),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            'Chi tiết',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: size.width * 0.037),
                           ),
                         ),
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          left: size.height * 0.03, bottom: size.width * 0.05),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size.width * 0.05,
-                        vertical: size.width * 0.01,
                       ),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 26, 115, 232),
-                        borderRadius: BorderRadius.circular(20),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CaroulselRank(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              left: size.height * 0.03,
+                              bottom: size.width * 0.05),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.width * 0.01,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 26, 115, 232),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            'Ranking Round',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: size.width * 0.037),
+                          ),
+                        ),
                       ),
-                      child: Text(
-                        'Chi tiết',
-                        style: TextStyle(
-                            color: Colors.white, fontSize: size.width * 0.037),
-                      ),
-                    ),
-                  ),
+                    ],
+                  )
                 ],
               ),
             ),

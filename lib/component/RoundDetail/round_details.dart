@@ -37,10 +37,10 @@ Future<RoundContest> fetchMockData(String id) async {
   Map<String, dynamic> mockData = {
     'id': '123',
     'idContest': '456',
-    'name': 'Mock Round',
+    'name': 'Vòng thi 1',
     'nameContest': 'Mock Contest',
     'description':
-        'This is a mock description This is a mock description This is a mock description This is a mock description This is a mock description This is a mock description  ',
+        'Cuộc thi đánh máy là một sự kiện thú vị và thách thức, nơi người tham gia cạnh tranh trong việc gõ chính xác và nhanh nhất. Cuộc thi này thường được tổ chức để đo lường tốc độ và độ chính xác trong việc đánh máy. Người tham gia sẽ phải gõ các bài thực hành hoặc đoạn văn bản trong một khoảng thời gian nhất định.',
     'imageUrl':
         'https://www.google.com/url?sa=i&url=https%3A%2F%2Fnhatrangclub.vn%2Fthreads%2Fhinh-nen-anh-dep-thien-nhien.1045190%2F&psig=AOvVaw2YfnVBFZGx_iKoC5C6qpT4&ust=1699778754900000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMCN58XHu4IDFQAAAAAdAAAAABAE',
     'timeLimit': 60,
@@ -134,7 +134,10 @@ class DetailRound extends StatelessWidget {
                             round.name ?? '',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          TypingButtonWidget(size),
+                          Padding(
+                            padding: EdgeInsets.only(left: size.width * 0.1),
+                            child: TypingButtonWidget(size),
+                          ),
                         ],
                       ),
                     ),
@@ -203,7 +206,7 @@ class DetailRound extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: round.isHavingSpecialChar == false
-                                    ? Container(
+                                    ? Container(                                      
                                         alignment: Alignment.center,
                                         margin: EdgeInsets.fromLTRB(
                                             size.width * 0.06,
@@ -227,7 +230,7 @@ class DetailRound extends StatelessWidget {
                                             "Khoảng trắng",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: size.height * 0.02,
+                                              fontSize: size.height * 0.017,
                                             ),
                                           ),
                                         ),
@@ -260,7 +263,7 @@ class DetailRound extends StatelessWidget {
                                             "Ký tự đặc biệt",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: size.height * 0.02,
+                                              fontSize: size.height * 0.017,
                                             ),
                                           ),
                                         ),

@@ -40,7 +40,7 @@ List<Student> students = [
     email: 'student1@example.com',
     createDate: '2023-10-11',
     status: 1,
-    image: "lib/images/actor_3.png",
+    image: "lib/images/ava_1.jpg",
   ),
   Student(
     id: '2',
@@ -48,7 +48,7 @@ List<Student> students = [
     email: 'student2@example.com',
     createDate: '2023-10-12',
     status: 0,
-    image: "lib/images/actor_1.png",
+    image: "lib/images/ava_2.png",
   ),
   Student(
     id: '3',
@@ -56,6 +56,6 @@ List<Student> students = [
     email: 'student3@example.com',
     createDate: '2023-10-13',
     status: 1,
-    image: "lib/images/actor_2.png",
+    image: "lib/images/ava_3.png",
   ),
 ];
