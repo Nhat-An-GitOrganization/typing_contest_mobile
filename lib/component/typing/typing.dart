@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:typing_contest_mobile/component/ranking/caroulsel_Ranking.dart';
 import 'dart:async';
 
 import 'components/progress_percent.dart';
