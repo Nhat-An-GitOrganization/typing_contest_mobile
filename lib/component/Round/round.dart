@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/round_details.dart';
-import 'package:typing_contest_mobile/component/ranking/only_ranking.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
 
 import '../ranking/caroulsel_ranking.dart';
