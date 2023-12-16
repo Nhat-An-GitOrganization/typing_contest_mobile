@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/student_class/student.dart';
 import 'package:typing_contest_mobile/models/round.dart';
 
+import '../typing/typing.dart';
+
 class ClassDetail extends StatelessWidget {
   const ClassDetail({Key? key}) : super(key: key);
 
@@ -164,40 +166,53 @@ class ClassDetail extends StatelessWidget {
                     itemCount: Rounds.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.only(left: size.height * 0.01, bottom: size.height * 0.03),
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage(Rounds[index].imageUrl ?? ''),
-                          ),
-                          title: Text(
-                            Rounds[index].name ?? '',
-                            style: TextStyle(
-                              fontSize: size.height * 0.02,
+                        padding: EdgeInsets.only(
+                            left: size.height * 0.01,
+                            bottom: size.height * 0.03),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const TypingSpeedTestGame(),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage(Rounds[index].imageUrl ?? ''),
                             ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Thời gian bắt đầu: ${Rounds[index].startTime ?? ''}',
-                                style: TextStyle(
-                                  fontSize: size.height * 0.017,
-                                ),
+                            title: Text(
+                              Rounds[index].name ?? '',
+                              style: TextStyle(
+                                fontSize: size.height * 0.02,
                               ),
-                              Text(
-                                'Thời gian kết thúc: ${Rounds[index].endTime ?? ''}',
-                                style: TextStyle(
-                                  fontSize: size.height * 0.017,
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Thời gian bắt đầu: ${Rounds[index].startTime ?? ''}',
+                                  style: TextStyle(
+                                    fontSize: size.height * 0.017,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Tổng thời gian: ${Rounds[index].totalTime ?? ''}',
-                                style: TextStyle(
-                                  fontSize: size.height * 0.017,
+                                Text(
+                                  'Thời gian kết thúc: ${Rounds[index].endTime ?? ''}',
+                                  style: TextStyle(
+                                    fontSize: size.height * 0.017,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'Tổng thời gian: ${Rounds[index].totalTime ?? ''}',
+                                  style: TextStyle(
+                                    fontSize: size.height * 0.017,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

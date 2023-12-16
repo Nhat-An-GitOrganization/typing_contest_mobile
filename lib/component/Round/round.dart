@@ -1,9 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:typing_contest_mobile/component/RoundDetail/round_details.dart';
-import 'package:typing_contest_mobile/component/ranking/caroulsel_ranking.dart';
+import 'package:typing_contest_mobile/component/ranking/only_ranking.dart';
 import 'package:typing_contest_mobile/models/contest.dart';
+
+import '../ranking/caroulsel_ranking.dart';
 
 class Round extends StatelessWidget {
   const Round({
@@ -86,7 +87,7 @@ class Round extends StatelessWidget {
                   const Spacer(),
                   Row(
                     children: [
-                                            GestureDetector(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,

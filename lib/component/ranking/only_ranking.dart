@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:typing_contest_mobile/screen/home_screen.dart';
 
 class OnlyRanking extends StatefulWidget {
   const OnlyRanking({super.key});
@@ -27,17 +26,8 @@ class _OnlyRankingState extends State<OnlyRanking> {
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.blue,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              },
+            leading: const BackButton(
+              color: Colors.blue,
             ),
           ),
         ),

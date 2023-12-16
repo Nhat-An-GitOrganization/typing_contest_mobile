@@ -226,5 +226,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  "Dĩ nhiên, tôi có thể viết một đoạn văn tiếng Việt cho bạn.",
+  "SD-34 demo FPLSP_Typing Mobile",
 ];
