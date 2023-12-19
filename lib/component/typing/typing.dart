@@ -16,7 +16,7 @@ class TypingSpeedTestGame extends StatefulWidget {
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode inputNode = FocusNode();
-  static const maxTime = 50;
+  static const maxTime = 6;
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;
@@ -226,5 +226,5 @@ class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
 }
 
 final List<String> paragraphs = [
-  "SD-34 demo FPLSP_Typing Mobile",
+  "Cuộc thi ANH HÙNG BÀN PHÍM - TYPING BEES là 1 sự kết hợp hoàn hảo giữa bộ môn Ứng dụng phần mềm và Bộ môn Tiếng Anh tạo ra dành cho hàng ngàn sinh viên FPoly, Melbourne và BTEC.",
 ];
