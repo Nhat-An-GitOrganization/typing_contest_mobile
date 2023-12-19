@@ -16,7 +16,7 @@ class TypingSpeedTestGame extends StatefulWidget {
 class _TypingSpeedTestGameState extends State<TypingSpeedTestGame> {
   TextEditingController textEditingController = TextEditingController();
   FocusNode inputNode = FocusNode();
-  static const maxTime = 6;
+  static const maxTime = 8;
   int timeLeft = maxTime;
   int mistakes = 0;
   int wpm = 0;

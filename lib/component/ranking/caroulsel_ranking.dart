@@ -31,7 +31,7 @@ class _CaroulselRankState extends State<CaroulselRank> {
       'title': 'Sooo nè',
       'stand': 'lib/images/crown.png',
       'image':
-          'https://www.aipromptsgalaxy.com/wp-content/uploads/2023/06/subrat_female_avatar_proud_face_Aurora_a_25-year-old_girl_with__fd0e4c59-bb7e-4636-9258-6690ec6a71e7.png',
+          'https://news.artnet.com/app/news-upload/2022/12/prisma-labs-lensa-ai.jpg',
       'description': 'Chúc mừng bạn đã đứng vị trí thứ 2',
       'color': Colors.grey,
     },
